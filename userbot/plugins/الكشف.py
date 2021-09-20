@@ -8,7 +8,6 @@ from telethon.utils import get_input_location
 
 from userbot import jmthon
 from userbot.core.logger import logging
-from Jmthon.razan.resources.strings._plugins import *
 from ..Config import Config
 from ..core.managers import edit_or_reply
 from ..helpers import get_user_from_event, reply_id
@@ -56,13 +55,15 @@ async def fetch_info(replied_user, event):
     last_name = last_name.replace("\u2060", "") if last_name else (" ")
     username = "@{}".format(username) if username else ("⌯︙هـذا الشخص ليس لديـه معـرف ")
     user_bio = "⌯︙هذا المستخدم ليس لديه اي نبـذة" if not user_bio else user_bio
+    rozrtba = ".「  مطـور السورس  」." if user_id == 1918967719 or user_id == 1657933680 or user_id == 1715051616 else (".「  العضـو  」.")  # idea for  ~ @ZlZZl77
+    rozrtba = ".「 مـالك الحساب  」." if user_id == (await event.client.get_me()).id and user_id != 1918967719 and user_id != 1657933680 and user_id != 1715051616 else rozrtba
     caption = " \n"
     caption += f"╽<b>- الاسـم ⇜</b> {first_name} {last_name}\n"
     caption += f"╽<b>- المـعـرف ⇜</b> {username}\n"
     caption += f"╽<b>- الايـدي  ⇜</b> <code>{user_id}</code>\n"
     caption += f"╽<b>- عـدد الصـورة ⇜</b> {replied_user_profile_photos_count}\n"
     caption += f"╽<b>- الـمجموعات المشتـركة ⇜</b> {common_chat}\n"
-    caption += f"╽<b>- الرتبـة ⇜</b>{rozrtba}\n"
+    caption += f"╽<b>- الرتبـة ⇜</b>{rozrtba}\n"  #idea for ~ @ZlZZl77
     caption += f"╽<b>-️ الـنبـذه ⇜</b> \n<code>{user_bio}</code>\n\n"
     caption += f"╽<b>- رابط حسـابه ⇜</b> "
     caption += f'╽<a href="tg://user?id={user_id}">{first_name}</a>\n'
