@@ -66,7 +66,7 @@ async def fetch_info(replied_user, event):
     caption += f"╽<b>- الرتبـة ⇜</b>{rozrtba}\n"  #idea for ~ @ZlZZl77
     caption += f"╽<b>-️ الـنبـذه ⇜</b> \n<code>{user_bio}</code>\n\n"
     caption += f"╽<b>- رابط حسـابه ⇜</b> "
-    caption += f'╽<a href="tg://user?id={user_id}">{first_name}</a>\n'
+    caption += f'<a href="tg://user?id={user_id}">{first_name}</a>\n'
     return photo, caption
 
 
