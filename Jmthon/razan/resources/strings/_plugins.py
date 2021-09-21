@@ -11,7 +11,6 @@ from userbot import *
 from userbot.Config import *
 from userbot.helpers import *
 
-RAZAN = "**▾∮ يجب وضع اسم الاغنية اولا للبحث عنها", 15**"
 
 async def roza():
     _, check_sgnirts = check_data_base_heal_th()
