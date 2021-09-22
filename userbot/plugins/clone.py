@@ -30,12 +30,12 @@ DEFAULTUSERBIO = (
     pattern="انتحال(?:\s|$)([\s\S]*)",
     command=("انتحال", plugin_category),
     info={
-        "header": "To clone account of mentiond user or replied user",
-        "usage": "{tr}clone <username/userid/reply>",
+        "header": "لعمـل نسـخ حـسـاب الشـخص الـذي تـرد عليـه ",
+        "usage": "{tr}انتحال <معرف/ايدي/بالرد عليه>",
     },
 )
 async def _(event):
-    "To clone account of mentiond user or replied user"
+    "لعمـل نسـخ حـسـاب الشـخص الـذي تـرد عليـه "
     replied_user, error_i_a = await get_user_from_event(event)
     if replied_user is None:
         return
@@ -71,13 +71,12 @@ async def _(event):
     pattern="اعادة$",
     command=("اعادة", plugin_category),
     info={
-        "header": "To revert back to your original name , bio and profile pic",
-        "note": "For proper Functioning of this command you need to set AUTONAME and DEFAULT_BIO with your profile name and bio respectively.",
-        "usage": "{tr}revert",
+        "header": "لأرجـاع الحـساب الى وضـعه الطـبيعي مـن صـورة واسم وبـايو",
+        "usage": "{tr}اعادة",
     },
 )
 async def _(event):
-    "To reset your original details"
+    "لأرجـاع الحسـاب الـى وضـعن الأصـلي"
     name = f"{DEFAULTUSER}"
     blank = ""
     bio = f"{DEFAULTUSERBIO}"
