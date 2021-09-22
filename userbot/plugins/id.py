@@ -14,14 +14,13 @@ LOGS = logging.getLogger(__name__)
     pattern="(الايدي|id)(?:\s|$)([\s\S]*)",
     command=("الايدي", plugin_category),
     info={
-        "header": "To get id of the group or user.",
-        "description": "if given input then shows id of that given chat/channel/user else if you reply to user then shows id of the replied user \
-    along with current chat id and if not replied to user or given input then just show id of the chat where you used the command",
-        "usage": "{tr}id <reply/username>",
+        "header": "للحـصـول عـلى ايـدي المجـموعة او المستـخدم.",
+        "description": "بالـرد عـلى شخـص للحصـول عـلى ايديه او بـوضع معرفه مع الامـر واذا لم تقـم بوضع معرفه او بالـرد عليه سيعطيك ايـدي الدردشة الحالية",
+        "usage": "{tr}الايدي <باارد/معرف>",
     },
 )
 async def _(event):
-    "To get id of the group or user."
+    "للحـصـول عـلى ايـدي المجـموعة او المستـخدم.."
     input_str = event.pattern_match.group(2)
     if input_str:
         try:
