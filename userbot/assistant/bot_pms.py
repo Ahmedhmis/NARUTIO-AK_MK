@@ -207,7 +207,7 @@ async def handler(event):
                         return
                     await event.client.send_message(
                         Config.OWNER_ID,
-                        f"⬆️ **تـم حذف الرسالة بواسطه المستخدم** {_format.mentionuser(user_name , user_id)}.",
+                        f"▾∮ قام المستخدم ↫  「{_format.mentionuser(user_name , user_id)}」 بحذف الرسالة ↧",
                         reply_to=reply_msg,
                     )
             except Exception as e:
@@ -221,16 +221,16 @@ async def handler(event):
 async def bot_start(event):
     reply_to = await reply_id(event)
     if not reply_to:
-        return await event.reply("قم بالرد على الرسالة للحصول على المعلومات")
+        return await event.reply("**▾∮قم بالرد ع رسالة المستخدم لجلب المعلومات!**")
     info_msg = await event.client.send_message(
         event.chat_id,
-        "**يتم البحث عن هذا المستخدم  ...",
+        "**▾∮ سأجلب المعلومات من قاعدة بياناتي ✓",
         reply_to=reply_to,
     )
     users = get_user_id(reply_to)
     if users is None:
         return await info_msg.edit(
-            "**خطأ:** \nعذرا لم أستطع ايجاد معلومات عن هذا الشخص :("
+            "حدث خطأ!\n**لم اعثر على المستخدم في بياناتي ✘**"
         )
     for usr in users:
         user_id = int(usr.chat_id)
@@ -238,11 +238,9 @@ async def bot_start(event):
         break
     if user_id is None:
         return await info_msg.edit(
-            "**خطأ:** \nعذرا لم أستطع ايجاد معلومات عن هذا الشخص :("
+            "حدث خطأ!\n**لم اعثر على المستخدم في بياناتي ✘**"
         )
-    uinfo = f"تـم ارسال هذه الرسالة بواسطه {_format.mentionuser(user_name , user_id)}\
-            \n**الاسم الاول:** {user_name}\
-            \n**الايدي:** `{user_id}`"
+    uinfo = f"**▾∮الاسم ⪼ **`{user_name}`\n**▾∮الايدي ⪼ **`{user_id}`\n**▾∮الرابط ⪼** 「{_format.mentionuser(user_name , user_id)}」\n\n**⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n[𝙅𝙈𝙏𝙃𝙊𝙉 𝙐𝙎𝙀𝙍𝘽𝙊𝙏 🧸♥](https://t.me/JMTHON)"
     await info_msg.edit(uinfo)
 
 
@@ -250,9 +248,9 @@ async def send_flood_alert(user_) -> None:
     # sourcery no-metrics
     buttons = [
         (
-            Button.inline("🚫  BAN", data=f"bot_pm_ban_{user_.id}"),
+            Button.inline("حظر المستخدم ⛔️❗️", data=f"bot_pm_ban_{user_.id}"),
             Button.inline(
-                "➖ Bot Antiflood [OFF]",
+                "ايقاف تحذير التكرار ﹥[off] ⚠️",
                 data="toggle_bot-antiflood_off",
             ),
         )
@@ -275,13 +273,9 @@ async def send_flood_alert(user_) -> None:
         flood_count = FloodConfig.ALERT[user_.id]["count"] = 1
 
     flood_msg = (
-        r"⚠️ **#Flood_Warning**"
+        r"تحذير التكرار ⚠️"
         "\n\n"
-        f"  ID: `{user_.id}`\n"
-        f"  Name: {get_display_name(user_)}\n"
-        f"  👤 User: {_format.mentionuser(get_display_name(user_), user_.id)}"
-        f"\n\n**Is spamming your bot !** ->  [ Flood rate ({flood_count}) ]\n"
-        "__Quick Action__: Ignored from bot for a while."
+        f"**▾∮  المستخدم ⪼** 「{_format.mentionuser(get_display_name(user_), user_.id)}」\n**▾∮الايدي ⪼ **`{user_.id}`\n\n**▾ المستخدم قام بتكرار الرسائل! العدد ↫** `({flood_count})`\n`*عند الاهمال سيتم حظره تلقائي ❗️`\n**للاجراء السريع في الاسفل ↶****⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n[𝙅𝙈𝙏𝙃𝙊𝙉 𝙐𝙎𝙀𝙍𝘽𝙊𝙏 🧸♥](https://t.me/JMTHON)"
     )
 
     if found:
@@ -296,7 +290,7 @@ async def send_flood_alert(user_) -> None:
             else:
                 await ban_user_from_bot(
                     user_,
-                    f"Automated Ban for Flooding bot [exceeded flood rate of ({FloodConfig.AUTOBAN})]",
+                    f"▾∮ حظر تلقائي لتكرارك {FloodConfig.AUTOBAN} رسائل!",
                 )
                 FloodConfig.USERS[user_.id].clear()
                 FloodConfig.ALERT[user_.id].clear()
@@ -323,7 +317,7 @@ async def send_flood_alert(user_) -> None:
             chat = await jmthon.tgbot.get_entity(BOTLOG_CHATID)
             await jmthon.tgbot.send_message(
                 Config.OWNER_ID,
-                f"⚠️  **[Bot Flood Warning !](https://t.me/c/{chat.id}/{fa_msg.id})**",
+                f"⚠️  **[▾∮ يوجد تكرار!\nإضغط ع الرسالة لمعرفتهُ واجراء اللازم!](https://t.me/c/{chat.id}/{fa_msg.id})**",
             )
         except UserIsBlockedError:
             if BOTLOG:
@@ -341,9 +335,9 @@ async def bot_pm_ban_cb(c_q: CallbackQuery):
     except Exception as e:
         await c_q.answer(f"Error:\n{str(e)}")
     else:
-        await c_q.answer(f"Banning UserID -> {user_id} ...", alert=False)
-        await ban_user_from_bot(user, "Spamming Bot")
-        await c_q.edit(f"✅ **Successfully Banned**  User ID: {user_id}")
+        await c_q.answer(f"جاري حظر المستخدم ↫ `{user_id}`", alert=False)
+        await ban_user_from_bot(user, "لا يسمح بتكرار الرسائل!")
+        await c_q.edit(f"▾∮ تم حظر المستخدم بسبب التكرار❗️ ↶**\n**▾∮الاسم ⪼ **`{user_name}`\n**▾∮الايدي ⪼ **`{user_id}`\n**▾∮الرابط ⪼** 「{_format.mentionuser(user_name , user_id)}**⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n[𝙅𝙈𝙏𝙃𝙊𝙉 𝙐𝙎𝙀𝙍𝘽𝙊𝙏 🧸♥](https://t.me/JMTHON)")
 
 
 def time_now() -> Union[float, int]:
@@ -378,10 +372,10 @@ def is_flood(uid: int) -> Optional[bool]:
 @check_owner
 async def settings_toggle(c_q: CallbackQuery):
     if gvarstatus("bot_antif") is None:
-        return await c_q.answer(f"بوت قفل التكرار بالفعل معطل.", alert=False)
+        return await c_q.answer(f" تحذير التكرار فعلا غير مفعل ❓", alert=False)
     delgvar("bot_antif")
-    await c_q.answer(f"Bot Antiflood disabled.", alert=False)
-    await c_q.edit("قفل التكرار تم تعطيله الان !")
+    await c_q.answer(f" تم ايقاف تحذير التكرار ❗️", alert=False)
+    await c_q.edit("**▾∮ تحذير التكرار غير مفعل الان  ✅**")
 
 
 @jmthon.bot_cmd(incoming=True, func=lambda e: e.is_private)
