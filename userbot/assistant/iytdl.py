@@ -45,7 +45,7 @@ plugin_category = "bot"
 
 
 @jmthon.ar_cmd(
-    pattern="^يوت(?:\s|$)([\s\S]*)",
+    pattern="يوت(?:\s|$)([\s\S]*)",
     command=("يوت", plugin_category),
     info={
         "header": "ytdl with inline buttons.",
