@@ -414,7 +414,7 @@ async def inline_handler(event):
                 json.dump(jsondata, open(hide, "w"))
             else:
                 json.dump(newhide, open(hide, "w"))
-        elif string == "^تعليمات":
+        elif string == "help":
             _result = main_menu()
             result = builder.article(
                 title="Jmthon Help™",
