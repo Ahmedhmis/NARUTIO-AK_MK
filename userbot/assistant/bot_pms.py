@@ -138,7 +138,7 @@ async def bot_pms_edit(event):  # sourcery no-metrics
         if reply_msg:
             await event.client.send_message(
                 Config.OWNER_ID,
-                f"⬆️ **تـم تعديـل رسـالة** \n الـمستخدم العـدلها:{_format.mentionuser(get_display_name(chat) , chat.id)} \n كـ :",
+                f"▾∮ قام المستخدم ↫  「{_format.mentionuser(get_display_name(chat) , chat.id)}」 بتعديل الرسالة⇅",
                 reply_to=reply_msg,
             )
             msg = await event.forward_to(Config.OWNER_ID)
