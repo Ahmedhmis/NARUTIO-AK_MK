@@ -21,7 +21,7 @@ from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
 from . import mention
 
-plugin_category = "utils"
+plugin_category = "bot"
 
 #كتـابة وتعـديل:  @RR9R7
 
