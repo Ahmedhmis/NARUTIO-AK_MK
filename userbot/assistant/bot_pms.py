@@ -215,7 +215,7 @@ async def handler(event):
 
 
 @jmthon.bot_cmd(
-    pattern=f"^/info$",
+    pattern=f"^معلومات$",
     from_users=Config.OWNER_ID,
 )
 async def bot_start(event):
