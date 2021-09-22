@@ -27,7 +27,15 @@ plugin_category = "utils"
 
 @jmthon.ar_cmd(
     pattern="فحص$",
-    command=("فحص", plugin_category), )
+    command=("فحص", plugin_category),
+    info={
+        "header": "للـتأكـد مـن حـالة البـوت",
+        "options": "لوضـع صـورة مـع الامـر يجـب عليـ ان تضـع رابط الصـورة مـع فـار `ALIVE_PIC` للحصـول علـى رابط الصـورة، بالـرد عليهـا بـ  ( `.تلكراف ميديا` ) ",
+        "usage": [
+            "{tr}فحص",
+        ],
+    },
+)
     
 async def amireallyalive(event):
     "للتـأكد من ان البـوت يعـمـل"
