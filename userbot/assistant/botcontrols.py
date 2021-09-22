@@ -34,10 +34,10 @@ cmhd = Config.COMMAND_HAND_LER
 )
 async def bot_help(event):
     await event.reply(
-        f"**▾∮ قائـمه اوامر المطور **\n* تستخدم في ↫ `{botusername} ` فقط! \n**⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n\n*الامر : لعمل اذاعة لمستخدمي البوت ◛ ↶\n/cast\n**⋆ قم بالرد ع الرسالة لاذاعتها للمستخدمين ↸**\n\n*الامر : لمعرفة الملصقات المرسلة ↶\n/info\n**⋆ بالرد ع المستخدم لجلب معلوماتة **\n\n*الامر : لحظر مستخدم من البوت \n/ban\n**⋆ بالرد ع المستخدم مع سبب مثل **\n**/ban @RR9R7 قمت بازعاجي**\n\n* الامر : لالغاء حظر المستخدم من البوت √\n/unban\n**⋆ الامر والمعرف والسبب (اختياري) مثل **\n**/unban @RR9R7 + السبب اختياري**\n\n**⋆ الامر : لمعرفة المحظورين من البوت  **\n/banlist \n\n**⋆ امر : لمعرفة مستخدمين بوتك  **\n/users\n\n**⋆ الاوامر : تشغيل وايقاف التكرار (في البوت) ↶**\n/antif + on / off\n* عند التشغيل يحظر المزعجين تلقائيًا ⊝\n\n\n**⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n[𝙅𝙈𝙏𝙃𝙊𝙉 𝙐𝙎𝙀𝙍𝘽𝙊𝙏 🧸♥](https://t.me/JMTHON)", link_preview=False
+        f"**▾∮ قائـمه اوامر المطور **\n* تستخدم في ↫ `{botusername} ` فقط! `\n**⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n\n*الامر : لعمل اذاعة لمستخدمي البوت ◛ ↶\n`اذاعة`\n**⋆ قم بالرد ع الرسالة لاذاعتها للمستخدمين ↸**\n\n*الامر : لمعرفة الملصقات المرسلة ↶\n/info\n**⋆ بالرد ع المستخدم لجلب معلوماتة **\n\n*الامر : لحظر مستخدم من البوت \n`حظر`\n**⋆ بالرد ع المستخدم مع سبب مثل **\n**حظر @RR9R7 قمت بازعاجي**\n\n* الامر : لالغاء حظر المستخدم من البوت √\nالغاء حظر\n**⋆ الامر والمعرف والسبب (اختياري) مثل **\n**الغاء حظر @RR9R7 + السبب اختياري**\n\n**⋆ الامر : لمعرفة المحظورين من البوت  **\nالمحظورين \n\n**⋆ امر : لمعرفة مستخدمين بوتك  **\n`المستخدمين`\n\n**⋆ الاوامر : تشغيل وايقاف التكرار (في البوت) ↶**\nالتكرار + تفعيل / تعطيل\n* عند التشغيل يحظر المزعجين تلقائيًا ⊝\n\n\n**⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n[𝙅𝙈𝙏𝙃𝙊𝙉 𝙐𝙎𝙀𝙍𝘽𝙊𝙏 🧸♥](https://t.me/JMTHON)", link_preview=False
             )
 @jmthon.bot_cmd(
-    pattern=f"^/cast$",
+    pattern=f"^اذاعة$",
     from_users=Config.OWNER_ID,
 )
 async def bot_broadcast(event):
@@ -53,7 +53,7 @@ async def bot_broadcast(event):
         return await event.reply("**▾∮ ليس لديك مستخدمين في بوتك!⚠️ **")
     users = get_all_starters()
     if users is None:
-        return await event.reply("**▾∮ لم يستطيع جلب قائمة للمستخدمين  **")
+        return await event.reply("**▾∮ لم يستطيع جلب قائمة للمستخدمين ✘ **")
     for user in users:
         try:
             await event.client.send_message(
@@ -98,16 +98,16 @@ async def bot_broadcast(event):
 
 
 @jmthon.ar_cmd(
-    pattern=f"^/users$",
-    command=("users", plugin_category),
+    pattern=f"^المستخدمين$",
+    command=("المستخدمين", plugin_category),
     info={
-        "header": "To get users list who started bot.",
-        "description": "To get compelete list of users who started your bot",
-        "usage": "{tr}bot_users",
+        "header": "لمعـرفة الأشخـاص الذيـن قـاموا بتشغـيل بـوتك ",
+        "description": "للحصـول عـلى قـائمة للأشخـاص الذيـن استخـدموا بـوتك",
+        "usage": "المستخدمين",
     },
 )
 async def ban_starters(event):
-    "To get list of users who started bot."
+    "لمعـرفة الأشخـاص الذيـن قـاموا بتشغـيل بـوتك"
     ulist = get_all_starters()
     if len(ulist) == 0:
         return await edit_delete(event, "**▾∮ ليس لديك مستخدمين في بوتك!⚠️ **")
@@ -118,7 +118,7 @@ async def ban_starters(event):
 
 
 @jmthon.bot_cmd(
-    pattern=f"^/ban\s+([\s\S]*)",
+    pattern=f"^حظر\s+([\s\S]*)",
     from_users=Config.OWNER_ID,
 )
 async def ban_botpms(event):
@@ -150,7 +150,7 @@ async def ban_botpms(event):
 
 
 @jmthon.bot_cmd(
-    pattern=f"^/unban(?:\s|$)([\s\S]*)",
+    pattern=f"^الغاء حظر(?:\s|$)([\s\S]*)",
     from_users=Config.OWNER_ID,
 )
 async def ban_botpms(event):
@@ -176,12 +176,12 @@ async def ban_botpms(event):
 
 
 @jmthon.ar_cmd(
-    pattern=f"^/banlist$",
-    command=("banlist", plugin_category),
+    pattern=f"^المحظورين$",
+    command=("المحظورين", plugin_category),
     info={
-        "header": "To get users list who are banned in bot.",
-        "description": "To get list of users who are banned in bot.",
-        "usage": "{tr}bblist",
+        "header": "لمعـرفة الأشخـاص المحـظورين مـن بـوتك.",
+        "description": "للحـصـول عـلى قـائمة الأشخاص المحـظورين فـي بـوتك ",
+        "usage": "المحظورين",
     },
 )
 async def ban_starters(event):
@@ -196,26 +196,26 @@ async def ban_starters(event):
 
 
 @jmthon.ar_cmd(
-    pattern=f"^/antif (on|off)$",
-    command=("antif", plugin_category),
+    pattern=f"^التكرار (تفعيل|تعطيل)$",
+    command=("التكرار", plugin_category),
     info={
-        "header": "To enable or disable bot antiflood.",
-        "description": "if it was turned on then after 10 messages or 10 edits of same messages in less time then your bot auto loacks them.",
+        "header": "تشغيل وايقاف التكرار في البوت الخاص بك",
+        "description": " عند التشغيل يحظر المزعجين تلقائيًا الذين يكررون 10 رسائل او يعدلون 10 تعديلات في وقت واحد.",
         "usage": [
-            "{tr}bot_antif on",
-            "{tr}bot_antif off",
+            "التكرار تفعيل",
+            "التكرار تعطيل",
         ],
     },
 )
 async def ban_antiflood(event):
     "To enable or disable bot antiflood."
     input_str = event.pattern_match.group(1)
-    if input_str == "on":
+    if input_str == "تفعيل":
         if gvarstatus("bot_antif") is not None:
             return await edit_delete(event, "**▾∮ بالفعل تم تفعيل تحذير التكرار  ✅**")
         addgvar("bot_antif", True)
         await edit_delete(event, "`**▾∮ تم تفعيل تحذير التكرار  ☑️**")
-    elif input_str == "off":
+    elif input_str == "تعطيل":
         if gvarstatus("bot_antif") is None:
             return await edit_delete(event, "**▾∮ بالفعل تم تعطيل تحذير التكرار ❌**")
         delgvar("bot_antif")
