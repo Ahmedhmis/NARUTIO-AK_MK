@@ -11,12 +11,12 @@ plugin_category = "fun"
     pattern="^\:/$",
     command=("\:", plugin_category),
     info={
-        "header": "Animation command",
+        "header": "امر المتحركات",
         "usage": "\:",
     },
 )
 async def kek(keks):
-    "Animation command"
+    "امر المتحركات"
     keks = await edit_or_reply(keks, ":\\")
     uio = ["/", "\\"]
     for i in range(15):
@@ -29,7 +29,7 @@ async def kek(keks):
     pattern="^\-_-$",
     command=("-_-", plugin_category),
     info={
-        "header": "Animation command",
+        "header": "امر المتحركات",
         "usage": "-_-",
     },
 )
@@ -47,12 +47,12 @@ async def lol(lel):
     pattern="^\;_;$",
     command=(";_;", plugin_category),
     info={
-        "header": "Animation command",
+        "header": "امر المتحركات",
         "usage": ";_;",
     },
 )
 async def fun(e):
-    "Animation command"
+    "امر المتحركات"
     e = await edit_or_reply(e, ";__;")
     t = ";__;"
     for _ in range(15):
@@ -65,12 +65,12 @@ async def fun(e):
     pattern="هفف$",
     command=("هفف", plugin_category),
     info={
-        "header": "Animation command",
+        "header": "امر المتحركات",
         "usage": "{tr}هفف",
     },
 )
 async def Oof(e):
-    "Animation command."
+    "امر المتحركات"
     t = "ۿـفف"
     catevent = await edit_or_reply(e, t)
     for _ in range(15):
@@ -83,8 +83,8 @@ async def Oof(e):
     pattern="فصخ ([\s\S]*)",
     command=("فصخ", plugin_category),
     info={
-        "header": "Type writter animation.",
-        "usage": "{tr}type text",
+        "header": "الكتابة المتقطعة",
+        "usage": "{tr}النص",
     },
 )
 async def typewriter(typew):
@@ -108,13 +108,13 @@ async def typewriter(typew):
     pattern="عيد (\d*) ([\s\S]*)",
     command=("عيد", plugin_category),
     info={
-        "header": "repeats the given text with given no of times.",
-        "usage": "{tr}repeat <count> <text>",
-        "examples": "{tr}repeat 10 catuserbot",
+        "header": "تكرار النص المحدد مع عدد معين من المرات",
+        "usage": "{tr}عيد <العدد> <النص>",
+        "examples": "{tr}عيد 10 جمثون",
     },
 )
 async def _(event):
-    "To repeat the given text."
+    "لتكرار النص المحدد."
     cat = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 1)
     message = cat[1]
     count = int(cat[0])
@@ -126,15 +126,15 @@ async def _(event):
     pattern="meme",
     command=("meme", plugin_category),
     info={
-        "header": "Animation command",
+        "header": "امر المتحركات",
         "usage": [
-            "{tr}meme <emoji/text>",
+            "{tr}meme <ايموجي/نص>",
             "{tr}meme",
         ],
     },
 )
 async def meme(event):
-    "Animation command."
+    "امر المتحركات"
     memeVar = event.text
     sleepValue = 0.5
     memeVar = memeVar[6:]
@@ -203,15 +203,15 @@ async def meme(event):
     pattern="give",
     command=("give", plugin_category),
     info={
-        "header": "Animation command",
+        "header": "امر المتحركات",
         "usage": [
-            "{tr}give <emoji/text>",
+            "{tr}give <اموجي/نص>",
             "{tr}give",
         ],
     },
 )
 async def give(event):
-    "Animation command."
+    "امر المتحركات"
     giveVar = event.text
     sleepValue = 0.5
     lp = giveVar[6:]
@@ -258,12 +258,12 @@ async def give(event):
     pattern="sadmin$",
     command=("sadmin", plugin_category),
     info={
-        "header": "Shouts Admin Animation command",
+        "header": "صياح ب امر متحركة الادمن",
         "usage": "{tr}sadmin",
     },
 )
 async def _(event):
-    "Shouts Admin Animation command."
+    "صياح ب امر متحركة الادمن"
     animation_ttl = range(13)
     event = await edit_or_reply(event, "sadmin")
     animation_chars = [
