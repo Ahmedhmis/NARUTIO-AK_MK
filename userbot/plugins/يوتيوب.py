@@ -162,8 +162,8 @@ async def _get_file_name(path: pathlib.Path, full: bool = True) -> str:
         "header": "يمكنك تنزيل صوت عبر اليوتيوب",
         "description": "يدعم تحميل جميع صوت عبر اليوتيوب فقط قم بالكتابة تحميل ص ورابط الذي تريد تحميله",
         "examples": [
-            "{tr}yta <reply to link>",
-            "{tr}yta <link>",
+            "{tr}تحميل ص <بالرد على الرابط>",
+            "{tr}تحميل ص <رابط>",
         ],
     },
 )
@@ -230,8 +230,8 @@ async def download_audio(event):
         "header": "يمكنك تنزيل فيديو عبر يوتيوب",
         "description": "يدعم جميع تحميل فيديوهات عبر اليوتيوب فقط قم بالكتابة تحميل ص ورابط الذي تريد تحميله",
         "examples": [
-            "{tr}ytv <reply to link>",
-            "{tr}ytv <link>",
+            "{tr}تحميل ف <بالرد على الرابط>",
+            "{tr}تحميل ف <رابط>",
         ],
     },
 )
@@ -289,14 +289,14 @@ async def download_video(event):
 
 
 @jmthon.ar_cmd(
-    pattern="يوت(?: |$)(\d*)? ?(.*)",
-    command=("يوت", plugin_category),
+    pattern="نتائج(?: |$)(\d*)? ?(.*)",
+    command=("نتائج", plugin_category),
     info={
         "header": "يمكنك بحث فيديوهات عبر منصة اليوتيوب",
         "description": "يجلب نتائج بحث منصة يوتيوب مع المشاهدات والمدة مع عدد النتائج المطلوبة فإنه يجلب 10 نتائج",
         "examples": [
-            "{tr}yts <query>",
-            "{tr}yts <1-9> <query>",
+            "{tr}نتائج <نص>",
+            "{tr}نتائج <1-9> <نص>",
         ],
     },
 )
@@ -331,7 +331,7 @@ async def yt_search(event):
         "header": "يمكنك تحميل فيديو أو صورة عبر منصة الانستقرام",
         "description": "ملاحظة يتم تنزيل صور / مقاطع فيديو الملف الشخصي العامة فقط.",
         "examples": [
-            "{tr}insta <link>",
+            "{tr}انستا <رابط>",
         ],
     },
 )
