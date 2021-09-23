@@ -1,43 +1,23 @@
-# اذا تخمط اذكر الحقوق رجـاءا  - 
+# اذا تخمط اذكر الحقوق رجـاءا  -
 # كتابة وتعديل وترتيب  ~ @RR9R7
 # For ~ @Jmthon
 
 import asyncio
 import base64
 import os
-import random
-import re
 import shutil
 import time
-import urllib
 from datetime import datetime
 
-import requests
 from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.errors import FloodWaitError
 from telethon.tl import functions
-from urlextract import URLExtract
 
 from ..Config import Config
 from ..helpers.utils import _format
-from ..sql_helper.global_list import (
-    add_to_list,
-    get_collection_list,
-    is_in_list,
-    rm_from_list,
-)
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
-from . import (
-    AUTONAME,
-    BOTLOG,
-    BOTLOG_CHATID,
-    DEFAULT_BIO,
-    _catutils,
-    jmthon,
-    edit_delete,
-    logging,
-)
+from . import AUTONAME, DEFAULT_BIO, edit_delete, jmthon, logging
 
 plugin_category = "tools"
 
@@ -95,7 +75,7 @@ async def digitalpicloop():
 async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
-        DM = time.strftime("%d-%m-%y")
+        time.strftime("%d-%m-%y")
         HI = time.strftime("%I:%M")
         name = f"{RR7PP} {HI} "
         LOGS.info(name)
@@ -111,7 +91,7 @@ async def autoname_loop():
 async def autobio_loop():
     AUTOBIOSTART = gvarstatus("autobio") == "true"
     while AUTOBIOSTART:
-        DMY = time.strftime("%d.%m.%Y")
+        time.strftime("%d.%m.%Y")
         HI = time.strftime("%I:%M")
         bio = f"{DEFAULTUSERBIO} {HI}"
         LOGS.info(bio)
@@ -126,7 +106,8 @@ async def autobio_loop():
 
 @jmthon.ar_cmd(
     pattern="الصورة الوقتية$",
-    command=("الصورة الوقتية", plugin_category),)
+    command=("الصورة الوقتية", plugin_category),
+)
 async def _(event):
     "To set random colour pic with time to profile pic"
     downloader = SmartDL(digitalpfp, digitalpic_path, progress_bar=False)
@@ -142,7 +123,8 @@ async def _(event):
 
 @jmthon.ar_cmd(
     pattern="اسم وقتي$",
-    command=("اسم وقتي", plugin_category),)
+    command=("اسم وقتي", plugin_category),
+)
 async def _(event):
     "To set your display name along with time"
     if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
@@ -154,7 +136,8 @@ async def _(event):
 
 @jmthon.ar_cmd(
     pattern="بايو وقتي$",
-    command=("بايو وقتي", plugin_category),)
+    command=("بايو وقتي", plugin_category),
+)
 async def _(event):
     "To update your bio along with time"
     if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
@@ -166,7 +149,8 @@ async def _(event):
 
 @jmthon.ar_cmd(
     pattern="انهاء ([\s\S]*)",
-    command=("انهاء", plugin_category),)
+    command=("انهاء", plugin_category),
+)
 async def _(event):  # sourcery no-metrics
     "To stop the functions of autoprofile plugin"
     input_str = event.pattern_match.group(1)
@@ -207,7 +191,6 @@ async def _(event):  # sourcery no-metrics
             f"عـذرا يجـب استـخدام الامـر بشـكل صحـيح 🧸♥",
             parse_mode=_format.parse_pre,
         )
-
 
 
 jmthon.loop.create_task(digitalpicloop())

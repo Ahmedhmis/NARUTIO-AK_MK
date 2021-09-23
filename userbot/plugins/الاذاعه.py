@@ -1,14 +1,10 @@
-import os
-
-from telethon import events
-from telethon.tl.functions.channels import EditAdminRequest
-from telethon.tl.types import ChatAdminRights
 from userbot import jmthon
 
 from ..core.managers import edit_or_reply
-
 from . import *
+
 plugin_category = "utils"
+
 
 @jmthon.ar_cmd(
     pattern="وجه ?(.*)$",
@@ -33,7 +29,9 @@ async def gcast(event):
                 await bot.send_message(chat, msg)
             except BaseException:
                 er += 1
-    await event.edit(f"تـم بنـجـاح فـي {done} من الـدردشـات , خطـأ فـي {er} من الـدردشـات")
+    await event.edit(
+        f"تـم بنـجـاح فـي {done} من الـدردشـات , خطـأ فـي {er} من الـدردشـات"
+    )
 
 
 @jmthon.ar_cmd(
@@ -48,7 +46,7 @@ async def gucast(event):
         return edit_or_reply(event, "** ⌯︙يجـب وضـع نـص مع الامـر للتوجيـه**")
     tt = event.text
     msg = tt[7:]
-    kk = await edit_or_reply(event, "** ⌯︙يتـم الـتوجيـة للخـاص انتـظر قليلا**")
+    await edit_or_reply(event, "** ⌯︙يتـم الـتوجيـة للخـاص انتـظر قليلا**")
     er = 0
     done = 0
     async for x in bot.iter_dialogs():
@@ -59,4 +57,6 @@ async def gucast(event):
                 await bot.send_message(chat, msg)
             except BaseException:
                 er += 1
-    await event.edit(f"تـم بنـجـاح فـي {done} من الـدردشـات , خطـأ فـي {er} من الـدردشـات")
+    await event.edit(
+        f"تـم بنـجـاح فـي {done} من الـدردشـات , خطـأ فـي {er} من الـدردشـات"
+    )

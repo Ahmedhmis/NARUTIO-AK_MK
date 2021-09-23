@@ -1,21 +1,18 @@
 # edit ~ @RR9R7
 # for ~ @Jmthon
 
-from asyncio import sleep
 
-from telethon import functions
 from telethon.errors import (
     BadRequestError,
     ImageProcessFailedError,
     PhotoCropSizeSmallError,
 )
-from telethon.errors.rpcerrorlist import UserAdminInvalidError, UserIdInvalidError
+from telethon.errors.rpcerrorlist import UserIdInvalidError
 from telethon.tl.functions.channels import (
     EditAdminRequest,
     EditBannedRequest,
     EditPhotoRequest,
 )
-from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import (
     ChatAdminRights,
     ChatBannedRights,
@@ -27,9 +24,8 @@ from userbot import jmthon
 
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
-from ..helpers import media_type
 from ..helpers.utils import _format, get_user_from_event
-from ..sql_helper.mute_sql import is_muted, mute, unmute
+from ..sql_helper.mute_sql import is_muted
 from . import BOTLOG, BOTLOG_CHATID
 
 # =================== STRINGS ============
@@ -51,7 +47,7 @@ BANNED_RIGHTS = ChatBannedRights(
     send_inline=True,
     embed_links=True,
 )
-#admin plugin for  jmthon
+# admin plugin for  jmthon
 UNBAN_RIGHTS = ChatBannedRights(
     until_date=None,
     send_messages=None,
@@ -67,7 +63,7 @@ LOGS = logging.getLogger(__name__)
 MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
-plugin_category = "aadmin" 
+plugin_category = "aadmin"
 # ================================================
 
 
@@ -147,7 +143,7 @@ async def set_group_photo(event):  # sourcery no-metrics
     },
     groups_only=True,
     require_admin=True,
-)#admin plugin for  jmthon
+)  # admin plugin for  jmthon
 async def promote(event):
     "⌯︙لـرفع مستـخدم مشـرف في الـكروب"
     new_rights = ChatAdminRights(
@@ -220,6 +216,8 @@ async def demote(event):
             \nالمعرف: [{user.first_name}](tg://user?id={user.id})\
             \nالدردشه: {event.chat.title}(`{event.chat_id}`)",
         )
+
+
 @jmthon.ar_cmd(
     pattern="طرد(?:\s|$)([\s\S]*)",
     command=("طرد", plugin_category),
@@ -250,7 +248,11 @@ async def endmute(event):
             f"⌯︙الـمستخدم [{user.first_name}](tg://user?id={user.id})\n ⌯︙تـم طرده بنجاح ✅ \n⌯︙السـبب : {reason}"
         )
     else:
-        await catevent.edit(f"⌯︙الـمستخدم [{user.first_name}](tg://user?id={user.id})\n ⌯︙تـم طرده بنجاح ✅ ")
+        await catevent.edit(
+            f"⌯︙الـمستخدم [{user.first_name}](tg://user?id={user.id})\n ⌯︙تـم طرده بنجاح ✅ "
+        )
+
+
 @jmthon.ar_cmd(
     pattern="حظر(?:\s|$)([\s\S]*)",
     command=("حظر", plugin_category),
@@ -287,9 +289,7 @@ async def _ban_person(event):
         if reply:
             await reply.delete()
     except BadRequestError:
-        return await catevent.edit(
-            "⌯︙ليـس لـدي جـميع الصـلاحيـات لكـن سيـبقى محـظور"
-        )
+        return await catevent.edit("⌯︙ليـس لـدي جـميع الصـلاحيـات لكـن سيـبقى محـظور")
     if reason:
         await catevent.edit(
             f"⌯︙المسـتخدم {_format.mentionuser(user.first_name ,user.id)} \n ⌯︙تـم حـظره بنـجاح !!\n**⌔︙السبب : **`{reason}`"

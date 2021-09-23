@@ -10,7 +10,8 @@ plugin_category = "extra"
 
 @jmthon.ar_cmd(
     pattern="زغرفة1(?:\s|$)([\s\S]*)",
-    command=("زغرفة1", plugin_category),)
+    command=("زغرفة1", plugin_category),
+)
 async def stylish_generator(event):
     "Changes font style of the given text"
     args = event.pattern_match.group(1)
@@ -32,7 +33,8 @@ async def stylish_generator(event):
 
 @jmthon.ar_cmd(
     pattern="زغرفة2(?:\s|$)([\s\S]*)",
-    command=("زغرفة2", plugin_category),)
+    command=("زغرفة2", plugin_category),
+)
 async def stylish_generator(event):
     "Changes font style of the given text"
     args = event.pattern_match.group(1)
@@ -54,7 +56,8 @@ async def stylish_generator(event):
 
 @jmthon.ar_cmd(
     pattern="زغرفة3(?:\s|$)([\s\S]*)",
-    command=("زغرفة3", plugin_category),)
+    command=("زغرفة3", plugin_category),
+)
 async def vapor(event):
     "Changes font style of the given text"
     reply_text = []

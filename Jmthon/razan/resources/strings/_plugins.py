@@ -1,13 +1,8 @@
-import os
-import re
 import time
-import heroku3
-import lottie
-import requests
-from telethon import version
-from telethon import events
 
-from userbot import * 
+import requests
+
+from userbot import *
 from userbot.Config import *
 from userbot.helpers import *
 

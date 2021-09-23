@@ -1,5 +1,4 @@
 import random
-import re
 import time
 from datetime import datetime
 from platform import python_version
@@ -10,20 +9,19 @@ from telethon.errors.rpcerrorlist import (
     WebpageCurlFailedError,
     WebpageMediaEmptyError,
 )
-from telethon.events import CallbackQuery
 
-from userbot import StartTime, jmthon, JMVERSION
+from userbot import JMVERSION, StartTime, jmthon
 
-from ..Config import Config
 from ..core.managers import edit_or_reply
-from ..helpers.functions import catalive, check_data_base_heal_th, get_readable_time
+from ..helpers.functions import check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
 from . import mention
 
 plugin_category = "bot"
 
-#كتـابة وتعـديل:  @RR9R7
+# كتـابة وتعـديل:  @RR9R7
+
 
 @jmthon.ar_cmd(
     pattern="فحص$",
@@ -36,7 +34,6 @@ plugin_category = "bot"
         ],
     },
 )
-    
 async def amireallyalive(event):
     "للتـأكد من ان البـوت يعـمـل"
     reply_to_id = await reply_id(event)
@@ -48,7 +45,7 @@ async def amireallyalive(event):
     _, check_sgnirts = check_data_base_heal_th()
     EMOJI = gvarstatus("ALIVE_EMOJI") or "  - "
     ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "** بـوت جـمثـون يعـمل بنـجـاح **"
-    RR7_IMG = gvarstatus("ALIVE_PIC") 
+    RR7_IMG = gvarstatus("ALIVE_PIC")
     jmthon_caption = gvarstatus("ALIVE_TEMPLATE") or temp
     caption = jmthon_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,

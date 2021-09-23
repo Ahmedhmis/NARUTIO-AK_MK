@@ -12,18 +12,14 @@ from . import (
     BOTLOG,
     BOTLOG_CHATID,
     DEFAULT_BIO,
-    jmthon,
     edit_delete,
     get_user_from_event,
+    jmthon,
 )
 
 plugin_category = "tools"
 DEFAULTUSER = str(AUTONAME) if AUTONAME else str(ALIVE_NAME)
-DEFAULTUSERBIO = (
-    str(DEFAULT_BIO)
-    if DEFAULT_BIO
-    else "الـحمد لله عـلى كـل شـيء"
-)
+DEFAULTUSERBIO = str(DEFAULT_BIO) if DEFAULT_BIO else "الـحمد لله عـلى كـل شـيء"
 
 
 @jmthon.ar_cmd(
@@ -35,7 +31,7 @@ DEFAULTUSERBIO = (
     },
 )
 async def _(event):
-    "لعمـل نسـخ حـسـاب الشـخص الـذي تـرد عليـه "
+    "لعمـل نسـخ حـسـاب الشـخص الـذي تـرد عليـه"
     replied_user, error_i_a = await get_user_from_event(event)
     if replied_user is None:
         return
@@ -91,5 +87,5 @@ async def _(event):
     await edit_delete(event, "⌯︙تـم اعـادة الـحساب بـنجاح ✅")
     if BOTLOG:
         await event.client.send_message(
-            BOTLOG_CHATID, f"⌯︙تـم اعادة الـحساب الى وضـعه الاصلـي ✅")
-       
+            BOTLOG_CHATID, f"⌯︙تـم اعادة الـحساب الى وضـعه الاصلـي ✅"
+        )

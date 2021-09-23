@@ -64,8 +64,12 @@ async def iytdl_inline(event):
     elif reply and reply.text:
         input_url = (reply.text).strip()
     if not input_url:
-        return await edit_delete(event, "**▾∮ اكتب الرابط او قم بالرد ع رابط يوتيوب ✓**")
-    catevent = await edit_or_reply(event, f"**▾∮ جاري البحث في اليوتيوب : ☟** \n`'{input_url}'`")
+        return await edit_delete(
+            event, "**▾∮ اكتب الرابط او قم بالرد ع رابط يوتيوب ✓**"
+        )
+    catevent = await edit_or_reply(
+        event, f"**▾∮ جاري البحث في اليوتيوب : ☟** \n`'{input_url}'`"
+    )
     flag = True
     cout = 0
     results = None
@@ -121,7 +125,9 @@ async def ytdl_download_callback(c_q: CallbackQuery):  # sourcery no-metrics
     callback_continue = f"جارٍ تنزيل {media_type} الرجاء الانتظار ..."
     callback_continue += f"\n\nكود التنسيق : {disp_str}"
     await c_q.answer(callback_continue, alert=True)
-    upload_msg = await c_q.client.send_message(BOTLOG_CHATID, "**▾∮ جارٍ التحميل الرجاء الانتظار ...**")
+    upload_msg = await c_q.client.send_message(
+        BOTLOG_CHATID, "**▾∮ جارٍ التحميل الرجاء الانتظار ...**"
+    )
     yt_url = BASE_YT_URL + yt_code
     await c_q.edit(
         f"<b>▾∮ جارٍ تنزيل 🎧 {media_type} ...</b>\n\n  <a href={yt_url}> <b>الرابط 🔗</b></a>\n🆔  <b>كود التنسيق</b> : {disp_str}",

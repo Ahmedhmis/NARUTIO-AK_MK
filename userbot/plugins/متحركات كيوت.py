@@ -1,19 +1,20 @@
-#edit  ~ @RR9R7 for Jmthon 
+# edit  ~ @RR9R7 for Jmthon
 
-from telethon import events
-from userbot.utils import admin_cmd
 from userbot import jmthon
+
 from . import *
 
-#edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+# edit  ~ @RR9R7 for Jmthon
+# جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
 
 
 plugin_category = "extra"
+
+
 @jmthon.ar_cmd(
     pattern="ك1$",
     command=("ك1", plugin_category),
-           )
+)
 async def tmgif(event):
     if event.fwd_from:
         return
@@ -24,13 +25,15 @@ async def tmgif(event):
         jmthon += f"**الـمتحـرڪـة الأولـى **"
         await event.client.send_file(event.chat_id, cute, caption=jmthon, reply_to=ROZ)
 
-#edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
+# edit  ~ @RR9R7 for Jmthon
+# جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
 
 @jmthon.ar_cmd(
     pattern="ك2$",
     command=("ك2", plugin_category),
-           )
+)
 async def tmgif(event):
     if event.fwd_from:
         return
@@ -41,13 +44,15 @@ async def tmgif(event):
         RAZAN += f"**الـمتحـرڪـة الـثـانيـة **\n"
         await event.client.send_file(event.chat_id, cute2, caption=RAZAN, reply_to=leo)
 
-#edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
+# edit  ~ @RR9R7 for Jmthon
+# جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
 
 @jmthon.ar_cmd(
     pattern="ك3$",
     command=("ك3", plugin_category),
-           )
+)
 async def tmgif(event):
     if event.fwd_from:
         return
@@ -56,15 +61,19 @@ async def tmgif(event):
         RAZAN = f"**{ROZA}**\n"
         RAZAN += f"✛━━━━━━━━━━━━━✛\n"
         RAZAN += f"**الـمتحـرڪـة الـثـالثـة**\n"
-        await event.client.send_file(event.chat_id, cute3, caption=RAZAN, reply_to=sic_id)
+        await event.client.send_file(
+            event.chat_id, cute3, caption=RAZAN, reply_to=sic_id
+        )
 
-#edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
+# edit  ~ @RR9R7 for Jmthon
+# جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
 
 @jmthon.ar_cmd(
     pattern="ك4$",
     command=("ك4", plugin_category),
-           )
+)
 async def tmgif(event):
     if event.fwd_from:
         return
@@ -77,14 +86,15 @@ async def tmgif(event):
             event.chat_id, cute4, caption=RAZAN, reply_to=reply_to_id
         )
 
-#edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
+# edit  ~ @RR9R7 for Jmthon
+# جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
 
 @jmthon.ar_cmd(
     pattern="ك5$",
     command=("ك5", plugin_category),
-           )
-
+)
 async def tmgif(event):
     if event.fwd_from:
         return
@@ -97,14 +107,15 @@ async def tmgif(event):
             event.chat_id, cute5, caption=RAZAN, reply_to=reply_to_id
         )
 
-#edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
+# edit  ~ @RR9R7 for Jmthon
+# جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
 
 @jmthon.ar_cmd(
     pattern="ك6$",
     command=("ك6", plugin_category),
-           )
-
+)
 async def tmgif(event):
     if event.fwd_from:
         return
@@ -117,13 +128,15 @@ async def tmgif(event):
             event.chat_id, cute6, caption=RAZAN, reply_to=reply_to_id
         )
 
-#edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
+# edit  ~ @RR9R7 for Jmthon
+# جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+
 
 @jmthon.ar_cmd(
     pattern="ك7$",
     command=("ك7", plugin_category),
-           )
+)
 async def tmgif(event):
     if event.fwd_from:
         return
@@ -135,7 +148,7 @@ async def tmgif(event):
         await event.client.send_file(
             event.chat_id, cute7, caption=RAZAN, reply_to=reply_to_id
         )
-    
-       
-#edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك   
+
+
+# edit  ~ @RR9R7 for Jmthon
+# جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك

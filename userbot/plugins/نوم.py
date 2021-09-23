@@ -1,4 +1,4 @@
-#JMTHON - @RR9R7 - @GGGNE
+# JMTHON - @RR9R7 - @GGGNE
 # L E O - M U H A M M E D
 
 
@@ -19,8 +19,9 @@ from . import BOTLOG, BOTLOG_CHATID
 plugin_category = "utils"
 
 LOGS = logging.getLogger(__name__)
-#JMTHON - RR9R7 - GGGNE
+# JMTHON - RR9R7 - GGGNE
 # L E O - M U H A M M E D
+
 
 class AFK:
     def __init__(self):
@@ -37,6 +38,7 @@ class AFK:
 
 
 AFK_ = AFK()
+
 
 @jmthon.ar_cmd(outgoing=True, edited=False)
 async def set_not_afk(event):
@@ -82,8 +84,11 @@ async def set_not_afk(event):
                 + endtime
                 + "`",
             )
-#JMTHON - RR9R7 - GGGNE
+
+
+# JMTHON - RR9R7 - GGGNE
 # L E O - M U H A M M E D
+
 
 @jmthon.ar_cmd(
     incoming=True, func=lambda e: bool(e.mentioned or e.is_private), edited=False
@@ -123,7 +128,9 @@ async def on_afk(event):  # sourcery no-metrics
                     f"- **عـمري انـي هسـة نـايم** \n- **مـدة الـنوم :** {endtime}"
                 )
             else:
-                message_to_reply = f"- **عـمري انـي هسـة نـايم** \n- **مـدة الـنوم :** {endtime}"
+                message_to_reply = (
+                    f"- **عـمري انـي هسـة نـايم** \n- **مـدة الـنوم :** {endtime}"
+                )
             if event.chat_id:
                 msg = await event.reply(message_to_reply, file=AFK_.media_afk.media)
         elif AFK_.afk_type == "text":
@@ -136,7 +143,9 @@ async def on_afk(event):  # sourcery no-metrics
                     f"- **عـمري انـي هسـة نـايم** \n- **مـدة الـنوم :** {endtime}"
                 )
             else:
-                message_to_reply = f"- **عـمري انـي هسـة نـايم** \n- **مـدة الـنوم :** {endtime}"
+                message_to_reply = (
+                    f"- **عـمري انـي هسـة نـايم** \n- **مـدة الـنوم :** {endtime}"
+                )
             if event.chat_id:
                 msg = await event.reply(message_to_reply)
         if event.chat_id in AFK_.last_afk_message:
@@ -168,8 +177,11 @@ async def on_afk(event):  # sourcery no-metrics
                 parse_mode="html",
                 link_preview=False,
             )
-#JMTHON - RR9R7 - GGGNE
+
+
+# JMTHON - RR9R7 - GGGNE
 # L E O - M U H A M M E D
+
 
 @jmthon.ar_cmd(
     pattern="نوم(?:\s|$)([\s\S]*)",
@@ -217,11 +229,11 @@ async def _(event):
             AFK_.afk_time = datetime.now()
         AFK_.USERAFK_ON = f"on: {AFK_.reason}"
         if AFK_.reason:
-            await edit_delete(
-                event, f"⌯︙انا الان في وضعيه النوم يرجـى المراسلة ", 5
-            )
+            await edit_delete(event, f"⌯︙انا الان في وضعيه النوم يرجـى المراسلة ", 5)
         else:
-            await edit_delete(event, f"**⌯︙انا الان في وضعيه النوم يرجـى المراسلة لاحقـا ️**", 5)
+            await edit_delete(
+                event, f"**⌯︙انا الان في وضعيه النوم يرجـى المراسلة لاحقـا ️**", 5
+            )
         AFK_.media_afk = await reply.forward_to(BOTLOG_CHATID)
         if AFK_.reason:
             await event.client.send_message(
@@ -233,5 +245,7 @@ async def _(event):
                 BOTLOG_CHATID,
                 f"**⌯︙امـر النوم 💤 :** \n **تم تشغيل الامر ❕**",
             )
-#JMTHON - RR9R7 - GGGNE
+
+
+# JMTHON - RR9R7 - GGGNE
 # L E O - M U H A M M E D

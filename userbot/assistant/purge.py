@@ -1,6 +1,6 @@
-#(c) Copyright JMTHON 2020-21
-#جميع الحقوق محفودظة لسورس جمثون 
-#By ~  @RR9R7
+# (c) Copyright JMTHON 2020-21
+# جميع الحقوق محفودظة لسورس جمثون
+# By ~  @RR9R7
 import asyncio
 
 from telethon import events
@@ -8,10 +8,12 @@ from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
 from telethon.tl.types import ChannelParticipantsAdmins
 
 from userbot import bot
+
 from .. import *
 
 OWNER_ID = bot.uid
 # للتاكد من صلاحيات المشرف
+
 
 async def is_administrator(user_id: int, message):
     admin = False
@@ -35,7 +37,9 @@ async def purge(event):
 
     msg = await event.get_reply_message()
     if not msg:
-        await event.reply("قـم بالـرد على الـرسالة التـي تريـد حذف الـرسائل التـي تحـتها.")
+        await event.reply(
+            "قـم بالـرد على الـرسالة التـي تريـد حذف الـرسائل التـي تحـتها."
+        )
         return
 
     try:
@@ -52,9 +56,7 @@ async def purge(event):
                 msgs = []
 
         await tgbot.delete_messages(chat, msgs)
-        del_res = await tgbot.send_message(
-            event.chat_id, f"تنظيف سريع {count} رسالة ."
-        )
+        del_res = await tgbot.send_message(event.chat_id, f"تنظيف سريع {count} رسالة .")
 
         await asyncio.sleep(4)
         await del_res.delete()
@@ -77,7 +79,9 @@ async def delete_msg(event):
     chat = event.chat_id
     msg = await event.get_reply_message()
     if not msg:
-        await event.reply("قـم بالـرد على الـرسالة التـي تريـد حذف الـرسائل التـي تحـتها")
+        await event.reply(
+            "قـم بالـرد على الـرسالة التـي تريـد حذف الـرسائل التـي تحـتها"
+        )
         return
     to_delete = event.message
     chat = await event.get_input_chat()

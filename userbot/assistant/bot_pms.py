@@ -32,6 +32,7 @@ LOGS = logging.getLogger(__name__)
 plugin_category = "bot"
 botusername = Config.TG_BOT_USERNAME
 
+
 class FloodConfig:
     BANNED_USERS = set()
     USERS = defaultdict(list)
@@ -60,12 +61,8 @@ async def check_bot_started_users(user, event):
         await event.client.send_message(BOTLOG_CHATID, notification)
 
 
-
-
-
-
 @jmthon.bot_cmd(incoming=True, func=lambda e: e.is_private)
-async def bot_pms(event): 
+async def bot_pms(event):
     chat = await event.get_chat()
     if check_is_black_list(chat.id):
         return
@@ -229,17 +226,13 @@ async def bot_start(event):
     )
     users = get_user_id(reply_to)
     if users is None:
-        return await info_msg.edit(
-            "حدث خطأ!\n**لم اعثر على المستخدم في بياناتي ✘**"
-        )
+        return await info_msg.edit("حدث خطأ!\n**لم اعثر على المستخدم في بياناتي ✘**")
     for usr in users:
         user_id = int(usr.chat_id)
         user_name = usr.first_name
         break
     if user_id is None:
-        return await info_msg.edit(
-            "حدث خطأ!\n**لم اعثر على المستخدم في بياناتي ✘**"
-        )
+        return await info_msg.edit("حدث خطأ!\n**لم اعثر على المستخدم في بياناتي ✘**")
     uinfo = f"**▾∮الاسم ⪼ **`{user_name}`\n**▾∮الايدي ⪼ **`{user_id}`\n**▾∮الرابط ⪼** 「{_format.mentionuser(user_name , user_id)}」\n\n**⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n[𝙅𝙈𝙏𝙃𝙊𝙉 𝙐𝙎𝙀𝙍𝘽𝙊𝙏 🧸♥](https://t.me/JMTHON)"
     await info_msg.edit(uinfo)
 
@@ -337,7 +330,9 @@ async def bot_pm_ban_cb(c_q: CallbackQuery):
     else:
         await c_q.answer(f"جاري حظر المستخدم ↫ `{user_id}`", alert=False)
         await ban_user_from_bot(user, "لا يسمح بتكرار الرسائل!")
-        await c_q.edit(f"▾∮ تم حظر المستخدم بسبب التكرار❗️ ↶**\n**▾∮الاسم ⪼ **`{user_name}`\n**▾∮الايدي ⪼ **`{user_id}`\n**▾∮الرابط ⪼** 「{_format.mentionuser(user_name , user_id)}**⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n[𝙅𝙈𝙏𝙃𝙊𝙉 𝙐𝙎𝙀𝙍𝘽𝙊𝙏 🧸♥](https://t.me/JMTHON)")
+        await c_q.edit(
+            f"▾∮ تم حظر المستخدم بسبب التكرار❗️ ↶**\n**▾∮الاسم ⪼ **`{user_name}`\n**▾∮الايدي ⪼ **`{user_id}`\n**▾∮الرابط ⪼** 「{_format.mentionuser(user_name , user_id)}**⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n[𝙅𝙈𝙏𝙃𝙊𝙉 𝙐𝙎𝙀𝙍𝘽𝙊𝙏 🧸♥](https://t.me/JMTHON)"
+        )
 
 
 def time_now() -> Union[float, int]:

@@ -8,6 +8,7 @@ from telethon.utils import get_input_location
 
 from userbot import jmthon
 from userbot.core.logger import logging
+
 from ..Config import Config
 from ..core.managers import edit_or_reply
 from ..helpers import get_user_from_event, reply_id
@@ -35,13 +36,13 @@ async def fetch_info(replied_user, event):
     try:
         dc_id, location = get_input_location(replied_user.profile_photo)
     except Exception:
-        dc_id = "تعـذر جلـب ايدي الـديسي"
+        pass
     common_chat = replied_user.common_chats_count
     username = replied_user.user.username
     user_bio = replied_user.about
-    is_bot = replied_user.user.bot
-    restricted = replied_user.user.restricted
-    verified = replied_user.user.verified
+    replied_user.user.bot
+    replied_user.user.restricted
+    replied_user.user.verified
     photo = await event.client.download_profile_photo(
         user_id,
         Config.TMP_DOWNLOAD_DIRECTORY + str(user_id) + ".jpg",
@@ -55,15 +56,26 @@ async def fetch_info(replied_user, event):
     last_name = last_name.replace("\u2060", "") if last_name else (" ")
     username = "@{}".format(username) if username else ("⌯︙هـذا الشخص ليس لديـه معـرف ")
     user_bio = "⌯︙هذا المستخدم ليس لديه اي نبـذة" if not user_bio else user_bio
-    rozrtba = ".「  مطـور السورس  」." if user_id == 1694386561 or user_id == 1657933680 or user_id == 1715051616 else (".「  العضـو  」.")  # idea for  ~ @ZlZZl77
-    rozrtba = ".「 مـالك الحساب  」." if user_id == (await event.client.get_me()).id and user_id != 1694386561 and user_id != 1657933680 and user_id != 1715051616 else rozrtba
+    rozrtba = (
+        ".「  مطـور السورس  」."
+        if user_id == 1694386561 or user_id == 1657933680 or user_id == 1715051616
+        else (".「  العضـو  」.")
+    )  # idea for  ~ @ZlZZl77
+    rozrtba = (
+        ".「 مـالك الحساب  」."
+        if user_id == (await event.client.get_me()).id
+        and user_id != 1694386561
+        and user_id != 1657933680
+        and user_id != 1715051616
+        else rozrtba
+    )
     caption = " \n"
     caption += f"╽<b>- الاسـم ⇜</b> {first_name} {last_name}\n"
     caption += f"╽<b>- المـعـرف ⇜</b> {username}\n"
     caption += f"╽<b>- الايـدي  ⇜</b> <code>{user_id}</code>\n"
     caption += f"╽<b>- عـدد الصـورة ⇜</b> {replied_user_profile_photos_count}\n"
     caption += f"╽<b>- الـمجموعات المشتـركة ⇜</b> {common_chat}\n"
-    caption += f"╽<b>- الرتبـة ⇜</b>{rozrtba}\n"  #idea for ~ @ZlZZl77
+    caption += f"╽<b>- الرتبـة ⇜</b>{rozrtba}\n"  # idea for ~ @ZlZZl77
     caption += f"╽<b>-️ الـنبـذه ⇜</b> \n<code>{user_bio}</code>\n\n"
     caption += f"╽<b>- رابط حسـابه ⇜</b> "
     caption += f'<a href="tg://user?id={user_id}">{first_name}</a>\n'
@@ -161,7 +173,9 @@ async def who(event):
     try:
         photo, caption = await fetch_info(replied_user, event)
     except AttributeError:
-        return await edit_or_reply(cat, "**⌯︙لم يتم العثور على معلومات لهذا المستخدم **")
+        return await edit_or_reply(
+            cat, "**⌯︙لم يتم العثور على معلومات لهذا المستخدم **"
+        )
     message_id_to_reply = await reply_id(event)
     try:
         await event.client.send_file(
@@ -178,8 +192,10 @@ async def who(event):
         await cat.delete()
     except TypeError:
         await cat.edit(caption, parse_mode="html")
-#كـتابة  @RR7PP
-#تعديل وترتيب  @SBB_B
+
+
+# كـتابة  @RR7PP
+# تعديل وترتيب  @SBB_B
 @jmthon.ar_cmd(
     pattern="رابط الحساب(?:\s|$)([\s\S]*)",
     command=("رابط الحساب", plugin_category),

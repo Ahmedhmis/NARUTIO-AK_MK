@@ -2,7 +2,7 @@ import importlib
 import sys
 from pathlib import Path
 
-from userbot import CMD_HELP,CMD_LIST, LOAD_PLUG
+from userbot import CMD_HELP, LOAD_PLUG
 
 from ..Config import Config
 from ..core import LOADED_CMDS, PLG_INFO

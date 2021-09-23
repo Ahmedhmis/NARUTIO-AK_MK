@@ -57,12 +57,16 @@ def main_menu():
     buttons = [
         (Button.inline("معلومات الملفات 🗂", data="check"),),
         (
-            Button.inline(f"ملفات الادمن 👮‍ ({len(GRP_INFO['admin'])})", data="admin_menu"),
+            Button.inline(
+                f"ملفات الادمن 👮‍ ({len(GRP_INFO['admin'])})", data="admin_menu"
+            ),
             Button.inline(f"ملفات البوت 🤖 ({len(GRP_INFO['bot'])})", data="bot_menu"),
         ),
         (
             Button.inline(f"ملفات المرح ⛄️ ({len(GRP_INFO['fun'])})", data="fun_menu"),
-            Button.inline(f"ملفات الميديا 🎧 ({len(GRP_INFO['misc'])})", data="misc_menu"),
+            Button.inline(
+                f"ملفات الميديا 🎧 ({len(GRP_INFO['misc'])})", data="misc_menu"
+            ),
         ),
         (
             Button.inline(f"الادوات 🧰 ({len(GRP_INFO['tools'])})", data="tools_menu"),
@@ -334,7 +338,7 @@ async def inline_handler(event):
             result = builder.article(
                 title="ارسال همسة سرية الى 👀",
                 text=f"🔒 هذه همسة سرية الى {RAZAN}, هو فقط من يستطيع رؤيتها",
-               buttons=buttons,
+                buttons=buttons,
             )
             await event.answer([result] if result else None)
             if jsondata:
@@ -486,9 +490,9 @@ async def inline_handler(event):
                 await event.answer(
                     [
                         builder.article(
-                    title="**▾∮ غير موجود ✘**",
-                    text=f"**▾∮ لا يوجد نتائج لــ **`{str_y[1]}` ✘",
-                    description="غير صالحة",
+                            title="**▾∮ غير موجود ✘**",
+                            text=f"**▾∮ لا يوجد نتائج لــ **`{str_y[1]}` ✘",
+                            description="غير صالحة",
                         )
                     ]
                 )

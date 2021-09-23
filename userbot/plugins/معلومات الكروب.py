@@ -191,7 +191,9 @@ async def get_users(show):
 )
 async def info(event):
     "⌯︙للحصـول على معلومـات المجموعـة 🝢"
-    catevent = await edit_or_reply(event, "**⌔︙يتـمّ جلـب معلومـات الدردشـة، إنتظـر ⅏**")
+    catevent = await edit_or_reply(
+        event, "**⌔︙يتـمّ جلـب معلومـات الدردشـة، إنتظـر ⅏**"
+    )
     chat = await get_chatinfo(event, catevent)
     caption = await fetch_info(chat, event)
     try:
@@ -229,7 +231,7 @@ async def get_chatinfo(event, catevent):
             return None
         except ChannelPrivateError:
             await catevent.edit(
-                '**⌯︙هـذه مجموعـة أو قنـاة خاصـة أو لقد تمّ حظـري منه ⛞**'
+                "**⌯︙هـذه مجموعـة أو قنـاة خاصـة أو لقد تمّ حظـري منه ⛞**"
             )
             return None
         except ChannelPublicGroupNaError:
@@ -266,14 +268,13 @@ async def fetch_info(chat, event):  # sourcery no-metrics
     except Exception as e:
         msg_info = None
         LOGS.error(f"Exception: {str(e)}")
-   
+
     first_msg_valid = bool(
         msg_info and msg_info.messages and msg_info.messages[0].id == 1
     )
 
-    
     creator_valid = bool(first_msg_valid and msg_info.users)
-    creator_id = msg_info.users[0].id if creator_valid else None
+    msg_info.users[0].id if creator_valid else None
     creator_firstname = (
         msg_info.users[0].first_name
         if creator_valid and msg_info.users[0].first_name is not None
@@ -383,7 +384,7 @@ async def fetch_info(chat, event):  # sourcery no-metrics
             LOGS.error(f"Exception:{str(e)}")
     if bots_list:
         for _ in bots_list:
-            bots += 1  
+            bots += 1
 
     caption = "<b>⌯︙معلومـات الدردشـة  🝢 :</b>\n"
     caption += f"⌔︙الآيـدي  : <code>{chat_obj_info.id}</code>\n"
@@ -415,7 +416,9 @@ async def fetch_info(chat, event):  # sourcery no-metrics
     if messages_sent:
         caption += f"⌯︙الرسائـل المرسلـة  :<code>{messages_sent}</code>\n"
     elif messages_sent_alt:
-        caption += f"⌯︙الرسـائل المرسلة: <code>{messages_sent_alt}</code> {warn_emoji}\n"
+        caption += (
+            f"⌯︙الرسـائل المرسلة: <code>{messages_sent_alt}</code> {warn_emoji}\n"
+        )
     if members is not None:
         caption += f"⌯︙الأعضـاء : <code>{members}</code>\n"
     if admins is not None:

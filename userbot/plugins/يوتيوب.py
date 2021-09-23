@@ -1,4 +1,4 @@
-#@RR7PP  - @UNZZ  - @JMTHON
+# @RR7PP  - @UNZZ  - @JMTHON
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RR7PP
 import asyncio
@@ -24,9 +24,9 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 
-#Translate by  @RR7PP  -  @UUNZZ
+# Translate by  @RR7PP  -  @UUNZZ
 from ..helpers.utils import _format
-from . import jmthon, edit_delete, edit_or_reply, hmention, progress, reply_id, ytsearch
+from . import edit_delete, edit_or_reply, jmthon, progress, reply_id, ytsearch
 
 plugin_category = "misc"
 
@@ -308,9 +308,7 @@ async def yt_search(event):
     else:
         query = str(event.pattern_match.group(2))
     if not query:
-        return await edit_delete(
-            event, "⌯︙ يرجى الرد على الرسالة او كتابة الرابط اولا"
-        )
+        return await edit_delete(event, "⌯︙ يرجى الرد على الرسالة او كتابة الرابط اولا")
     video_q = await edit_or_reply(event, "⌯︙يتم البحث عن المطلوب انتظر")
     if event.pattern_match.group(1) != "":
         lim = int(event.pattern_match.group(1))
@@ -342,9 +340,7 @@ async def kakashi(event):
     chat = "@instasavegrambot"
     link = event.pattern_match.group(1)
     if "www.instagram.com" not in link:
-        await edit_or_reply(
-            event, "⌯︙- يجب كتابة رابط من الانستغرام لتحميله ❕"
-        )
+        await edit_or_reply(event, "⌯︙- يجب كتابة رابط من الانستغرام لتحميله ❕")
     else:
         start = datetime.now()
         catevent = await edit_or_reply(event, "⌯︙جار التحميل انتظر قليلا 🔍")
@@ -365,7 +361,7 @@ async def kakashi(event):
             video,
         )
         end = datetime.now()
-        ms = (end - start).seconds
+        (end - start).seconds
         await cat.edit(
             f"꙳ ¦ تم تنزيل بواسطة  : @JMTHON ",
             parse_mode="html",

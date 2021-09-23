@@ -13,7 +13,7 @@ from ..sql_helper.filter_sql import (
 from . import BOTLOG, BOTLOG_CHATID
 
 plugin_category = "utils"
-ROZTEXT = "عـذرا لا يمكـنك اضافـة رد هـنا" 
+ROZTEXT = "عـذرا لا يمكـنك اضافـة رد هـنا"
 
 
 @jmthon.ar_cmd(incoming=True)
@@ -102,8 +102,7 @@ async def filter_incoming_handler(handler):  # sourcery no-metrics
             "{userid}": "To use userid",
             "{username}": "To use user username",
             "{my_first}": "To use my first name",
-
-"{my_fullname}": "To use my full name",
+            "{my_fullname}": "To use my full name",
             "{my_last}": "To use my last name",
             "{my_mention}": "To mention myself",
             "{my_username}": "To use my username.",

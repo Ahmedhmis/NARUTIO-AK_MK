@@ -37,7 +37,7 @@ class Config(object):
     # for profile default name
     AUTONAME = os.environ.get("AUTONAME", None)
 
-    # تعديلي 
+    # تعديلي
     PING_PIC = os.environ.get("PING_PIC")
     TIME_JM = os.environ.get("TIME_JM", None)
     LOAD_MYBOT = os.environ.get("LOAD_MYBOT", "True")
