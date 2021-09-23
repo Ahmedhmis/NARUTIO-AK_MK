@@ -1,4 +1,4 @@
-# @RR7PP  - @UNZZ  - @JMTHON
+# @RR7PP  - @SBB_B  - @JMTHON
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RR7PP
 import asyncio
@@ -159,8 +159,8 @@ async def _get_file_name(path: pathlib.Path, full: bool = True) -> str:
     pattern="تحميل ص(?: |$)(.*)",
     command=("تحميل ص", plugin_category),
     info={
-        "header": "To download audio from many sites like Youtube",
-        "description": "downloads the audio from the given link (Suports the all sites which support youtube-dl)",
+        "header": "يمكنك تنزيل صوت عبر اليوتيوب",
+        "description": "يدعم تحميل جميع صوت عبر اليوتيوب فقط قم بالكتابة تحميل ص ورابط الذي تريد تحميله",
         "examples": [
             "{tr}yta <reply to link>",
             "{tr}yta <link>",
@@ -227,8 +227,8 @@ async def download_audio(event):
     pattern="تحميل ف(?: |$)(.*)",
     command=("تحميل ف", plugin_category),
     info={
-        "header": "To download video from many sites like Youtube",
-        "description": "downloads the video from the given link(Suports the all sites which support youtube-dl)",
+        "header": "يمكنك تنزيل فيديو عبر يوتيوب",
+        "description": "يدعم جميع تحميل فيديوهات عبر اليوتيوب فقط قم بالكتابة تحميل ص ورابط الذي تريد تحميله",
         "examples": [
             "{tr}ytv <reply to link>",
             "{tr}ytv <link>",
@@ -292,8 +292,8 @@ async def download_video(event):
     pattern="يوت(?: |$)(\d*)? ?(.*)",
     command=("يوت", plugin_category),
     info={
-        "header": "To search youtube videos",
-        "description": "Fetches youtube search results with views and duration with required no of count results by default it fetches 10 results",
+        "header": "يمكنك بحث فيديوهات عبر منصة اليوتيوب",
+        "description": "يجلب نتائج بحث منصة يوتيوب مع المشاهدات والمدة مع عدد النتائج المطلوبة فإنه يجلب 10 نتائج",
         "examples": [
             "{tr}yts <query>",
             "{tr}yts <1-9> <query>",
@@ -328,8 +328,8 @@ async def yt_search(event):
     pattern="انستا (.*)",
     command=("انستا", plugin_category),
     info={
-        "header": "To download instagram video/photo",
-        "description": "Note downloads only public profile photos/videos.",
+        "header": "يمكنك تحميل فيديو أو صورة عبر منصة الانستقرام",
+        "description": "ملاحظة يتم تنزيل صور / مقاطع فيديو الملف الشخصي العامة فقط.",
         "examples": [
             "{tr}insta <link>",
         ],
