@@ -70,7 +70,7 @@ def main_menu():
         ),
         (
             Button.inline(f"الادوات 🧰 ({len(GRP_INFO['tools'])})", data="tools_menu"),
-            Button.inline(f"المرفقات 🗂 ({len(GRP_INFO['jme'])})", data="jme_menu"),
+            Button.inline(f"المرفقات 🗂 ({len(GRP_INFO['utils'])})", data="utils_menu"),
         ),
         (
             Button.inline(f"الاضافيات ➕ ({len(GRP_INFO['extra'])})", data="extra_menu"),
