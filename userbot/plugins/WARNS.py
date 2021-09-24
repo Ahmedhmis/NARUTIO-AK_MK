@@ -44,9 +44,7 @@ async def _(event):
             reply_message.sender_id, num_warns, limit
         )
         if warn_reason:
-            reply += "\n**▸┊سبب التحذير الأخير **\n{}".format(
-                html.escape(warn_reason)
-            )
+            reply += "\n**▸┊سبب التحذير الأخير **\n{}".format(html.escape(warn_reason))
     await edit_or_reply(event, reply)
 
 
