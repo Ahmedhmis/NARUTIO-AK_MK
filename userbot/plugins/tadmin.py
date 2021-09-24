@@ -14,7 +14,8 @@ plugin_category = "admin"
 # =================== CONSTANT ===================
 NO_ADMIN = "**▾↫ عذرًا انا لست مشرفًا هنا! **"
 NO_PERM = "**▾↫ عذرًا احتاج الى صلاحيات! **"
-#for ~ @Jmthon ~ @RR7PP
+# for ~ @Jmthon ~ @RR7PP
+
 
 @jmthon.ar_cmd(
     pattern="قيده(?:\s|$)([\s\S]*)",
@@ -45,7 +46,9 @@ async def tmuter(event):  # sourcery no-metrics
     if not user:
         return
     if not reason:
-        return await catevent.edit("**▾∮ لم تقم بذكر الوقت الامر الصحيح ↶**\n__▾قيده <ايدي/اسم مستخدم/رد> <3h>__\n**▾∮واذا لم تعرف فارسل** `مساعدة قيده`")
+        return await catevent.edit(
+            "**▾∮ لم تقم بذكر الوقت الامر الصحيح ↶**\n__▾قيده <ايدي/اسم مستخدم/رد> <3h>__\n**▾∮واذا لم تعرف فارسل** `مساعدة قيده`"
+        )
     reason = reason.split(" ", 1)
     hmm = len(reason)
     cattime = reason[0].strip()
@@ -71,7 +74,7 @@ async def tmuter(event):  # sourcery no-metrics
             if BOTLOG:
                 await event.client.send_message(
                     BOTLOG_CHATID,
-                "**⌔∮ الان عملية**`┆تقييد┆`**مؤقت ☟**\n\n"
+                    "**⌔∮ الان عملية**`┆تقييد┆`**مؤقت ☟**\n\n"
                     f"**▾∮ تم **`┆تقييد┆`**المستخدم 🚷 ↫ ** [{user.first_name}](tg://user?id={user.id}) ✓\n**▾∮ اسم المجموعة ✎ ↫** 『`{event.chat.title}`』\n**▾∮ ايدي المجموعة 🆔 ↫** 「`{event.chat_id}`」\n**▾∮ الوقت 🕐 ↫**`┆{cattime}┆`\n**▾∮ السبب 📝↫** `{reason}`",
                 )
         else:
@@ -81,16 +84,14 @@ async def tmuter(event):  # sourcery no-metrics
             if BOTLOG:
                 await event.client.send_message(
                     BOTLOG_CHATID,
-                "**⌔∮ الان عملية**`┆تقييد┆`**مؤقت ☟**\n\n"
+                    "**⌔∮ الان عملية**`┆تقييد┆`**مؤقت ☟**\n\n"
                     f"**▾∮ تم **`┆تقييد┆`**المستخدم 🚷 ↫ ** [{user.first_name}](tg://user?id={user.id}) ✓\n**▾∮ اسم المجموعة ✎ ↫** 『`{event.chat.title}`』\n**▾∮ ايدي المجموعة 🆔 ↫** 「`{event.chat_id}`」\n**▾∮ الوقت 🕐 ↫**`┆{cattime}┆`",
                 )
         # Announce to logging group
     except UserIdInvalidError:
         return await catevent.edit("**▾∮ قد تحدث مشاكل او اخطاء غير متوقعة! **")
     except UserAdminInvalidError:
-        return await catevent.edit(
-            "**▾∮ لا تستطيع** `┆تقييد┆` **المشرفين! ✘**"
-        )
+        return await catevent.edit("**▾∮ لا تستطيع** `┆تقييد┆` **المشرفين! ✘**")
     except Exception as e:
         return await catevent.edit(f"`{str(e)}`")
 
@@ -124,7 +125,9 @@ async def tban(event):  # sourcery no-metrics
     if not user:
         return
     if not reason:
-        return await catevent.edit("**▾∮ لم تقم بذكر الوقت الامر الصحيح ↶**\n__▾حضره <ايدي/اسم مستخدم/رد> <3h>__\n**▾∮واذا لم تعرف فارسل** `مساعدة حضره`")
+        return await catevent.edit(
+            "**▾∮ لم تقم بذكر الوقت الامر الصحيح ↶**\n__▾حضره <ايدي/اسم مستخدم/رد> <3h>__\n**▾∮واذا لم تعرف فارسل** `مساعدة حضره`"
+        )
     reason = reason.split(" ", 1)
     hmm = len(reason)
     cattime = reason[0].strip()
@@ -144,9 +147,7 @@ async def tban(event):  # sourcery no-metrics
             )
         )
     except UserAdminInvalidError:
-        return await catevent.edit(
-            "**▾∮ لا تستطيع** `┆حظر┆` **المشرفين! ✘**"
-        )
+        return await catevent.edit("**▾∮ لا تستطيع** `┆حظر┆` **المشرفين! ✘**")
     except BadRequestError:
         return await catevent.edit(NO_PERM)
     # Helps ban group join spammers more easily
@@ -163,17 +164,17 @@ async def tban(event):  # sourcery no-metrics
     # Shout out the ID, so that fedadmins can fban later
     if reason:
         await catevent.edit(
-                f"**▾∮ تم ┆حظر┆ المستخدم مؤقتًا ⛔️ ↫ **{_format.mentionuser(user.first_name ,user.id)} ✓\n**▾∮ الوقت 🕐 ↫**`┆{cattime}┆`\n**▾∮ السبب 📝↫**  `{reason}`"
+            f"**▾∮ تم ┆حظر┆ المستخدم مؤقتًا ⛔️ ↫ **{_format.mentionuser(user.first_name ,user.id)} ✓\n**▾∮ الوقت 🕐 ↫**`┆{cattime}┆`\n**▾∮ السبب 📝↫**  `{reason}`"
         )
         if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID,
                 "**⌔∮ الان عملية** `┆حظر┆` **مؤقت ⚠️ ☟**\n\n"
-                    f"**▾∮ تم ** `┆حظر┆` **المستخدم ⛔️ ↫ ** [{user.first_name}](tg://user?id={user.id}) ✓\n**▾∮ اسم المجموعة ✎ ↫** 『`{event.chat.title}`』\n**▾∮ ايدي المجموعة 🆔 ↫** 「`{event.chat_id}`」\n**▾∮ الوقت 🕐 ↫**`┆{cattime}┆`\n**▾∮ السبب 📝↫** `{reason}`",
+                f"**▾∮ تم ** `┆حظر┆` **المستخدم ⛔️ ↫ ** [{user.first_name}](tg://user?id={user.id}) ✓\n**▾∮ اسم المجموعة ✎ ↫** 『`{event.chat.title}`』\n**▾∮ ايدي المجموعة 🆔 ↫** 「`{event.chat_id}`」\n**▾∮ الوقت 🕐 ↫**`┆{cattime}┆`\n**▾∮ السبب 📝↫** `{reason}`",
             )
     else:
         await catevent.edit(
-                f"**▾∮ تم ┆حظر┆ المستخدم مؤقتًا ⛔️ ↫ **{_format.mentionuser(user.first_name ,user.id)} ✓\n**▾∮ الوقت 🕐 ↫**`┆{cattime}┆`\n"
+            f"**▾∮ تم ┆حظر┆ المستخدم مؤقتًا ⛔️ ↫ **{_format.mentionuser(user.first_name ,user.id)} ✓\n**▾∮ الوقت 🕐 ↫**`┆{cattime}┆`\n"
         )
         if BOTLOG:
             await event.client.send_message(
