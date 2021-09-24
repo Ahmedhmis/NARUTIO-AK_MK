@@ -20,7 +20,7 @@ plugin_category = "admin"
     info={
         "header": " لكـتم الشخـص في جميـع المجموعات.",
         "description": "لعمل كتم وحذف جميع رسائل المستخدم في جميع المجموعات يتطلب صلاحيات حذف",
-        "الأستـخدام": " {tr}كتم <ايدي/معرف/بالرد>", 
+        "الأستـخدام": " {tr}كتم <ايدي/معرف/بالرد>",
     },
 )
 async def startgmute(event):
@@ -117,9 +117,7 @@ async def endgmute(event):
             event, "**... غيـࢪ قـادࢪ عـلى جـلب مـعلومات الـشخص ...**"
         )
     if not is_muted(userid, "gmute"):
-        return await edit_or_reply(
-            event, f"**... هـذا الشـخص غيـࢪ مكـتوم اصلا  ...**"
-        )
+        return await edit_or_reply(event, f"**... هـذا الشـخص غيـࢪ مكـتوم اصلا  ...**")
     try:
         unmute(userid, "gmute")
     except Exception as e:
