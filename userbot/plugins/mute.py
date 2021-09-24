@@ -17,11 +17,16 @@ plugin_category = "admin"
 @jmthon.ar_cmd(
     pattern="كتم(?:\s|$)([\s\S]*)",
     command=("كتم", plugin_category),
+    info={
+        "header": " لكـتم الشخـص في جميـع المجموعات.",
+        "description": "لعمل كتم وحذف جميع رسائل المستخدم في جميع المجموعات يتطلب صلاحيات حذف",
+        "الأستـخدام": " {tr}كتم <ايدي/معرف/بالرد>
+    },
 )
 async def startgmute(event):
-    "To mute a person in all groups where you are admin."
+    "لكـتم وحـذف جميـع رسـائل المستخـدم في جميع المجموعـات التـي فيهـا مشـرف"
     if event.is_private:
-        await event.edit("**𖡛... قـد تحـدث بعـض المـشاكـل أو الأخـطاء ...𖡛**")
+        await event.edit("**... قـد تحـدث بعـض المـشاكـل أو الأخـطاء ...**")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
@@ -86,15 +91,15 @@ async def startgmute(event):
     pattern="الغاء كتم(?:\s|$)([\s\S]*)",
     command=("الغاء كتم", plugin_category),
     info={
-        "header": "To unmute the person in all groups where you were admin.",
-        "description": "This will work only if you mute that person by your gmute command.",
-        "usage": "{tr}ungmute <username/reply>",
+        "header": "لألـغاء كـتم الشخـص في جميـع المجموعات.",
+        "description": "يستخدم هذا الامر عندما تكتم شخص فقـط ",
+        "usage": "{tr}الغاء كتم <معرف/ايدي>",
     },
 )
 async def endgmute(event):
-    "To remove gmute on that person."
+    "لألـغاء كتـم الشـخص 📮."
     if event.is_private:
-        await event.edit("**𖡛... قـد تحـدث بعـض المـشاكـل أو الأخـطاء ...𖡛**")
+        await event.edit("**... قـد تحـدث بعـض المـشاكـل أو الأخـطاء ...**")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
@@ -103,17 +108,17 @@ async def endgmute(event):
         if not user:
             return
         if user.id == jmthon.uid:
-            return await edit_or_reply(event, "**𖡛... لمـاذا تࢪيـد كتم نفسـك؟ ...𖡛**")
+            return await edit_or_reply(event, "**... لمـاذا تࢪيـد كتم نفسـك؟ ...**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
         return await edit_or_reply(
-            event, "**𖡛... غيـࢪ قـادࢪ عـلى جـلب مـعلومات الـشخص ...𖡛**"
+            event, "**... غيـࢪ قـادࢪ عـلى جـلب مـعلومات الـشخص ...**"
         )
     if not is_muted(userid, "gmute"):
         return await edit_or_reply(
-            event, f"**𖡛... هـذا الشـخص غيـࢪ مكـتوم اصلا  ...𖡛**"
+            event, f"**... هـذا الشـخص غيـࢪ مكـتوم اصلا  ...**"
         )
     try:
         unmute(userid, "gmute")
