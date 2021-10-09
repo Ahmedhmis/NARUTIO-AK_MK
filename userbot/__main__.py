@@ -30,6 +30,7 @@ except Exception as e:
     LOGS.error(f"{str(e)}")
     sys.exit()
 
+
 class CatCheck:
     def __init__(self):
         self.sucess = True
