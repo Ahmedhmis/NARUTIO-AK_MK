@@ -60,16 +60,7 @@ async def startup_process():
         await add_bot_to_logger_group(PM_LOGGER_GROUP_ID)
     await startupmessage()
     Catcheck.sucess = True
-    try:
-        await bot(JoinChannelRequest("@JMTHON"))
-    except BaseException:
-        pass
-#𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
-    try:
-        await bot(JoinChannelRequest("@RR7PP"))
-    except BaseException:
-         pass
-     return
+    return
 
 jmthon.loop.run_until_complete(startup_process())
 
