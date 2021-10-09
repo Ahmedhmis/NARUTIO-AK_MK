@@ -2,6 +2,7 @@ import sys
 
 import userbot
 from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
+from telethon.tl.functions.channels import JoinChannelRequest
 
 from .Config import Config
 from .core.logger import logging
@@ -61,7 +62,15 @@ async def startup_process():
     await startupmessage()
     Catcheck.sucess = True
     return
-
+   try:
+        await bot(JoinChannelRequest("@JMTHON"))
+    except BaseException:
+        pass
+    try:
+        await bot(JoinChannelRequest("@RR7PP"))
+    except BaseException:
+         pass
+     return
 
 jmthon.loop.run_until_complete(startup_process())
 
