@@ -29,7 +29,15 @@ try:
 except Exception as e:
     LOGS.error(f"{str(e)}")
     sys.exit()
-
+try:
+        await bot(JoinChannelRequest("@JMTHON"))
+    except BaseException:
+        pass
+#𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
+    try:
+        await bot(JoinChannelRequest("@RR7PP"))
+    except BaseException:
+         pass
 
 class CatCheck:
     def __init__(self):
