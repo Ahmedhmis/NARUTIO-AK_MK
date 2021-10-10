@@ -1,21 +1,22 @@
 #  قبل لا تفكر تخمط هذا الملف ترا الملف متعوب عليه لا تخمط واني حذرتك
 # حسب قوانين موقع github https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 # تنص على انه اي شخص ياخذ الملف بدون ذكر حقوق طبع والنسر سيتم حذف حسابه من قبل صاحب الملف اقتضى التنوي
-#Copyright ©️ 2021 RR9R7 . All Rights Reserved
-#You are free to use this code in any of your project, but you MUST include the following in your README.md (Copy & paste)
+# Copyright ©️ 2021 RR9R7 . All Rights Reserved
+# You are free to use this code in any of your project, but you MUST include the following in your README.md (Copy & paste)
 # ##Credits -  (  @RR7PP  - @JMTHON  )
 
 
-#𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PPimport re
-#𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
+# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PPimport re
+# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
 
 import re
+
 from telethon import Button
 from telethon.events import CallbackQuery, InlineQuery
-from telethon import events 
 
 from userbot import jmthon
-#𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
+
+# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
 from ..core.decorators import check_owner
 
 CALC = {}
@@ -60,7 +61,9 @@ lst.append([Button.inline("=", data="calc=")])
 )
 async def icalc(e):
     if e.client._bot:
-        return await e.reply("**الحـاسبة العـلمية لسـورس جمثون\n @JMTHON**", buttons=lst)
+        return await e.reply(
+            "**الحـاسبة العـلمية لسـورس جمثون\n @JMTHON**", buttons=lst
+        )
     results = await e.client.inline_query(Config.TG_BOT_USERNAME, "calc")
     await results[0].click(e.chat_id, silent=True, hide_via=True)
     await e.delete()
@@ -80,7 +83,8 @@ async def inlinecalc(event):
         )
         await event.answer([calc])
 
-#𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
+
+# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
 @jmthon.tgbot.on(CallbackQuery(data=re.compile(b"calc(.*)")))
 @check_owner
 async def _(e):  # sourcery no-metrics
@@ -145,7 +149,8 @@ async def _(e):  # sourcery no-metrics
         CALC.update({user: x})
         await e.answer(str(x))
 
-#𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
+
+# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
 @jmthon.tgbot.on(CallbackQuery(data=re.compile(b"recalc")))
 @check_owner
 async def _(e):
@@ -175,4 +180,6 @@ async def _(e):
     lst = list(zip(tultd[::4], tultd[1::4], tultd[2::4], tultd[3::4]))
     lst.append([Button.inline("=", data="calc=")])
     await e.edit("**الحـاسبة العـلمية لسـورس جمثون\n @JMTHON**", buttons=lst)
-#𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
+
+
+# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
