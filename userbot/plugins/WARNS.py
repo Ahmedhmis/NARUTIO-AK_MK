@@ -49,8 +49,8 @@ async def _(event):
 
 
 @jmthon.ar_cmd(
-    pattern="التحذير",
-    command=("التحذير", plugin_category),
+    pattern="التحذيرات",
+    command=("التحذيرات", plugin_category),
     info={
         "header": "للحصول على قائمة تحذيرات المستخدمين.",
         "usage": "التحذير <بالرد>",
