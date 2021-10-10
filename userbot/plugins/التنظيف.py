@@ -113,7 +113,6 @@ async def purgeme(event):
     await smsg.delete()
 
 
-
 # TODO: only sticker messages.
 @jmthon.ar_cmd(
     pattern="تنظيف(?:\s|$)([\s\S]*)",
