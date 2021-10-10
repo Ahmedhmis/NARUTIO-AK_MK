@@ -88,20 +88,11 @@ async def delete_it(event):
         await event.delete()
 
 
-@jmthon.ar_cmd(
-    pattern="حذف رسائلي$",
-    command=("حذف رسائلي", plugin_category),
-    info={
-        "header": "To purge your latest messages.",
-        "description": "Deletes x(count) amount of your latest messages.",
-        "usage": "{tr}purgeme <count>",
-        "examples": "{tr}purgeme 2",
-    },
-)
+@jmthon.on(admin_cmd(pattern="حذف رسائلي"))
 async def purgeme(event):
     "To purge your latest messages."
     message = event.text
-    count = int(message[9:])
+    count = int(message[12:])
     i = 1
     async for message in event.client.iter_messages(event.chat_id, from_user="me"):
         if i > count + 1:
@@ -111,15 +102,16 @@ async def purgeme(event):
 
     smsg = await event.client.send_message(
         event.chat_id,
-        "**⌯︙أنتـهى التـنظيف ** تـم حـذف  " + str(count) + " من الـرسائـل",
+        f"**▾∮ تم حذف** " + str(count) + " رساله ",
     )
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "**⌯︙أنتـهى التـنظيف ** تـم حـذف  " + str(count) + " من الـرسائـل",
+            "#حذف_الرسائل \n`تم حذف" + str(count) + " رساله بنجاح.`",
         )
     await sleep(5)
     await smsg.delete()
+
 
 
 # TODO: only sticker messages.
