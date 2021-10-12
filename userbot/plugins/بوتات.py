@@ -1,10 +1,11 @@
-import re
 import asyncio
-from telethon import events
 from asyncio.exceptions import TimeoutError
+
+from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.functions.messages import ExportChatInviteRequest
+
 from userbot import jmthon
+
 
 @jmthon.on(admin_cmd(pattern="حالتي ?(.*)"))
 async def _(event):
@@ -21,6 +22,7 @@ async def _(event):
             await event.edit("** اولا الغي حظر @SpamBot وحاول مجددا**")
             return
         await event.edit(f"- {response.message.message}\n @jmthon")
+
 
 @jmthon.on(admin_cmd(pattern="الاغنية ?(.*)"))
 async def _(event):
@@ -51,11 +53,11 @@ async def _(event):
         \n\n**التفاصيـل : **{result.text.splitlines()[2]}"
             await event.edit(namem)
             await event.client.delete_messages(
-                conv.chat_id, [start_msg.id, send_audio.id, check.id, result.id, response.id]
+                conv.chat_id,
+                [start_msg.id, send_audio.id, check.id, result.id, response.id],
             )
     except TimeoutError:
         return await event.edit("***حدث خطا ما حاول مجددا**")
-
 
 
 @jmthon.on(admin_cmd(pattern="ايميل وهمي(?: |$)(.*)"))
@@ -64,18 +66,18 @@ async def _(event):
     geez = await event.edit("**جاري انشاء بريد ...**")
     async with bot.conversation(chat) as conv:
         try:
-            response = conv.wait_event(events.NewMessage(
-                incoming=True,
-                from_users=220112646
-            )
+            response = conv.wait_event(
+                events.NewMessage(incoming=True, from_users=220112646)
             )
             await conv.send_message("/start")
             await asyncio.sleep(1)
             await conv.send_message("/create")
             response = await response
-            jmthon = ((response).reply_markup.rows[2].buttons[0].url)
+            jmthon = (response).reply_markup.rows[2].buttons[0].url
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await geez.edit("**الغي حظر @TempMailBot  و حاول مجددا**")
             return
-        await event.edit(f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({jmthon})")
+        await event.edit(
+            f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({jmthon})"
+        )
