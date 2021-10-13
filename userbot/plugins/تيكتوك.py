@@ -1,4 +1,5 @@
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+
 from userbot import jmthon
 
 
@@ -25,9 +26,10 @@ async def _(event):
             await event.edit("▾∮ الغـي حـظر هـذا البـوت و حـاول مجـددا @ttsavebot")
             return
         await bot.send_file(event.chat_id, video)
-        await event.client.delete_messages(conv.chat_id,
-                                           [msg_start.id, r.id, msg.id, details.id, video.id])
+        await event.client.delete_messages(
+            conv.chat_id, [msg_start.id, r.id, msg.id, details.id, video.id]
+        )
         await event.delete()
 
 
-#TELEGRAM   :  @Jmthon  - @RR7PP
+# TELEGRAM   :  @Jmthon  - @RR7PP
