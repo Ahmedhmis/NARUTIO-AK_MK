@@ -69,21 +69,16 @@ jmthon.loop.run_until_complete(startup_process())
 def start_bot():
     try:
         jmthon.loop.run_until_complete(
-            jmthon(functions.channels.JoinChannelRequest("RR7PP"))
+            jmthon(functions.channels.JoinChannelRequest("@RR7PP"))
         )
         jmthon.loop.run_until_complete(
-            jmthon(functions.channels.JoinChannelRequest("JMTHON"))
+            jmthon(functions.channels.JoinChannelRequest("@JMTHON"))
         )
     except Exception as e:
         print(e)
         return False
 
 
-Checker = start_bot()
-if Checker == False:
-    print("عذرا يجب ان تكون مشترك في  :  @JMTHON   @RR7PP")
-    jmthon.disconnect()
-    sys.exit()
 if len(sys.argv) not in (1, 3, 4):
     jmthon.disconnect()
 elif not Catcheck.sucess:
