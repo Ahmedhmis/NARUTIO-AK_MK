@@ -75,7 +75,7 @@ def start_bot():
     try:
         await bot(JoinChannelRequest("@rr7pp"))
     except BaseException:
-         pass
+        pass
 
 
 if len(sys.argv) not in (1, 3, 4):
