@@ -66,18 +66,6 @@ async def startup_process():
 jmthon.loop.run_until_complete(startup_process())
 
 
-def start_bot():
-    try:
-        await bot(JoinChannelRequest("@jmthon"))
-    except BaseException:
-        pass
-
-    try:
-        await bot(JoinChannelRequest("@rr7pp"))
-    except BaseException:
-        pass
-
-
 if len(sys.argv) not in (1, 3, 4):
     jmthon.disconnect()
 elif not Catcheck.sucess:
