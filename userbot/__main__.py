@@ -6,6 +6,7 @@ from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 from .Config import Config
 from .core.logger import logging
 from .core.session import jmthon
+from telethon.tl.functions.channels import JoinChannelRequest
 from .utils import (
     add_bot_to_logger_group,
     ipchange,
@@ -65,6 +66,22 @@ async def startup_process():
 
 jmthon.loop.run_until_complete(startup_process())
 
+def start_bot():
+  try:
+    jmthon.loop.run_until_complete(jmthon(
+      functions.channels.JoinChannelRequest("RR7PP")
+    ))
+    jmthon.loop.run_until_complete(jmthon(
+      functions.channels.JoinChannelRequest("JMTHON")
+    ))
+  except Exception as e:
+    print(e)
+    return False
+Checker = start_bot()
+if Checker == False:
+    print("عذرا يجب ان تكون مشترك في  :  @JMTHON   @RR7PP")
+    jmthon.disconnect()
+    sys.exit()
 if len(sys.argv) not in (1, 3, 4):
     jmthon.disconnect()
 elif not Catcheck.sucess:
