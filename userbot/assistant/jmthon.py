@@ -4,21 +4,23 @@
 import io
 import re
 
+from telethon import *
 from telethon import Button, custom, events
 from telethon.tl.functions.users import GetFullUserRequest
 
-# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE 
-from userbot import bot
 from Jmthon.razan.resources.assistant import *
+
+# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
+from userbot import bot
 from userbot.sql_helper.idadder_sql import (
     add_usersid_in_db,
     already_added,
     get_all_users,
 )
+
 # Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 from . import *
-from telethon import events
-from telethon import *
+
 
 # start
 @tgbot.on(events.NewMessage(pattern="^/start"))
@@ -59,7 +61,7 @@ async def start(event):
 
 # Data
 
-# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE 
+# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"deploy")))
 async def help(event):
     await event.delete()
@@ -73,7 +75,9 @@ async def help(event):
             ],
         )
 
-# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE 
+
+# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
+
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"users")))
 async def users(event):
@@ -96,7 +100,7 @@ async def users(event):
         pass
 
 
-# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE 
+# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"gibcmd")))
 async def users(event):
     await event.delete()
@@ -104,13 +108,15 @@ async def users(event):
     await tgbot.send_message(event.chat_id, rorza)
 
 
-# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE 
+# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 @tgbot.on(events.NewMessage(pattern="^/help", func=lambda e: e.sender_id == bot.uid))
 async def starkislub(event):
     rorza = "**قـائمـة اوامـر البـوت الخاصـة بك**:\n- **جميع هذه الاوامر تستخدم بعد اضافة البوت في مجموعة ورفعه مشـرف مع بعض الصلاحيـات**\n• /start \n ( للـتأكد من حالـة البـوت) \n• /ping \n ( امـر بنـك )  \n• /broadcast \n ( لعمـل اذاعـة لجميـع المستخدمين في البـوت )  \n• /id \n  ( لعـرض ايدي المسـتخدم ) \n• /alive \n- ( لـرؤية معلومات البـوت ) \n• /bun \n-  ( تعمل في المجموعات لحظر شخص )\n• /unbun  \n-  ( تعمل في المجموعات لالغاء حظر مستخدم )  \n• /prumote  \n-  ( لرفـع شخص مشـرف )\n• /demute  \n-  ( لتنزيل الشخص من رتبة الاشراف ) \n• /pin  \n-  ( لتثبيـت رسالة في المجموعـة )  \n• /stats  \n-  ( لعرض مستخدمين البوت )  \n• /purge  \n-  ( بالرد على رسالة ليقوم بحذف ما تحتها من رسائل ) \n• /del  \n-  ( بالـرد على الرسالـة لحـذفها )"
     await event.reply(rorza)
 
-# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE 
+
+# Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
+
 
 @tgbot.on(events.NewMessage(pattern="^/alive", func=lambda e: e.sender_id == bot.uid))
 async def starkislub(event):
@@ -123,6 +129,7 @@ async def starkislub(event):
 
 # بـسـم الله الـرحمن الـرحيم  🤍
 
+
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzhelp")))
 async def settings(event):
     if event.sender_id == bot.uid:
@@ -131,11 +138,16 @@ async def settings(event):
             event.chat_id,
             "**▾∮  اختر احد خيارات الاوامر : **",
             buttons=[
-                [Button.inline("اوامر الادمن ", data="rzadmin"),],],)
+                [
+                    Button.inline("اوامر الادمن ", data="rzadmin"),
+                ],
+            ],
+        )
     else:
         await event.answer(
             "انت لا تستطيع استخدام البوت احصل على بوتك من @JMTHON", alert=True
         )
+
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzadmin")))
 async def settings(event):
@@ -159,50 +171,62 @@ async def settings(event):
                 [
                     Button.inline("║ رجوع ║ ⁦⁩", data="rzhelp"),
                 ],
-             ],
+            ],
         )
     else:
         await event.answer(
             "انت لا تستطيع استخدام البوت احصل على بوتك من @JMTHON", alert=True
         )
 
+
 """ Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE  """
+
+
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rztkrar")))
 async def settings(event):
     if event.sender_id == bot.uid:
         await event.delete()
         await tgbot.send_message(
-            event.chat_id,
-            ROZKRR,
-            buttons=[[Button.inline("║ رجوع ║", data="rzadmin")]]
+            event.chat_id, ROZKRR, buttons=[[Button.inline("║ رجوع ║", data="rzadmin")]]
         )
     else:
-        await event.answer("انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True)
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+
+
 """ Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE  """
+
+
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rpwarn")))
 async def settings(event):
     if event.sender_id == bot.uid:
         await event.delete()
         await tgbot.send_message(
-            event.chat_id,
-            ROZHDR,
-            buttons=[[Button.inline("║ رجوع ║", data="rzadmin")]]
+            event.chat_id, ROZHDR, buttons=[[Button.inline("║ رجوع ║", data="rzadmin")]]
         )
     else:
-        await event.answer("انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True)
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzmn3")))
 async def settings(event):
     if event.sender_id == bot.uid:
         await event.delete()
         await tgbot.send_message(
-            event.chat_id,
-            ROZMN3,
-            buttons=[[Button.inline("║ رجوع ║", data="rzadmin")]]
+            event.chat_id, ROZMN3, buttons=[[Button.inline("║ رجوع ║", data="rzadmin")]]
         )
     else:
-        await event.answer("انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True)
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+
+
 """ Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE  """
+
+
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzgroup")))
 async def settings(event):
     if event.sender_id == bot.uid:
@@ -227,12 +251,13 @@ async def settings(event):
                     Button.inline("احصائيات الاعضاء", data="rzikuck"),
                     Button.inline("║ رجوع ║", data="rzadmin"),
                 ],
-            ]
+            ],
         )
     else:
         await event.answer(
             "انت لا تستطيع استخدام البوت احصل على بوتك من @JMTHON", alert=True
         )
+
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzkick")))
 async def settings(event):
@@ -241,10 +266,13 @@ async def settings(event):
         await tgbot.send_message(
             event.chat_id,
             ROZKICK,
-            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]]
+            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]],
         )
     else:
-        await event.answer("انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True)
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzunban")))
 async def settings(event):
@@ -253,10 +281,13 @@ async def settings(event):
         await tgbot.send_message(
             event.chat_id,
             ROZUNBAN,
-            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]]
+            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]],
         )
     else:
-        await event.answer("انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True)
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzflsh")))
 async def settings(event):
@@ -265,10 +296,13 @@ async def settings(event):
         await tgbot.send_message(
             event.chat_id,
             ROZFLSH,
-            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]]
+            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]],
         )
     else:
-        await event.answer("انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True)
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzzomb")))
 async def settings(event):
@@ -276,12 +310,18 @@ async def settings(event):
         await event.delete()
         await tgbot.send_message(
             event.chat_id,
-            ROZZOMB, 
-            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]]
+            ROZZOMB,
+            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]],
         )
     else:
-        await event.answer("انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True)
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+
+
 """ Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE  """
+
+
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzikuck")))
 async def settings(event):
     if event.sender_id == bot.uid:
@@ -289,38 +329,45 @@ async def settings(event):
         await tgbot.send_message(
             event.chat_id,
             ROZIKUCK,
-            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]]
+            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]],
         )
     else:
-        await event.answer("انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True)
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+
 
 """ Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE  """
+
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzthbt")))
 async def settings(event):
     if event.sender_id == bot.uid:
         await event.delete()
         await tgbot.send_message(
-            event.chat_id,
-            ROZPIN,
-            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]]
+            event.chat_id, ROZPIN, buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]]
         )
     else:
-        await event.answer("انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True)
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+
 
 """ Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE  """
+
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzban")))
 async def settings(event):
     if event.sender_id == bot.uid:
         await event.delete()
         await tgbot.send_message(
-            event.chat_id,
-            ROZBAN,
-            buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]]
+            event.chat_id, ROZBAN, buttons=[[Button.inline("║ رجوع ║", data="rzgroup")]]
         )
     else:
-        await event.answer("انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True)
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+
 
 """ Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE  """
 """ Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE  """
