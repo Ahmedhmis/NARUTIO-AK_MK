@@ -100,3 +100,34 @@ def checkplugins(filename):
     filedata = filedata.replace("editmessage", "edit_message")
     with open(filename, "w") as f:
         f.write(filedata)
+
+#استدعاء ملفات البوت المساعد
+def start_assistant(shortname):
+    if shortname.startswith("__"):
+        pass
+    elif shortname.endswith("_"):
+        import importlib
+        import sys
+        from pathlib import Path
+
+        path = Path(f"userbot/plugins/assistant/{shortname}.py")
+        name = "userbot.plugins.assistant.{}".format(shortname)
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        print("يتم تشغيل البوت المساعد.")
+        print("بنجاح تم استدعاء " + shortname)
+    else:
+        import importlib
+        import sys
+        from pathlib import Path
+
+        path = Path(f"userbot/plugins/assistant/{shortname}.py")
+        name = "userbot.plugins.assistant.{}".format(shortname)
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        mod.tgbot = bot.tgbot
+        spec.loader.exec_module(mod)
+        sys.modules["userbot.plugins.assistant" + shortname] = mod
+        print("بنجاح يتم تحميل " + shortname)  
+
