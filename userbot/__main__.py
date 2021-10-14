@@ -7,13 +7,13 @@ from telethon import TelegramClient
 from telethon.tl.functions.channels import JoinChannelRequest
 
 from userbot import bot
-from userbot.Config import Config
+from userbot.Config import *
 from userbot.utils.pluginmanager import load_module, start_assistant
 
 os.system("pip install -U telethon")
 # 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
 l2 = Config.SUDO_COMMAND_HAND_LER
-JMTHON_PIC = Config.ALIVE_PIC or "https://telegra.ph/file/cd2a3965eadd7529b8e94.jpg"
+JMTHON_PIC = "https://telegra.ph/file/cd2a3965eadd7529b8e94.jpg"
 cmdhr = Config.COMMAND_HAND_LER
 # 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
 
