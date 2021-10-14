@@ -101,7 +101,8 @@ def checkplugins(filename):
     with open(filename, "w") as f:
         f.write(filedata)
 
-#استدعاء ملفات البوت المساعد
+
+# استدعاء ملفات البوت المساعد
 def start_assistant(shortname):
     if shortname.startswith("__"):
         pass
@@ -129,5 +130,4 @@ def start_assistant(shortname):
         mod.tgbot = bot.tgbot
         spec.loader.exec_module(mod)
         sys.modules["userbot.plugins.assistant" + shortname] = mod
-        print("بنجاح يتم تحميل " + shortname)  
-
+        print("بنجاح يتم تحميل " + shortname)
