@@ -17,14 +17,17 @@ from ..helpers.functions import check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
 from . import mention
-from .decorators import admin_cmd, sudo_cmd
+from .decorators import sudo_cmd
 
 plugin_category = "bot"
 
 # كتـابة وتعـديل:  @RR9R7
 
 
-@jmthon.ar_cmd(pattern="فحص$",command=("فحص", plugin_category),)
+@jmthon.ar_cmd(
+    pattern="فحص$",
+    command=("فحص", plugin_category),
+)
 @jmthon.on(sudo_cmd(pattern="فحص$", allow_sudo=True))
 async def amireallyalive(event):
     "للتـأكد من ان البـوت يعـمـل"
