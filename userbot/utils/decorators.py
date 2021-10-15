@@ -7,7 +7,7 @@ from pathlib import Path
 
 from .. import CMD_LIST, LOAD_PLUG, SUDO_LIST
 from ..Config import Config
-from ..core.data import _sudousers_list, blacklist_chats_list
+from ..core.data import blacklist_chats_list
 from ..core.events import MessageEdited, NewMessage
 from ..core.logger import logging
 from ..core.session import jmthon
