@@ -11,7 +11,7 @@ from telethon.errors.rpcerrorlist import (
 )
 
 from userbot import JMVERSION, StartTime, jmthon
-
+from .decorators import admin_cmd, sudo_cmd
 from ..core.managers import edit_or_reply
 from ..helpers.functions import check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
@@ -23,17 +23,8 @@ plugin_category = "bot"
 # كتـابة وتعـديل:  @RR9R7
 
 
-@jmthon.ar_cmd(
-    pattern="فحص$",
-    command=("فحص", plugin_category),
-    info={
-        "header": "للـتأكـد مـن حـالة البـوت",
-        "options": "لوضـع صـورة مـع الامـر يجـب عليـ ان تضـع رابط الصـورة مـع فـار `ALIVE_PIC` للحصـول علـى رابط الصـورة، بالـرد عليهـا بـ  ( `.تلكراف ميديا` ) ",
-        "usage": [
-            "{tr}فحص",
-        ],
-    },
-)
+@jmthon.on(admin_cmd(pattern="فحص$"))
+@jmthon.on(sudo_cmd(pattern="فحص$", allow_sudo=True))
 async def amireallyalive(event):
     "للتـأكد من ان البـوت يعـمـل"
     reply_to_id = await reply_id(event)
