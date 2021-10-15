@@ -3,7 +3,6 @@
 # Create a new config.py file in same directory and import, then extend this class.
 
 import os
-from typing import Set
 
 from telethon.tl.types import ChatBannedRights
 
