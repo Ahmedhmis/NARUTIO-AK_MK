@@ -68,7 +68,7 @@ def admin_cmd(pattern=None, command=None, **args):  # sourcery no-metrics
     return NewMessage(**args)
 
 
-def sudo_cmd(pattern=None, command=None, **args):  # sourcery no-metrics
+def sudo_cmd(pattern=None, command=None, **args):
     args["func"] = lambda e: e.via_bot_id is None
     stack = inspect.stack()
     previous_stack_frame = stack[1]
@@ -108,7 +108,7 @@ def sudo_cmd(pattern=None, command=None, **args):  # sourcery no-metrics
     args["outgoing"] = True
     # should this command be available for other users?
     if allow_sudo:
-        args["from_users"] = list(_sudousers_list())
+        args["from_users"] = list(Config.SUDO_USERS)
         # Mutually exclusive with outgoing (can only set one of either).
         args["incoming"] = True
         del args["allow_sudo"]
@@ -116,15 +116,15 @@ def sudo_cmd(pattern=None, command=None, **args):  # sourcery no-metrics
     elif "incoming" in args and not args["incoming"]:
         args["outgoing"] = True
     # add blacklist chats, UB should not respond in these chats
-    if gvarstatus("blacklist_chats") is not None:
-        args["blacklist_chats"] = True
-        args["chats"] = blacklist_chats_list()
+    args["blacklist_chats"] = True
+    black_list_chats = list(Config.UB_BLACK_LIST_CHAT)
+    if black_list_chats:
+        args["chats"] = black_list_chats
     # add blacklist chats, UB should not respond in these chats
     if "allow_edited_updates" in args and args["allow_edited_updates"]:
         del args["allow_edited_updates"]
     # check if the plugin should listen for outgoing 'messages'
-    if gvarstatus("sudoenable") is not None:
-        return NewMessage(**args)
+    return events.NewMessage(**args)
 
 
 def errors_handler(func):
