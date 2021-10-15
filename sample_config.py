@@ -42,6 +42,9 @@ class Config(object):
     LOAD_MYBOT = os.environ.get("LOAD_MYBOT", "True")
     JMTHON_START = os.environ.get("JMTHON_START", None)
     PMPERMIT_TEXT_JMTHON = os.environ.get("PMPERMIT_TEXT_JMTHON", None)
+    UB_BLACK_LIST_CHAT = {
+        int(x) for x in os.environ.get("UB_BLACK_LIST_CHAT", "").split()
+    }
     BOT_PIC = os.environ.get("BOT_PIC", None)
     # Set this value with group id of private group(can be found this value by .id)
     PRIVATE_GROUP_BOT_API_ID = int(os.environ.get("PRIVATE_GROUP_BOT_API_ID") or 0)
