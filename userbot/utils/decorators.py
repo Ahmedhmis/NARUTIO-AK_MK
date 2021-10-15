@@ -18,15 +18,17 @@ from ..sql_helper.globals import gvarstatus
 LOGS = logging.getLogger(__name__)
 
 
-def admin_cmd(pattern=None, command=None, **args):  # sourcery no-metrics
+def admin_cmd(pattern=None, command=None, **args):
     args["func"] = lambda e: e.via_bot_id is None
     stack = inspect.stack()
     previous_stack_frame = stack[1]
     file_test = Path(previous_stack_frame.filename)
     file_test = file_test.stem.replace(".py", "")
     allow_sudo = args.get("allow_sudo", False)
+    # get the pattern from the decorator
     if pattern is not None:
         if pattern.startswith(r"\#"):
+            # special fix for snip.py
             args["pattern"] = re.compile(pattern)
         elif pattern.startswith(r"^"):
             args["pattern"] = re.compile(pattern)
@@ -37,12 +39,12 @@ def admin_cmd(pattern=None, command=None, **args):  # sourcery no-metrics
                 CMD_LIST.update({file_test: [cmd]})
         else:
             if len(Config.COMMAND_HAND_LER) == 2:
-                catreg = "^" + Config.COMMAND_HAND_LER
+                jmthreg = "^" + Config.COMMAND_HAND_LER
                 reg = Config.COMMAND_HAND_LER[1]
             elif len(Config.COMMAND_HAND_LER) == 1:
-                catreg = "^\\" + Config.COMMAND_HAND_LER
+                jmthreg = "^\\" + Config.COMMAND_HAND_LER
                 reg = Config.COMMAND_HAND_LER
-            args["pattern"] = re.compile(catreg + pattern)
+            args["pattern"] = re.compile(jmthreg + pattern)
             if command is not None:
                 cmd = reg + command
             else:
@@ -53,19 +55,32 @@ def admin_cmd(pattern=None, command=None, **args):  # sourcery no-metrics
                 CMD_LIST[file_test].append(cmd)
             except BaseException:
                 CMD_LIST.update({file_test: [cmd]})
+
     args["outgoing"] = True
+    # should this command be available for other users?
     if allow_sudo:
         args["from_users"] = list(Config.SUDO_USERS)
+        # Mutually exclusive with outgoing (can only set one of either).
         args["incoming"] = True
         del args["allow_sudo"]
+
+    # error handling condition check
     elif "incoming" in args and not args["incoming"]:
         args["outgoing"] = True
-    if gvarstatus("blacklist_chats") is not None:
-        args["blacklist_chats"] = True
-        args["chats"] = blacklist_chats_list()
+
+    # add blacklist chats, UB should not respond in these chats
+    args["blacklist_chats"] = True
+    black_list_chats = list(Config.UB_BLACK_LIST_CHAT)
+    if black_list_chats:
+        args["chats"] = black_list_chats
+
+    # add blacklist chats, UB should not respond in these chats
     if "allow_edited_updates" in args and args["allow_edited_updates"]:
         del args["allow_edited_updates"]
-    return NewMessage(**args)
+
+    # check if the plugin should listen for outgoing 'messages'
+
+    return events.NewMessage(**args)
 
 
 def sudo_cmd(pattern=None, command=None, **args):
