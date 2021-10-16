@@ -16,8 +16,8 @@ from ..core.managers import edit_or_reply
 from ..helpers.functions import check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
-from . import mention
 from ..utils.decorators import sudo_cmd
+from . import mention
 
 plugin_category = "bot"
 
@@ -35,7 +35,6 @@ plugin_category = "bot"
         ],
     },
 )
-
 @jmthon.on(sudo_cmd(pattern="فحص$", allow_sudo=True))
 async def amireallyalive(event):
     "للتـأكد من ان البـوت يعـمـل"
