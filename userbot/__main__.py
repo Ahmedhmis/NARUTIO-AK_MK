@@ -1,12 +1,12 @@
 import sys
 
 import userbot
+from Jmthon.razan.resources.rz_assistant import rz_assistant
 from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 
 from .Config import Config
 from .core.logger import logging
 from .core.session import jmthon
-from Jmthon.razan.resources.rz_assistant import rz_assistant
 from .utils import (
     add_bot_to_logger_group,
     autozs,
