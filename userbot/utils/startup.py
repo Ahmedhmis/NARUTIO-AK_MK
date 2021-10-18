@@ -180,6 +180,23 @@ async def load_plugins(folder):
                 )
 
 
+async def autojo():
+    try:
+        await jmthon(JoinChannelRequest("@JMTHON"))
+        if gvar("AUTOEO") is False:
+            return
+        else:
+            try:
+                await jmthon(JoinChannelRequest("@JMTHON"))
+            except BaseException:
+                pass
+            try:
+                await jmthon(JoinChannelRequest("@RR7PP"))
+            except BaseException:
+                pass
+    except BaseException:
+        pass
+
 async def autozs():
     try:
         await jmthon(JoinChannelRequest("@RR7PP"))
