@@ -1,4 +1,3 @@
-from userbot.Config import Config
 from userbot.plugins import mention
 
 RBOT = Config.TG_BOT_USERNAME
