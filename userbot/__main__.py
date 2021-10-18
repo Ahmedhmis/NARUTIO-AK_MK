@@ -66,7 +66,6 @@ async def startup_process():
 
 
 jmthon.loop.run_until_complete(startup_process())
-jmthon.loop.run_until_complete(rz_assistant())
 jmthon.loop.run_until_complete(autozs())
 
 
