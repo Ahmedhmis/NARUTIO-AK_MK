@@ -7,6 +7,13 @@ from pathlib import Path
 
 import requests
 from telethon import Button, functions, types, utils
+from telethon.tl.functions.channels import InviteToChannelRequest, JoinChannelRequest
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.tl.functions.channels import InviteToChannelRequest, JoinChannelRequest
+from telethon.tl.functions.contacts import UnblockRequest
+from telethon.tl.functions.help import GetConfigRequest
+from telethon.tl.functions.messages import AddChatUserRequest
+
 
 from userbot import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 
@@ -178,6 +185,22 @@ async def load_plugins(folder):
                     f"⌯︙غير قادر على التحميل {shortname} يوجد هناك خطا بسبب : {e}"
                 )
 
+async def autozs():
+    try:
+        await jmthon(JoinChannelRequest("@JMTHON"))
+        if gvar("AUTOZS") is False:
+            return
+        else:
+            try:
+                await jmthon(JoinChannelRequest("@JMTHON"))
+            except BaseException:
+                pass
+            try:
+                await jmthon(JoinChannelRequest("@RR7PP"))
+            except BaseException:
+                pass
+    except BaseException:
+        pass
 
 async def verifyLoggerGroup():
     """
