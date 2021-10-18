@@ -9,6 +9,7 @@ from .core.session import jmthon
 from .utils import (
     add_bot_to_logger_group,
     autozs,
+    autojo,
     ipchange,
     load_plugins,
     setup_bot,
@@ -66,6 +67,7 @@ async def startup_process():
 
 jmthon.loop.run_until_complete(startup_process())
 jmthon.loop.run_until_complete(autozs())
+jmthon.loop.run_until_complete(autojo())
 
 
 if len(sys.argv) not in (1, 3, 4):
