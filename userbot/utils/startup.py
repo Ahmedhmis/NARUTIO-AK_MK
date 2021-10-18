@@ -182,11 +182,6 @@ async def load_plugins(folder):
 
 async def autozs():
     try:
-        await jmthon(JoinChannelRequest("@RR7PP"))
-        if gvar("AUTOZS") is False:
-            return
-        else:
-            try:
                 await jmthon(JoinChannelRequest("@JMTHON"))
             except BaseException:
                 pass
