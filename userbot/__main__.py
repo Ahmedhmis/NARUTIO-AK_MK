@@ -6,6 +6,7 @@ from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 from .Config import Config
 from .core.logger import logging
 from .core.session import jmthon
+from Jmthon.razan.resources.rz_assistant import rz_assistant
 from .utils import (
     add_bot_to_logger_group,
     autozs,
@@ -65,7 +66,7 @@ async def startup_process():
 
 
 jmthon.loop.run_until_complete(startup_process())
-
+jmthon.loop.run_until_complete(rz_assistant())
 jmthon.loop.run_until_complete(autozs())
 
 
