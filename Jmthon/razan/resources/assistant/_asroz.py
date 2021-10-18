@@ -1,4 +1,5 @@
-from userbot.plugins import mention
+from userbot import mention
+from userbot.Config import Config
 
 RBOT = Config.TG_BOT_USERNAME
 ROZA = Config.PRIVATE_GROUP_BOT_API_ID
