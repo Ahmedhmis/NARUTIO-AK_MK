@@ -4,10 +4,10 @@ from telethon.utils import get_display_name
 
 from userbot.Config import Config
 
-if Config.PM_LOGGER_GROUP_ID:
-    tagger = int(Config.PM_LOGGER_GROUP_ID)
+if Config.TAG_LOGGER:
+    tagger = int(Config.TAG_LOGGER)
 
-if Config.PM_LOGGER_GROUP_ID:
+if Config.TAG_LOGGER:
     # For Jmthon userbot don't kang   ;!!
     @bot.on(
         events.NewMessage(
