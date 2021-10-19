@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String
+
 from . import BASE, SESSION
 
 
@@ -27,8 +28,7 @@ def full_userbase():
 
 def present_in_userbase(chat_id):
     try:
-        return SESSION.query(userbase).filter(
-            userbase.chat_id == str(chat_id)).one()
+        return SESSION.query(userbase).filter(userbase.chat_id == str(chat_id)).one()
     except BaseException:
         return None
     finally:
