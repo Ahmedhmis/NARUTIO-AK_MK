@@ -1,11 +1,6 @@
-from sqlalchemy import (
-    Column,
-    String
-)
-from . import (
-    SESSION,
-    BASE
-)
+from sqlalchemy import Column, String
+
+from . import BASE, SESSION
 
 
 class blacklist(BASE):
@@ -34,8 +29,7 @@ def add_user_to_bl(chat_id: int):
 def check_is_black_list(chat_id):
     """check if blacklisted"""
     try:
-        return SESSION.query(blacklist).filter(
-            blacklist.chat_id == str(chat_id)).one()
+        return SESSION.query(blacklist).filter(blacklist.chat_id == str(chat_id)).one()
     except BaseException:
         return None
     finally:
