@@ -279,7 +279,29 @@ async def verifyLoggerGroup():
         )
         addgvar("PM_LOGGER_GROUP_ID", groupid)
         print("تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه.")
+
         flag = True
+    if TAG_LOGGER != -100:
+        try:
+            entity = await jmthon.get_entity(- اذا تريد مجاني تعلم شرح واذا تريد جاهز ب 3 اسيا هاي اذا ردت انصبلك اصلا)
+            if not isinstance(entity, types.User) and not entity.creator:
+                if entity.default_banned_rights.send_messages:
+                    LOGS.info(
+                        " الأذونات مفقودة لإرسال رسائل لفـار حفظ الرسائل"
+                    )
+                if entity.default_banned_rights.invite_users:
+                    LOGS.info(
+                        " هنالك فقدان في صلاحيان الاضافة والحظر للبوت"
+                    )
+        except ValueError:
+            LOGS.error(" لا يمكن العثور على فار  - اذا تريد مجاني تعلم شرح واذا تريد جاهز ب 3 اسيا هاي اذا ردت انصبلك اصلا. تأكد من صحتها.")
+        except TypeError:
+            LOGS.error("ايدي الذي وضعته غير يجب ان يبـدأ بـ  -100")
+        except Exception as e:
+            LOGS.error(
+                " حدث استثناء عند محاولة التحقق من - اذا تريد مجاني تعلم شرح واذا تريد جاهز ب 3 اسيا هاي اذا ردت انصبلك اصلا.\n" + str(e)
+            )
+    flag = True
     if flag:
         executable = sys.executable.replace(" ", "\\ ")
         args = [executable, "-m", "userbot"]
