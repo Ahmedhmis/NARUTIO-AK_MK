@@ -1,16 +1,11 @@
-from sqlalchemy import (
-    Column,
-    String,
-    Integer
-)
-from . import (
-    SESSION,
-    BASE
-)
+from sqlalchemy import Column, Integer, String
+
+from . import BASE, SESSION
 
 
 class Users(BASE):
-    """ Table to store the received messages """
+    """Table to store the received messages"""
+
     __tablename__ = "users"
     message_id = Column(Integer, primary_key=True)
     chat_id = Column(String(14))
@@ -29,14 +24,14 @@ Users.__table__.create(checkfirst=True)
 
 
 def add_user_to_db(message_id: int, chat_id: int, um_id: int):
-    """ add the message to the table """
+    """add the message to the table"""
     __user = Users(message_id, str(chat_id), um_id)
     SESSION.add(__user)
     SESSION.commit()
 
 
 def get_user_id(message_id: int):
-    """ get the user_id from the message_id """
+    """get the user_id from the message_id"""
     try:
         s__ = SESSION.query(Users).get(str(message_id))
         return int(s__.chat_id), s__.um_id
