@@ -8,7 +8,7 @@ if Config.PM_LOGGER_GROUP_ID:
     tagger = int(Config.PM_LOGGER_GROUP_ID)
 
 if Config.PM_LOGGER_GROUP_ID:
-# For Jmthon userbot don't kang   ;!! 
+    # For Jmthon userbot don't kang   ;!!
     @bot.on(
         events.NewMessage(
             incoming=True,
@@ -48,5 +48,6 @@ if Config.PM_LOGGER_GROUP_ID:
             )
         else:
             return
+
 
 # By @Jmthon  - @RR7PP
