@@ -279,7 +279,7 @@ async def verifyLoggerGroup():
         )
         addgvar("PM_LOGGER_GROUP_ID", groupid)
         print("تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه.")
-    flag = True
+        flag = True
     if flag:
         executable = sys.executable.replace(" ", "\\ ")
         args = [executable, "-m", "userbot"]
