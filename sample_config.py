@@ -46,7 +46,6 @@ class Config(object):
         int(x) for x in os.environ.get("UB_BLACK_LIST_CHAT", "").split()
     }
     TAG_LOGGER = os.environ.get("TAG_LOGGER", None)
-        if TAG_LOGGER: TAG_LOGGER = int(TAG_LOGGER)
 
     BOT_PIC = os.environ.get("BOT_PIC", None)
     # Set this value with group id of private group(can be found this value by .id)
