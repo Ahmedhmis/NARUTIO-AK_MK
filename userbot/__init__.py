@@ -54,6 +54,14 @@ if Config.PM_LOGGER_GROUP_ID == 0:
 elif str(Config.PM_LOGGER_GROUP_ID)[0] != "-":
     Config.PM_LOGGER_GROUP_ID = int("-" + str(Config.PM_LOGGER_GROUP_ID))
 
+if Config.TAG_LOGGER == 0:
+    if gvarstatus("TAG_LOGGER") is None:
+        Config.TAG_LOGGER = -100
+    else:
+        Config.TAG_LOGGER = int(gvarstatus("TAG_LOGGER"))
+elif str(Config.TAG_LOGGER)[0] != "-":
+    Config.TAG_LOGGER = int("-" + str(Config.TAG_LOGGER))
+
 try:
     if Config.HEROKU_API_KEY is not None or Config.HEROKU_APP_NAME is not None:
         HEROKU_APP = heroku3.from_key(Config.HEROKU_API_KEY).apps()[
