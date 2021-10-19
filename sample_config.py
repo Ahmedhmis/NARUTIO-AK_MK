@@ -9,7 +9,7 @@ from telethon.tl.types import ChatBannedRights
 
 class Config(object):
     LOGGER = True
-    
+
     A_PIC = os.environ.get("A_PIC", None)
     A_TEXT = os.environ.get("A_TEXT", None)
     # MUST NEEDED VARS
