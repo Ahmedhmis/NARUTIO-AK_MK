@@ -47,8 +47,8 @@ class Config(object):
     }
     TAG_LOGGER = int(os.environ.get("TAG_LOGGER") or 0)
     P_PIC = os.environ.get("P_PIC", None)
-    P_TEXT = os.environ.get("P_TEXT", None) 
-    PMBOT_START_MSSG = os.environ.get("PMBOT_START_MSSG", None) 
+    P_TEXT = os.environ.get("P_TEXT", None)
+    PMBOT_START_MSSG = os.environ.get("PMBOT_START_MSSG", None)
 
     BOT_PIC = os.environ.get("BOT_PIC", None)
     # Set this value with group id of private group(can be found this value by .id)
