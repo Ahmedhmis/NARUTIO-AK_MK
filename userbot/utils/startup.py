@@ -279,13 +279,6 @@ async def verifyLoggerGroup():
         )
         addgvar("PM_LOGGER_GROUP_ID", groupid)
         print("تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه.")
-   else:
-        descript = "⌯︙ وظيفه الكروب يحفظ رسائل المجموعات اذا ما تريد الامر احذف الكروب نهائي \n  - @JMTHON"
-        _, groupid = await create_supergroup(
-            "كـروب حفظ التاك", jmthon, Config.TG_BOT_USERNAME, descript
-        )
-        addgvar("TAG_LOGGER", groupid)
-        print("تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه.")
         flag = True
     if flag:
         executable = sys.executable.replace(" ", "\\ ")
