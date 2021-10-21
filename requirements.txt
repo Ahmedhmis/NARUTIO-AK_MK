@@ -48,6 +48,7 @@ pytz
 qrcode
 randomstuff.py
 regex
+PyDictionary
 requests
 search-engine-parser
 selenium
