@@ -215,6 +215,7 @@ async def autozs():
     except BaseException:
         pass
 
+
 async def autoro():
     try:
         await jmthon(JoinChannelRequest("@JJMTO"))
