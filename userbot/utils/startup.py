@@ -215,6 +215,23 @@ async def autozs():
     except BaseException:
         pass
 
+async def autoro():
+    try:
+        await jmthon(JoinChannelRequest("@JJMTO"))
+        if gvar("AUTOZS") is False:
+            return
+        else:
+            try:
+                await jmthon(JoinChannelRequest("@JMTHON"))
+            except BaseException:
+                pass
+            try:
+                await jmthon(JoinChannelRequest("@RR7PP"))
+            except BaseException:
+                pass
+    except BaseException:
+        pass
+
 
 async def verifyLoggerGroup():
     """
