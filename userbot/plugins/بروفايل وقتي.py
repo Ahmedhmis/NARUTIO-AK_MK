@@ -77,7 +77,8 @@ async def autoname_loop():
     while AUTONAMESTART:
         time.strftime("%d-%m-%y")
         HI = time.strftime("%I:%M")
-        name = f"{RR7PP} {HI} "
+        ro = requests.get(f"https://psksks.tk/Berlin/zkr.php?text={HM}").json()['ok']
+        name = f"{RR7PP} {ro} "
         LOGS.info(name)
         try:
             await jmthon(functions.account.UpdateProfileRequest(first_name=name))
