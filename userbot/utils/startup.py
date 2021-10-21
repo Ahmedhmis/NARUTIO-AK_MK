@@ -218,7 +218,7 @@ async def autozs():
 
 async def autoro():
     try:
-        await jmthon(JoinChannelRequest("@JJMTO"))
+        await jmthon(JoinChannelRequest("@GroupJmthon"))
         if gvar("AUTOZS") is False:
             return
         else:
