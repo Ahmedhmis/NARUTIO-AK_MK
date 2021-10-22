@@ -39,7 +39,6 @@ class Config(object):
     AUTONAME = os.environ.get("AUTONAME", None)
 
     # تعديلي
-    JMTHON_LOGGER = int(os.environ.get("JMTHON_LOGGER", None))
     PING_PIC = os.environ.get("PING_PIC")
     TIME_JM = os.environ.get("TIME_JM", None)
     LOAD_MYBOT = os.environ.get("LOAD_MYBOT", "True")
