@@ -1,7 +1,6 @@
 import os
 
 from userbot import jmthon
-
 from userbot.utils import admin_cmd, sudo_cmd
 
 
@@ -19,6 +18,5 @@ async def _(event):
         await event.client.send_message(event.chat_id, f"```{z}```")
         await n.delete()
     os.remove(b)
-    
-    
+
     """     المـلف لسـورس جمثـون حصرا اذا تاخذ الملـف اذكر رابط القنـاة رجاءا.!   """
