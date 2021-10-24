@@ -34,6 +34,19 @@ autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
 RR7PP = Config.TIME_JM or ""
 
+normzltext = "1234567890"
+namerzfont = [
+    "𝟭",  #كود جمثون حصريا  !! 
+    "𝟮",
+    "𝟯",  #ههههههههههههههههههههههههههههههههههههههههههههههههه
+    "𝟰",  #اخمط وسمي نفسك مطور
+    "𝟱",  #غير مبري الذمه لكل شخص يخمط
+    "𝟲",  # ها خماط دي
+    "𝟳",
+    "𝟴",
+    "𝟵",
+    "𝟬",
+]
 
 async def digitalpicloop():
     DIGITALPICSTART = gvarstatus("digitalpic") == "true"
@@ -75,9 +88,13 @@ async def digitalpicloop():
 async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
-        time.strftime("%d-%m-%y")
-        ro = time.strftime("%I:%M")
-        name = f"{RR7PP} {ro} "
+        DM = time.strftime("%d-%m-%y")
+        HM = time.strftime("%I:%M")
+        for normal in HM:
+            if normal in normzltext:
+              namefont = namerzfont[normzltext.index(normal)]
+              HM = HM.replace(normal, namefont)
+        name = f"{RR7PP} {HM}"
         LOGS.info(name)
         try:
             await jmthon(functions.account.UpdateProfileRequest(first_name=name))
