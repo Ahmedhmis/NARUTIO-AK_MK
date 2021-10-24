@@ -1,10 +1,11 @@
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot.utils import sudo_cmd
 from userbot import jmthon
+from userbot.utils import sudo_cmd
 
 from ..helpers.utils import reply_id
+
 
 @jmthon.on(admin_cmd(pattern="احسب ?(.*)"))
 @jmthon.on(sudo_cmd(pattern="احسب ?(.*)", allow_sudo=True))
@@ -33,7 +34,9 @@ async def _(event):
             response = await response
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await catevent.edit("**- تحـقق من انـك لم تقـم بحظر البوت @AG_EEBOT .. ثم اعـد استخدام الامـر ..**")
+            await catevent.edit(
+                "**- تحـقق من انـك لم تقـم بحظر البوت @AG_EEBOT .. ثم اعـد استخدام الامـر ..**"
+            )
             return
         if response.text.startswith("I can't find that"):
             await catevent.edit("**- عـذراً .. لـم استطـع ايجـاد  نتيـجة**")
