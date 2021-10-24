@@ -36,17 +36,18 @@ RR7PP = Config.TIME_JM or ""
 
 normzltext = "1234567890"
 namerzfont = [
-    "𝟭",  #كود جمثون حصريا  !! 
+    "𝟭",  # كود جمثون حصريا  !!
     "𝟮",
-    "𝟯",  #ههههههههههههههههههههههههههههههههههههههههههههههههه
-    "𝟰",  #اخمط وسمي نفسك مطور
-    "𝟱",  #غير مبري الذمه لكل شخص يخمط
+    "𝟯",  # ههههههههههههههههههههههههههههههههههههههههههههههههه
+    "𝟰",  # اخمط وسمي نفسك مطور
+    "𝟱",  # غير مبري الذمه لكل شخص يخمط
     "𝟲",  # ها خماط دي
     "𝟳",
     "𝟴",
     "𝟵",
     "𝟬",
 ]
+
 
 async def digitalpicloop():
     DIGITALPICSTART = gvarstatus("digitalpic") == "true"
@@ -88,12 +89,12 @@ async def digitalpicloop():
 async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
-        DM = time.strftime("%d-%m-%y")
+        time.strftime("%d-%m-%y")
         HM = time.strftime("%I:%M")
         for normal in HM:
             if normal in normzltext:
-              namefont = namerzfont[normzltext.index(normal)]
-              HM = HM.replace(normal, namefont)
+                namefont = namerzfont[normzltext.index(normal)]
+                HM = HM.replace(normal, namefont)
         name = f"{RR7PP} {HM}"
         LOGS.info(name)
         try:
