@@ -21,7 +21,7 @@ async def _(event):
         reply_to_id = str(event.pattern_match.group(1))
     if not reply_to_id:
         return await edit_or_reply(
-            event, "**- .احسب + المواليد ...  \n مثـال**   :  `.احسب 3/23/2005`"
+            event, "**- .احسب + المواليد ...  \n مثـال**   :  `.احسب  1/29/2005`"
         )
     chat = "@AG_EEBOT"
     catevent = await edit_or_reply(event, "**- جـارِ حسـاب العـمر انتـظر ... 🧸🎈**")
