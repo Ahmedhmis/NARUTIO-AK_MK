@@ -20,7 +20,7 @@ from userbot.sql_helper.idadder_sql import (
 
 # Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 from . import *
-
+from telethon import events
 
 # start
 @tgbot.on(events.NewMessage(pattern="^/start"))
@@ -140,6 +140,37 @@ async def settings(event):
             buttons=[
                 [
                     Button.inline("اوامر الادمن ", data="rzadmin"),
+                    Button.inline(" جديد جمثون", data="jdedjm"),
+                ],
+            ]
+        )
+    else:
+        await event.answer(
+            "انت لا تستطيع استخدام البوت احصل على بوتك من @JMTHON", alert=True
+        )
+        
+        
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"jdedjm")))
+async def settings(event):
+    if event.sender_id == bot.uid:
+        await event.delete()
+        await tgbot.send_message(
+            event.chat_id,
+            "**▾∮ اختر احد الخيارات الاتيه. **",
+            buttons=[
+                [
+                    Button.inline("ايميل وهمي ", data="rzfk"),
+                    Button.inline("حالتي ", data="rzhala"),
+                ],
+                [
+                    Button.inline("قراءة الملفات", data="rzred"),
+                    Button.inline("ارسال خاص", data="rzprv"),
+                ],
+                [
+                    Button.inline("حساب العمر", data="rzage"),
+                ],
+                [
+                    Button.inline("║ رجوع ║ ⁦⁩", data="rzhelp"),
                 ],
             ],
         )
@@ -148,6 +179,70 @@ async def settings(event):
             "انت لا تستطيع استخدام البوت احصل على بوتك من @JMTHON", alert=True
         )
 
+        
+        
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzage")))
+async def settings(event):
+    if event.sender_id == bot.uid:
+        await event.delete()
+        await tgbot.send_message(
+            event.chat_id, ROZAGE, buttons=[[Button.inline("║ رجوع ║", data="jdedjm")]]
+        )
+    else:
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+                
+        
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzfk")))
+async def settings(event):
+    if event.sender_id == bot.uid:
+        await event.delete()
+        await tgbot.send_message(
+            event.chat_id, ROZFK, buttons=[[Button.inline("║ رجوع ║", data="jdedjm")]]
+        )
+    else:
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )
+        
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzhala")))
+async def settings(event):
+    if event.sender_id == bot.uid:
+        await event.delete()
+        await tgbot.send_message(
+            event.chat_id, ROZHALA, buttons=[[Button.inline("║ رجوع ║", data="jdedjm")]]
+        )
+    else:
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )        
+        
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzred")))
+async def settings(event):
+    if event.sender_id == bot.uid:
+        await event.delete()
+        await tgbot.send_message(
+            event.chat_id, ROZREAD, buttons=[[Button.inline("║ رجوع ║", data="jdedjm")]]
+        )
+    else:
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        )        
+        
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzprv")))
+async def settings(event):
+    if event.sender_id == bot.uid:
+        await event.delete()
+        await tgbot.send_message(
+            event.chat_id, ROZPRV, buttons=[[Button.inline("║ رجوع ║", data="jdedjm")]]
+        )
+    else:
+        await event.answer(
+            "انت لا تستطيع استخدام هذا البوت نصب جمثون بنفسك", alert=True
+        ) 
+                        
+        
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzadmin")))
 async def settings(event):
