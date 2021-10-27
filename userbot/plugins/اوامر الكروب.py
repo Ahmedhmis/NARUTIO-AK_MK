@@ -49,6 +49,29 @@ async def kickrz(leave):
     await leave.edit(f"** {ALIVE_NAME} غـادر مـن هـذه المجموعة**")
     await leave.client.kick_participant(leave.chat_id, "me")
 
+from telethon.tl.types import (
+    ChannelParticipantsKicked,
+)
+
+from userbot import jmthon
+
+
+@jmthon.on(admin_cmd(pattern="حذف المحظورين(?: |$)(.*)"))
+async def _(event):
+    await event.edit("**- يتم التعـرف انتـظر قليـلا من فضلك**")
+    p = 0
+    (await event.get_chat()).title
+    async for i in event.client.iter_participants(
+        event.chat_id,
+        filter=ChannelParticipantsKicked,
+        aggressive=True,
+    ):
+        try:
+            await event.client.edit_permissions(event.chat_id, i, view_messages=True)
+            p += 1
+        except BaseException:
+            pass
+    await event.edit("**- تم حذف جميع المحظورين بنجاح ✓**")
 
 @jmthon.ar_cmd(
     pattern="تفليش بالطرد$",
