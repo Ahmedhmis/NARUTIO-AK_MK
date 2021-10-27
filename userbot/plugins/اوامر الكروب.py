@@ -1,16 +1,10 @@
 from asyncio import sleep
 
-from telethon.errors import (
-    ChatAdminRequiredError,
-    FloodWaitError,
-    MessageNotModifiedError,
-    UserAdminInvalidError,
-)
+from telethon.errors import ChatAdminRequiredError, UserAdminInvalidError
 from telethon.tl import functions
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import (
     ChannelParticipantsAdmins,
-    ChannelParticipantsKicked,
     ChatBannedRights,
     UserStatusEmpty,
     UserStatusLastMonth,
@@ -24,7 +18,6 @@ from userbot import jmthon
 
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
-from ..helpers import readable_time
 from . import BOTLOG, BOTLOG_CHATID
 
 LOGS = logging.getLogger(__name__)
