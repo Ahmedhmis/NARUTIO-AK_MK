@@ -154,61 +154,6 @@ async def _(event):
 
 
 @jmthon.ar_cmd(
-    pattern="حذف المحظورين$",
-    command=("حذف المحظورين", plugin_category),
-    info={
-        "header": "To unban all banned users from group.",
-        "usage": [
-            "{tr}unbanall",
-        ],
-    },
-    groups_only=True,
-    require_admin=True,
-)
-async def _(event):
-    "To unban all banned users from group."
-    catevent = await edit_or_reply(
-        event, "**⌯︙يتـم الـغاء حـظر الجـميع فـي هذه الـدردشـة**"
-    )
-    succ = 0
-    total = 0
-    flag = False
-    chat = await event.get_chat()
-    async for i in event.client.iter_participants(
-        event.chat_id, filter=ChannelParticipantsKicked, aggressive=True
-    ):
-        total += 1
-        rights = ChatBannedRights(until_date=0, view_messages=False)
-        try:
-            await event.client(
-                functions.channels.EditBannedRequest(event.chat_id, i, rights)
-            )
-        except FloodWaitError as e:
-            LOGS.warn(f"لقد حدث عمليه تكرار كثير ارجو اعادة الامر او انتظر")
-            await catevent.edit(
-                f"أنتـظر لـ {readable_time(e.seconds)} تحتاط لاعادة الامر لاكمال العملية"
-            )
-            await sleep(e.seconds + 5)
-        except Exception as ex:
-            await catevent.edit(str(ex))
-        else:
-            succ += 1
-            if flag:
-                await sleep(2)
-            else:
-                await sleep(1)
-            try:
-                if succ % 10 == 0:
-                    await catevent.edit(
-                        f"⌯︙ الغاء حظر جميع الحسابات\nتم الغاء حظر جميع الاعضاء بنجاح ✅"
-                    )
-            except MessageNotModifiedError:
-                pass
-    await catevent.edit(f"⌯︙الغاء حظر :__{succ}/{total} في الدردشه {chat.title}__")
-
-
-# Ported by ©[NIKITA](t.me/kirito6969) and ©[EYEPATCH](t.me/NeoMatrix90)
-@jmthon.ar_cmd(
     pattern="المحذوفين ?([\s\S]*)",
     command=("المحذوفين", plugin_category),
     info={
