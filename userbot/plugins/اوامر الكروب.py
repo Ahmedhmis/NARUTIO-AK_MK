@@ -44,14 +44,10 @@ async def ban_user(chat_id, i, rights):
         return False, str(exc)
 
 
-@jmthon.ar_cmd(
-    pattern="اطردني$",
-    groups_only=True,
-)
-async def kickme(leave):
-    "to leave the group."
-    await leave.edit("⌯︙ حسنا سأغادر المجموعه وداعا ")
-    await leave.client.kick_participant(leave.chat_id, "me")
+@jmthon.on(admin_cmd(pattern="اطردني$")
+async def kickrz(leave):
+    await leave.edit(f"** {ALIVE_NAME} غـادر مـن هـذه المجموعة**")
+    await leave.client.kick_participant(leave.chat_id, 'me')
 
 
 @jmthon.ar_cmd(
