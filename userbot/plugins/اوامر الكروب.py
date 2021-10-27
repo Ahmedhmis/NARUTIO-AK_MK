@@ -44,12 +44,6 @@ async def ban_user(chat_id, i, rights):
         return False, str(exc)
 
 
-@jmthon(admin_cmd(pattern=r"اطردني$"))
-async def kickrz(leave):
-    await leave.edit(f"** {ALIVE_NAME} غـادر مـن هـذه المجموعة**")
-    await leave.client.kick_participant(leave.chat_id, "me")
-
-
 from telethon.tl.types import ChannelParticipantsKicked
 
 from userbot import jmthon
