@@ -17,9 +17,9 @@ plugin_category = "admin"
 async def on_new_message(event):
     name = event.raw_text
     snips = sql.get_chat_blacklist(event.chat_id)
-    catadmin = await is_admin(event.client, event.chat_id, event.client.uid)
-    if not catadmin:
-        return
+   # catadmin = await is_admin(event.client, event.chat_id, event.client.uid)
+   # if not catadmin:
+   #     return
     for snip in snips:
         pattern = r"( |^|[^\w])" + re.escape(snip) + r"( |$|[^\w])"
         if re.search(pattern, name, flags=re.IGNORECASE):
@@ -45,8 +45,8 @@ async def on_new_message(event):
         "طريقة الاستخدام": "{tr}منع <الكلمة المراد منعها>",
         "امثلة": ["{tr}منع هلو\n" "\n{tr}منع هلو\nهاي"],
     },
-    groups_only=True,
-    require_admin=True,
+    #groups_only=True,
+    #require_admin=True,
 )
 async def _(event):
     "لإضافة كلمات غير مرغوب بها إلى قاعدة البيانات"
@@ -75,8 +75,8 @@ async def _(event):
         "طريقة الاستخدام": "{tr}الغاء منع <الكلمة>",
         "امثلة": ["{tr}الغاء منع هلو", "\n{tr}الغاء منع هلو\nهاي"],
     },
-    groups_only=True,
-    require_admin=True,
+    #groups_only=True,
+    #require_admin=True,
 )
 async def _(event):
     "لازالة كلمة ممنوعة من بياناتي"
@@ -102,8 +102,8 @@ async def _(event):
         "وصف الملف": "يظهر لك الكلمات الممنوعة في المحادثة المحددة",
         "طريقة الاستخدام": "{tr}قائمة المنع",
     },
-    groups_only=True,
-    require_admin=True,
+    #groups_only=True,
+    #require_admin=True,
 )
 async def _(event):
     "لمشاهدة الكلمات الممنوعة من مجموعة محددة"
