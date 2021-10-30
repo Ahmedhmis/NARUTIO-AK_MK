@@ -60,6 +60,7 @@ async def monito_p_m_s(event):
             except Exception as e:
                 LOGS.warn(str(e))
 
+
 @jmthon.ar_cmd(incoming=True, func=lambda e: e.mentioned, edited=False, forword=None)
 async def log_tagged_messages(event):
     hmm = await event.get_chat()
@@ -97,6 +98,7 @@ async def log_tagged_messages(event):
             parse_mode="html",
             link_preview=False,
         )
+
 
 @jmthon.ar_cmd(
     pattern="تخزين الخاص (تشغيل|ايقاف)$",
