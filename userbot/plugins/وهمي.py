@@ -21,7 +21,7 @@ async def _(event):
         await asyncio.sleep(t)
 
 
-@jmthon.on(admin_cmd(pattern="اغنية(?: |$)(.*)"))
+@jmthon.on(admin_cmd(pattern="صوتية(?: |$)(.*)"))
 async def _(event):
     t = event.pattern_match.group(1)
     if not (t or t.isdigit()):
@@ -34,7 +34,7 @@ async def _(event):
                 t = await event.ban_time(t)
             except BaseException:
                 return await event.edit("**- يجب كتابة الامر بشكل صحيح**")
-    await event.edit(f"**تم بدء وضع ارسال الاغنية الوهمية لـ {t} من الثوانـي**")
+    await event.edit(f"**تم بدء وضع ارسال الصوتية الوهمية لـ {t} من الثوانـي**")
     async with event.client.action(event.chat_id, "record-audio"):
         await asyncio.sleep(t)
 
