@@ -1,5 +1,7 @@
-from userbot import jmthon
 import asyncio
+
+from userbot import jmthon
+
 
 @jmthon.on(admin_cmd(pattern="كتابة(?: |$)(.*)"))
 async def _(event):
@@ -71,4 +73,3 @@ async def _(event):
     await event.edit(f"**تم بدء وضع اللعب الوهمي لـ {t} من الثوانـي**")
     async with event.client.action(event.chat_id, "game"):
         await asyncio.sleep(t)
-
