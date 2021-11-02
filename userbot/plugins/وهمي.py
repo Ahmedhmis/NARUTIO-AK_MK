@@ -1,6 +1,16 @@
 import asyncio
 
 from userbot import jmthon
+from telethon.errors import ChatAdminRequiredError as no_admin
+from telethon.tl.functions.channels import CreateChannelRequest, DeleteChannelRequest
+from telethon.tl.functions.messages import (
+    CreateChatRequest,
+    DeleteChatUserRequest,
+    ExportChatInviteRequest,
+)
+from ..core.managers import edit_or_reply as eod
+from . import *
+from userbot import jmthon
 
 
 @jmthon.on(admin_cmd(pattern="كتابة(?: |$)(.*)"))
@@ -73,3 +83,15 @@ async def _(event):
     await event.edit(f"**تم بدء وضع اللعب الوهمي لـ {t} من الثوانـي**")
     async with event.client.action(event.chat_id, "game"):
         await asyncio.sleep(t)
+
+
+@jmthon.on(admin_cmd(pattern="الرابط$"))
+async def _(e):
+    rr = await eor(e, "**يتم جلب الرابط انتظر **")
+    try:
+        r = await e.client(
+            ExportChatInviteRequest(e.chat_id),
+        )
+    except no_admin:
+        return await eod(rr, "عذرا انت لست مشرف في هذه الدردشة", time=10)
+    await eod(rr, f"- رابط الدردشة\n {r.link}")
