@@ -1,5 +1,4 @@
 import asyncio
-import random
 
 from telethon.errors import ChatAdminRequiredError as no_admin
 from telethon.tl.functions.messages import ExportChatInviteRequest
