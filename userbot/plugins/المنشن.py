@@ -28,6 +28,7 @@ async def _(event):
     await event.client.send_message(event.chat_id, mentions, reply_to=reply_to_id)
     await event.delete()
 
+
 @jmthon.ar_cmd(
     pattern="تاك([\s\S]*)",
     command=("تاك", plugin_category),
@@ -53,6 +54,7 @@ async def _(event):
         parse_mode="HTML",
         reply_to=reply_to_id,
     )
+
 
 # كـتابة  @RR7PP
 # تعديل وترتيب  @KiNGBrlin
