@@ -553,7 +553,7 @@ _/)______./¯"""/') ___/)___/)__,-----------’)_• ___/)_/)__./¯/)/)
 @jmthon.on(admin_cmd(pattern="احبك"))
 async def rz(jmthon):
     roz = random.choice(love)
-    return await eor(jmthon, roz)
+    return await edit_or_reply(jmthon, roz)
 
 
 @jmthon.ar_cmd(
