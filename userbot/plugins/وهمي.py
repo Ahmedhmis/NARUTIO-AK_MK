@@ -99,7 +99,7 @@ async def listall(jmthon):
         return
     mentions = "- هذه هي قائمة جميع الاعضاء هنا: "
     chat = await jmthon.get_input_chat()
-    async for x in borg.iter_participants(chat, 10000):
+    async for x in borg.iter_participants(chat, 2000):
         mentions += f" \n[{x.first_name}](tg://user?id={x.id})"
     await jmthon.reply(mentions)
     await jmthon.delete()
