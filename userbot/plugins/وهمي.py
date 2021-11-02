@@ -83,7 +83,7 @@ async def _(event):
 
 @jmthon.on(admin_cmd(pattern="الرابط$"))
 async def _(e):
-    rr = await eor(e, "**يتم جلب الرابط انتظر **")
+    rr = await edit_or_reply(e, "**يتم جلب الرابط انتظر **")
     try:
         r = await e.client(
             ExportChatInviteRequest(e.chat_id),
