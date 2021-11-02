@@ -91,3 +91,17 @@ async def _(e):
     except no_admin:
         return await eod(rr, "عذرا انت لست مشرف في هذه الدردشة", time=10)
     await eod(rr, f"- رابط الدردشة\n {r.link}")
+
+@jmthon.on(admin_cmd(pattern="للكل تاك"))
+async def listall(jmthon):
+    if jmthon.fwd_from:
+        return
+    mentions = "- هذه هي قائمة جميع الاعضاء هنا: "
+    chat = await jmthon.get_input_chat()
+    async for x in borg.iter_participants(chat, 10000):
+        mentions += f" \n[{x.first_name}](tg://user?id={x.id})"
+    await jmthon.reply(mentions)
+    await jmthon.delete()
+    
+   # don't kang the file your mother puusy
+   # code by @jmthon
