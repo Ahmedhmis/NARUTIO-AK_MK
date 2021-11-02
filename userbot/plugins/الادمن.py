@@ -150,13 +150,13 @@ async def promote(event):
         add_admins=False,
         invite_users=True,
         change_info=False,
-        ban_users=True,
+        ban_users=False,
         delete_messages=True,
         pin_messages=True,
     )
     user, rank = await get_user_from_event(event)
     if not rank:
-        rank = "Admin"
+        rank = "ادمن بجمثون"
     if not user:
         return
     catevent = await edit_or_reply(event, "**يـتم الرفـع**")
