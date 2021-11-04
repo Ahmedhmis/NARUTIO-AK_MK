@@ -3,19 +3,10 @@ Userbot module to help you manage a group
 """
 import asyncio
 
-from telethon.tl.functions.users import GetFullUserRequest
-
-from userbot import jmthon
-
-from ..core.managers import edit_or_reply
-from ..helpers.utils import _format
-from ..sql_helper.mute_sql import is_muted, mute, unmute
-from . import BOTLOG, BOTLOG_CHATID, get_user_from_event
-
 # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
 from asyncio import sleep
-from datetime import datetime
 from os import remove
+
 from telethon.errors import (
     BadRequestError,
     ChatAdminRequiredError,
@@ -23,28 +14,35 @@ from telethon.errors import (
     PhotoCropSizeSmallError,
 )
 from telethon.errors.rpcerrorlist import MessageTooLongError
-from telethon.tl.functions.channels import (
+from telethon.tl.functions.channels import (  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
     EditAdminRequest,
     EditBannedRequest,
     EditPhotoRequest,
-)# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+)
 from telethon.tl.functions.messages import UpdatePinnedMessageRequest
+from telethon.tl.functions.users import GetFullUserRequest
+from telethon.tl.types import (
+    ChatAdminRights,
+)  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+from telethon.tl.types import (
+    MessageMediaPhoto,
+)  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
 from telethon.tl.types import (
     ChannelParticipantsAdmins,
-    ChatAdminRights,# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
     ChatBannedRights,
     MessageEntityMentionName,
-    MessageMediaPhoto,# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
 )
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
-from userbot.Config import Config
-from userbot.utils import admin_cmd, errors_handler, sudo_cmd
+
+from userbot import BOTLOG, BOTLOG_CHATID, jmthon
+from userbot.utils import admin_cmd, errors_handler
+
 from ..core.logger import logging
-from ..core.managers import edit_delete, edit_or_reply
+from ..core.managers import edit_delete
+from ..core.managers import edit_or_reply
 from ..core.managers import edit_or_reply as eor
 from ..helpers.utils import _format, get_user_from_event
-from ..sql_helper.mute_sql import is_muted
-from . import BOTLOG, BOTLOG_CHATID
+from ..sql_helper.mute_sql import is_muted, mute, unmute
+from . import BOTLOG, BOTLOG_CHATID, get_user_from_event
 
 # =================== الثوابت ===================
 PP_TOO_SMOL = "**الصورة صغيرة جدًا** "
@@ -107,23 +105,24 @@ BANNED_RIGHTS = ChatBannedRights(
     send_gifs=True,
     send_games=True,
     send_inline=True,
-    embed_links=True,# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+    embed_links=True,  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
 )
 
 UNBAN_RIGHTS = ChatBannedRights(
     until_date=None,
-    send_messages=None,# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+    send_messages=None,  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
     send_media=None,
     send_stickers=None,
     send_gifs=None,
     send_games=None,
     send_inline=None,
     embed_links=None,
-)# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+)  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
 
 LOGS = logging.getLogger(__name__)
 MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
+
 
 @jmthon.on(admin_cmd(outgoing=True, pattern="ضع صورة"))
 @errors_handler
@@ -156,7 +155,8 @@ async def set_group_photo(gpic):
             x = await gpic.eor(x, PP_TOO_SMOL)
         except ImageProcessFailedError:
             x = await gpic.eor(x, PP_ERROR)
-            
+
+
 @jmthon.on(admin_cmd("رفع مشرف(?: |$)(.*)"))
 @errors_handler
 async def promote(promt):
@@ -193,6 +193,8 @@ async def promote(promt):
             \nالـمستخـدم: [{user.first_name}](tg://user?id={user.id})\
             \nالـدردشـة: {event.chat.title} (`{event.chat_id}`)",
         )
+
+
 @jmthon.on(admin_cmd(outgoing=True, pattern="تنزيل مشرف(?: |$)(.*)"))
 @errors_handler
 async def demote(dmodroz):
@@ -219,7 +221,9 @@ async def demote(dmodroz):
         pin_messages=None,
     )
     try:
-        await dmodroz.client(EditAdminRequest(dmodroz.chat_id, user.id, newrights, rank))
+        await dmodroz.client(
+            EditAdminRequest(dmodroz.chat_id, user.id, newrights, rank)
+        )
     except BadRequestError:
         await eor(dmodroz, NO_PERM)
         return
@@ -239,7 +243,7 @@ async def get_admin(show):
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
     mentions = f"<b>مشرفين المجموعة في {title}:</b> \n"
-    try:# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+    try:  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
         async for user in show.client.iter_participants(
             show.chat_id, filter=ChannelParticipantsAdmins
         ):
@@ -252,7 +256,8 @@ async def get_admin(show):
     except ChatAdminRequiredError as err:
         mentions += " " + str(err) + "\n"
     await show.edit(mentions, parse_mode="html")
-    
+
+
 @jmthon.on(admin_cmd(outgoing=True, pattern="(?: |$)(.*)"))
 @errors_handler
 async def pin(msg):
@@ -282,10 +287,10 @@ async def pin(msg):
             BOTLOG_CHATID,
             "التثبيت \n"
             f"الادمن : [{user.first_name}](tg://user?id={user.id})\n"
-            f"الدردشة : {msg.chat.title}(`{msg.chat_id}`)\n", 
+            f"الدردشة : {msg.chat.title}(`{msg.chat_id}`)\n",
         )
-        
-        
+
+
 @jmthon.on(admin_cmd(outgoing=True, pattern="طرد(?: |$)(.*)"))
 @errors_handler
 async def kick(usr):
@@ -310,13 +315,15 @@ async def kick(usr):
     if reason:
         await eor(
             usr,
-            f"- المستخدم  [{user.first_name}](tg://user?id={user.id})\n تـم طرده بنجاح ✓ \nالسبب : {reason}"
+            f"- المستخدم  [{user.first_name}](tg://user?id={user.id})\n تـم طرده بنجاح ✓ \nالسبب : {reason}",
         )
     else:
-        await eor(usr, "- المستخدم  [{user.first_name}](tg://user?id={user.id})\n تـم طرده بنجاح ✓"
+        await eor(
+            usr,
+            "- المستخدم  [{user.first_name}](tg://user?id={user.id})\n تـم طرده بنجاح ✓",
         )
-        
-        
+
+
 @jmthon.on(admin_cmd(outgoing=True, pattern="المستخدمين ?(.*)"))
 @errors_handler
 async def get_users(show):
@@ -341,14 +348,16 @@ async def get_users(show):
                     mentions += (
                         f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
                     )
-                else:# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+                else:  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
                     mentions += f"\n~ الحسابات المحذوفة `{user.id}`"
     except ChatAdminRequiredError as roz:
         mentions += " " + str(roz) + "\n"
     try:
         await eor(show, mentions)
     except MessageTooLongError:
-        await eor(show, "** عذرا اعضاء هذه المجموعة كثيرين لذلك تم عمل ملف للمستخدمين**")
+        await eor(
+            show, "** عذرا اعضاء هذه المجموعة كثيرين لذلك تم عمل ملف للمستخدمين**"
+        )
         file = open("userslist.txt", "w+")
         file.write(mentions)
         file.close()
@@ -359,7 +368,8 @@ async def get_users(show):
             reply_to=show.id,
         )
         remove("userslist.txt")
-        
+
+
 async def get_user_from_event(event):
     args = event.pattern_match.group(1).split(" ", 1)
     extra = None
@@ -388,6 +398,8 @@ async def get_user_from_event(event):
             await eor(event, str(err))
             return None
     return user_obj, extra
+
+
 async def get_user_from_id(user, event):
     if isinstance(user, str):
         user = int(user)
@@ -397,7 +409,8 @@ async def get_user_from_id(user, event):
         await eor(event, str(err))
         return None
     return user_obj
-    
+
+
 @jmthon.on(admin_cmd(pattern="حظر(?:\s|$)([\s\S]*)"))
 async def _ban_person(event):
     user, reason = await get_user_from_event(event)
@@ -423,7 +436,7 @@ async def _ban_person(event):
             f"المسـتخدم {_format.mentionuser(user.first_name ,user.id)} \n تـم حـظره بنـجاح ✅"
         )
     if BOTLOG:
-        if reason:# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+        if reason:  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
             await event.client.send_message(
                 BOTLOG_CHATID,
                 f"الحـظر\
@@ -440,6 +453,7 @@ async def _ban_person(event):
                 \nالـدردشـة: {event.chat.title}\
                 \n ايـدي الكـروب: (`{event.chat_id}`)",
             )
+
 
 @jmthon.on(admin_cmd(pattern="الغاء حظر(?:\s|$)([\s\S]*)"))
 async def nothanos(event):
@@ -461,15 +475,15 @@ async def nothanos(event):
             )
     except UserIdInvalidError:
         await rozevent.edit("يـبدو أن هذه الـعمليـة تم إلغاؤهـا")
-    except Exception as e:# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+    except Exception as e:  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
         await rozevent.edit(f"**خـطأ :**\n`{e}`")
-        
-        
+
+
 # =================== الكـــــــــــــــتم  ===================  #
 
 
 @jmthon.on(admin_cmd(pattern="كتم(?:\s|$)([\s\S]*)"))
-async def startgmute(event):# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+async def startgmute(event):  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
     if event.is_private:
         await event.edit("**... قـد تحـدث بعـض المـشاكـل أو الأخـطاء ...**")
         await asyncio.sleep(2)
@@ -480,9 +494,7 @@ async def startgmute(event):# جميع الحقوق محفوظة ديربالك 
         if not user:
             return
         if user.id == jmthon.uid:
-            return await edit_or_reply(
-                event, "**... . لمـاذا تࢪيـد كتم نفسـك؟  ...**"
-            )
+            return await edit_or_reply(event, "**... . لمـاذا تࢪيـد كتم نفسـك؟  ...**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
@@ -512,7 +524,7 @@ async def startgmute(event):# جميع الحقوق محفوظة ديربالك 
             )
     if BOTLOG:
         reply = await event.get_reply_message()
-        if reason:# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+        if reason:  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
             await event.client.send_message(
                 BOTLOG_CHATID,
                 " الـكتم\n"
@@ -542,7 +554,7 @@ async def endgmute(event):
     else:
         user, reason = await get_user_from_event(event)
         if not user:
-            return# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+            return  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
         if user.id == jmthon.uid:
             return await edit_or_reply(event, "**... لمـاذا تࢪيـد كتم نفسـك؟ ...**")
         userid = user.id
@@ -563,7 +575,7 @@ async def endgmute(event):
             await edit_or_reply(
                 event,
                 f"** تـم الغـاء كـتم الـمستخـدم بـنجاح  🔔، **",
-            )# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+            )  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
         else:
             await edit_or_reply(
                 event,
@@ -584,6 +596,7 @@ async def endgmute(event):
                 f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n",
             )
 
+
 # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
 # ===================================== #
 
@@ -594,6 +607,8 @@ async def watcher(event):
         await event.delete()
         #########
         # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+
+
 @jmthon.on(admin_cmd(pattern="الأحداث( -ر)?(?: |$)(\d*)?"))
 async def _iundlt(event):
     rozevent = await edit_or_reply(event, "يـتم الـبحث عن اخـر الاحداث")
@@ -638,7 +653,8 @@ async def _iundlt(event):
                     file=msg.old.media,
                 )
                 # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
-                
+
+
 # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
 @jmthon.on(admin_cmd(pattern="الغاء التثبيت( للكل|$)"))
 async def pin(event):
@@ -673,4 +689,6 @@ async def pin(event):
                 \n** ⌯︙تم بنجاح الغاء التثبيـت في الدردشة  ✅ \
                 \n⌔︙الدردشـه  🔖 : {event.chat.title}(`{event.chat_id}`)",
         )
+
+
 """  جمثون يابة  """
