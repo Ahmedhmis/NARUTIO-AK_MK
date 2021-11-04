@@ -115,7 +115,7 @@ async def listall(jmthon):
 # code by @jmthon
 
 
-rzhen = [
+hena = [
     "تنجب وما تندك بأسيادك فاهم؟ ",
     "تعال ابن القندرة اليوم انعل والديك",
     "لك حيوان كواد استقر لك",
@@ -175,8 +175,8 @@ async def rozfn(mention):
         return await edit_or_reply(mention, f"**لك دي هذا مطوري حبيبي لا تعيدها**")
     if user.id == 1657933680:
         return await edit_or_reply(mention, f"**لك دي هذا مطوري حبيبي لا تعيدها**")
-    rzona1 = random.choice(rzhen)
-    await edit_or_reply(mention, f"**{rzona1}**")
+    rzrz1 = random.choice(hena)
+    await edit_or_reply(mention, f"**{rzrz1}**")
 
 
 @jmthon.on(admin_cmd(pattern="نزوج(?:\s|$)([\s\S]*)"))
@@ -190,7 +190,7 @@ async def rzfun(mention):
 
 
 @jmthon.on(admin_cmd(pattern="طلاك(?:\s|$)([\s\S]*)"))
-async def rozfun(mention):
+async def mention(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
@@ -200,9 +200,9 @@ async def rozfun(mention):
 
 
 @jmthon.on(admin_cmd(pattern="كت(?:\s|$)([\s\S]*)"))
-async def rozfu1(mention):
-    rza = random.choice(kttwerz)
-    await edit_or_reply(mention, f"**{rza}**")
+async def mention(mention):
+    reza = random.choice(kttwerz)
+    await edit_or_reply(mention, f"**{reza}**")
 
 
 @jmthon.on(admin_cmd(pattern="طقس (.*)"))
