@@ -21,16 +21,12 @@ from telethon.tl.functions.channels import (  # جميع الحقوق محفوظ
 )
 from telethon.tl.functions.messages import UpdatePinnedMessageRequest
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import (
-    ChatAdminRights,
-)  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
-from telethon.tl.types import (
-    MessageMediaPhoto,
-)  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
-from telethon.tl.types import (
+from telethon.tl.types import (  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
     ChannelParticipantsAdmins,
+    ChatAdminRights,
     ChatBannedRights,
     MessageEntityMentionName,
+    MessageMediaPhoto,
 )
 
 from userbot import BOTLOG, BOTLOG_CHATID, jmthon
