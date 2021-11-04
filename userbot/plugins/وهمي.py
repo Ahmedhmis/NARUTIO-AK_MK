@@ -8,7 +8,13 @@ from telethon.tl.functions.messages import ExportChatInviteRequest
 
 from userbot import jmthon
 from userbot.utils import admin_cmd
+import random
 
+
+from userbot import jmthon
+
+from ..core.managers import edit_or_reply
+from ..helpers import get_user_from_event
 from ..core.managers import edit_or_reply
 from ..core.managers import edit_or_reply as eod
 from ..helpers import get_user_from_event
