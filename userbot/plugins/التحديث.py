@@ -183,10 +183,10 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         pass
 
 
-@jmthon.ar_cmd(
+#@jmthon.ar_cmd(
     pattern="تحديث(| الان)?$",
     command=("تحديث", plugin_category),
-    info={
+ #   info={
         "header": "To update userbot.",
         "description": "I recommend you to do update deploy atlest once a week.",
         "options": {
