@@ -8,7 +8,7 @@ from telethon.tl.functions.messages import ExportChatInviteRequest
 
 from userbot import jmthon
 from userbot.utils import admin_cmd
-
+from Jmthon.razan.resources.strings import *
 from ..core.managers import edit_or_reply
 from ..core.managers import edit_or_reply as eod
 from ..helpers import get_user_from_event
@@ -115,13 +115,7 @@ async def listall(jmthon):
 # code by @jmthon
 
 
-hena = [
-    "تنجب وما تندك بأسيادك فاهم؟ ",
-    "تعال ابن القندرة اليوم انعل والديك",
-    "لك حيوان كواد استقر لك",
-    "مااهين حيوانات اني 😹😭💘.",
-    " ماا وخر ماسوي شي 😭💘",
-]
+
 kttwerz = [
     "تخيّل لو أنك سترسم شيء وحيد فيصبح حقيقة، ماذا سترسم؟",
     "أكثر شيء يُسكِت الطفل برأيك؟",
@@ -165,18 +159,22 @@ kttwerz = [
 
 
 @jmthon.on(admin_cmd(pattern="هينه(?:\s|$)([\s\S]*)"))
-async def rozfn(mention):
+async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
     if user.id == 1715051616:
-        return await edit_or_reply(mention, f"**لك دي هذا مطوري حبيبي لا تعيدها **")
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     if user.id == 1694386561:
-        return await edit_or_reply(mention, f"**لك دي هذا مطوري حبيبي لا تعيدها**")
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     if user.id == 1657933680:
-        return await edit_or_reply(mention, f"**لك دي هذا مطوري حبيبي لا تعيدها**")
-    rzrz1 = random.choice(hena)
-    await edit_or_reply(mention, f"**{rzrz1}**")
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+    muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    sors = random.choice(hena)
+    await edit_or_reply(
+        mention, f"{sors}"
+    )
+
 
 
 @jmthon.on(admin_cmd(pattern="نزوج(?:\s|$)([\s\S]*)"))
