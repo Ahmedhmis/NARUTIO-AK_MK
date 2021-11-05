@@ -158,7 +158,6 @@ kttwerz = [
 ]
 
 
-
 @jmthon.on(admin_cmd(pattern="نزوج(?:\s|$)([\s\S]*)"))
 async def rzfun(mention):
     user, custom = await get_user_from_event(mention)
