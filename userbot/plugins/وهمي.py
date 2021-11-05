@@ -158,21 +158,6 @@ kttwerz = [
 ]
 
 
-@jmthon.on(admin_cmd(pattern="هينه(?:\s|$)([\s\S]*)"))
-async def permalink(mention):
-    user, custom = await get_user_from_event(mention)
-    if not user:
-        return
-    if user.id == 1715051616:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    if user.id == 1694386561:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    if user.id == 1657933680:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    sors = random.choice(hena)
-    await edit_or_reply(mention, f"{sors}")
-
 
 @jmthon.on(admin_cmd(pattern="نزوج(?:\s|$)([\s\S]*)"))
 async def rzfun(mention):
