@@ -1,5 +1,4 @@
 import asyncio
-import random
 import time
 
 import aiohttp
@@ -114,8 +113,6 @@ async def listall(jmthon):
 
 # don't kang the file your mother puusy
 # code by @jmthon
-
-
 
 
 @jmthon.on(admin_cmd(pattern="نزوج(?:\s|$)([\s\S]*)"))
