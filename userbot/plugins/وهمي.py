@@ -6,9 +6,10 @@ import aiohttp
 from telethon.errors import ChatAdminRequiredError as no_admin
 from telethon.tl.functions.messages import ExportChatInviteRequest
 
+from Jmthon.razan.resources.strings import *
 from userbot import jmthon
 from userbot.utils import admin_cmd
-from Jmthon.razan.resources.strings import *
+
 from ..core.managers import edit_or_reply
 from ..core.managers import edit_or_reply as eod
 from ..helpers import get_user_from_event
@@ -115,7 +116,6 @@ async def listall(jmthon):
 # code by @jmthon
 
 
-
 kttwerz = [
     "تخيّل لو أنك سترسم شيء وحيد فيصبح حقيقة، ماذا سترسم؟",
     "أكثر شيء يُسكِت الطفل برأيك؟",
@@ -171,10 +171,7 @@ async def permalink(mention):
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     sors = random.choice(hena)
-    await edit_or_reply(
-        mention, f"{sors}"
-    )
-
+    await edit_or_reply(mention, f"{sors}")
 
 
 @jmthon.on(admin_cmd(pattern="نزوج(?:\s|$)([\s\S]*)"))
