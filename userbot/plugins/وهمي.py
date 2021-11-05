@@ -194,10 +194,10 @@ async def mention(mention):
     await edit_or_reply(mention, f"**طالق طالق بالعشرة 😹😭💕 ܰ**")
 
 
-@jmthon.on(admin_cmd(pattern="كت(?:\s|$)([\s\S]*)"))
+@jmthon.on(admin_cmd(pattern="كت(?: |$)(.*)"))
 async def mention(mention):
     reza = random.choice(kttwerz)
-    await edit_or_reply(mention, f"**{reza}**")
+    await edit_or_reply(mention, f"**▾∮ {reza}**")
 
 
 @jmthon.on(admin_cmd(pattern="طقس (.*)"))
