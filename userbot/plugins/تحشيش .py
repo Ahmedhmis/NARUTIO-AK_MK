@@ -11,7 +11,8 @@ plugin_category = "utils"
 
 @jmthon.ar_cmd(
     pattern="هينه(?:\s|$)([\s\S]*)",
-    command=("هينه", plugin_category),)
+    command=("هينه", plugin_category),
+)
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -24,14 +25,13 @@ async def permalink(mention):
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     sos = random.choice(hena)
-    await edit_or_reply(
-        mention, f"{sos} ."
-   )
+    await edit_or_reply(mention, f"{sos} .")
 
 
 @jmthon.ar_cmd(
     pattern="نسبة الحب(?:\s|$)([\s\S]*)",
-    command=("نسبة الحب", plugin_category),)
+    command=("نسبة الحب", plugin_category),
+)
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -46,7 +46,8 @@ async def permalink(mention):
 
 @jmthon.ar_cmd(
     pattern="نسبة الانوثة(?:\s|$)([\s\S]*)",
-    command=("نسبة الانوثة", plugin_category),)
+    command=("نسبة الانوثة", plugin_category),
+)
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -67,7 +68,8 @@ async def permalink(mention):
 
 @jmthon.ar_cmd(
     pattern="نسبة الغباء(?:\s|$)([\s\S]*)",
-    command=("نسبة الغباء", plugin_category),)
+    command=("نسبة الغباء", plugin_category),
+)
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
