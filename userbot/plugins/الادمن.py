@@ -254,7 +254,7 @@ async def get_admin(show):
     await show.edit(mentions, parse_mode="html")
 
 
-@jmthon.on(admin_cmd(outgoing=True, pattern="(?: |$)(.*)"))
+@jmthon.on(admin_cmd(outgoing=True, pattern="تثبيت(?: |$)(.*)"))
 @errors_handler
 async def pin(msg):
     chat = await msg.get_chat()
