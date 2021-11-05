@@ -8,16 +8,20 @@ from ..helpers import get_user_from_event
 
 plugin_category = "utils"
 
+
 @jmthon.ar_cmd(
     pattern="كت(?:\s|$)([\s\S]*)",
-    command=("كت", plugin_category),)
+    command=("كت", plugin_category),
+)
 async def mention(mention):
     reza = random.choice(kttwerz)
     await edit_or_reply(mention, f"**- {reza}**")
 
+
 @jmthon.ar_cmd(
     pattern="هينه(?:\s|$)([\s\S]*)",
-    command=("هينه", plugin_category),)
+    command=("هينه", plugin_category),
+)
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
