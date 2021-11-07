@@ -96,6 +96,7 @@ async def permalink(mention):
         mention, f"نسبة الغباء لـ [{muh}](tg://user?id={user.id}) هـي {rzona} 😂💔"
     )
 
+
 @jmthon.ar_cmd(
     pattern="اوصف(?:\s|$)([\s\S]*)",
     command=("اوصف", plugin_category),
@@ -112,6 +113,4 @@ async def permalink(mention):
         return await edit_or_reply(mention, f"**وفف هذا مطوري شكد احبه 🤍🤤**")
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     rzona = random.choice(osfroz)
-    await edit_or_reply(
-        mention, f"{rzona}"
-    )
+    await edit_or_reply(mention, f"{rzona}")
