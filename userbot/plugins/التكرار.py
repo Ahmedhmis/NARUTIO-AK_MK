@@ -273,4 +273,3 @@ async def tmeme(event):
                 "**⌯︙تكرار بالكلمه : **\n"
                 + f"**⌯︙تم تنفيذ التكرار بواسطة الڪلمات في   :** {get_display_name(await event.get_chat())}(`{event.chat_id}`) **الدردشـة مـع :** `{message}`",
             )
-
