@@ -5,6 +5,7 @@ from . import *
 
 plugin_category = "utils"
 
+
 @jmthon.ar_cmd(
     pattern="حول ?(.*)$",
     command=("حول", plugin_category),
