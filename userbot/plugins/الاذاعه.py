@@ -33,6 +33,7 @@ async def gcast(event):
         f"تـم بنـجـاح فـي {done} من الـدردشـات , خطـأ فـي {er} من الـدردشـات"
     )
 
+
 @jmthon.ar_cmd(
     pattern="حول ?(.*)$",
     command=("حول", plugin_category),
