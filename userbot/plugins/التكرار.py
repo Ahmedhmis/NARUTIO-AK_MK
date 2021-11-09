@@ -136,6 +136,7 @@ async def spammer(event):
     await event.delete()
     await spam_function(event, RR7PP, cat, sleeptimem, sleeptimet)
 
+
 @jmthon.ar_cmd(
     pattern="مكرر (.*)",
     command=("مكرر", plugin_category),
@@ -162,6 +163,7 @@ async def spammer(event):
     cat = input_str[1:]
     await event.delete()
     await spam_function(event, reply, cat, sleeptimem, sleeptimet, DelaySpam=True)
+
 
 @jmthon.ar_cmd(
     pattern="تكرار الملصق$",
