@@ -1,10 +1,13 @@
 from telethon import Button, events
 from telethon.events import CallbackQuery
 
-from Jmthon.razan.resources.mybot._razan import *
+from Jmthon.razan.resources.strings._help import *
 from userbot import jmthon
 
 from ..Config import Config
+
+ROZ_IC = "https://telegra.ph/file/5f6ef13851dcf0d6fc72b.jpg"
+ROE = "** هـذه هي قائمة اوامـر سـورس جمثـون **"
 
 if Config.TG_BOT_USERNAME is not None and tgbot is not None:
 
