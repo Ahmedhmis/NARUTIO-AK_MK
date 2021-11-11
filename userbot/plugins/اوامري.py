@@ -2,9 +2,9 @@ from telethon import *
 from telethon import Button, events
 from telethon.events import CallbackQuery
 
-from Jmthon.razan.resources.mybot import *
+from Jmthon.razan.resources.mybot._razan import *
 from userbot import jmthon
-
+import json
 from ..Config import Config
 
 if Config.TG_BOT_USERNAME is not None and tgbot is not None:
