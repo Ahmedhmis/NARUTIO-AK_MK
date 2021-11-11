@@ -1,4 +1,4 @@
-from telethon import *
+
 from telethon import Button, events
 from telethon.events import CallbackQuery
 
