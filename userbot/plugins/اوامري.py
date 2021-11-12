@@ -141,9 +141,11 @@ async def _(event):
 async def _(event):
     await event.edit(HERP)
 
+
 @jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"rfhrz")))
 async def _(event):
     await event.edit(T7SHIZ)
+
 
 @jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"uscuxrz")))
 async def _(event):
