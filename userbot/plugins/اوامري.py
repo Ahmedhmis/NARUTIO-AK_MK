@@ -26,7 +26,7 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
                 [
                     Button.inline("• اوامر البوت •", data="rozbot"),
                     Button.inline("• الحساب •", data="Jmrz"),
-                    Button.inline("• المجموعات •", data="grrz"),
+                    Button.inline("• المجموعات •", data="gro"),
                 ],
                 [
                     Button.inline("• الصيغ و الجهات •", data="sejrz"),
@@ -127,7 +127,7 @@ async def _(event):
     await event.edit(ROZSEG)
 
 
-@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"grrz")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"gro")))
 async def _(event):
     await event.edit(JMGR1)
 
