@@ -30,7 +30,7 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
                 ],
                 [
                     Button.inline("• الصيغ و الجهات •", data="sejrz"),
-                    Button.inline("• الحماية و تلكراف •", data="Jmhm"),
+                    Button.inline("• الحماية و تلكراف •", data="grrz"),
                 ],
                 [
                     Button.inline("• اوامر التسلية •", data="tslrzj"),
@@ -122,7 +122,7 @@ async def _(event):
     await event.edit(JMTRD)
 
 
-@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"grrz")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"sejrz")))
 async def _(event):
     await event.edit(ROZSEG)
 
