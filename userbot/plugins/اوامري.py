@@ -42,7 +42,7 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
                 ],
                 [
                     Button.inline("• التكرار والتنظيف •", data="krrznd"),
-                    Button.inline("• الملصقات وصور •", data="jrzst"),
+                    Button.inline("• الترفيه •", data="rfhrz"),
                 ],
                 [
                     Button.inline("• التكرار والتنظيف •", data="iiers"),
@@ -141,6 +141,9 @@ async def _(event):
 async def _(event):
     await event.edit(HERP)
 
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"rfhrz")))
+async def _(event):
+    await event.edit(T7SHIZ)
 
 @jmthon.tgbot.on(CallbackQuery(data=re.compile(rb"uscuxrz")))
 async def _(event):
