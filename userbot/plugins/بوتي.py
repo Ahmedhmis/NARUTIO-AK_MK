@@ -1,14 +1,16 @@
-import os
-
+import asyncio
+from userbot.utils import admin_cmd
 from userbot import jmthon
-
-from ..utils import admin_cmd
-from . import *
-
+from ..Config import Config
 
 @jmthon.on(admin_cmd(pattern="بوتي$"))
-async def proz(event):
-    await bot.send_message(event.chat_id, str(os.environ.get("TG_BOT_USERNAME")))
+async def _(event):
+    if event.fwd_from:
+        return
+    TG_BOT_USERNAME = Config.TG_BOT_USERNAME
+    await event.reply(
+        f"**- البوت الخاص بك هو** \n {TG_BOT_USERNAME}"
+    )
 
 
 # حتى هذا تخمطه  😂؟
