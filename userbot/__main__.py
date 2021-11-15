@@ -20,14 +20,14 @@ from .utils import (
 LOGS = logging.getLogger("JMTHON")
 
 print(userbot.__copyright__)
-print("Licensed under the terms of the " + userbot.__license__)
+print("جميع الحقوق والملفات محفوظة " + userbot.__license__)
 
 cmdhr = Config.COMMAND_HAND_LER
 
 try:
-    LOGS.info("Starting Userbot")
+    LOGS.info(f"⚒️ يتم تشغيل جمثون")
     jmthon.loop.run_until_complete(setup_bot())
-    LOGS.info("TG Bot Startup Completed")
+    LOGS.info(f"✅ انتهاء التشغيل ")
 except Exception as e:
     LOGS.error(f"{str(e)}")
     sys.exit()
@@ -49,13 +49,10 @@ async def startup_process():
     await verifyLoggerGroup()
     await load_plugins("plugins")
     await load_plugins("assistant")
-    print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
-    print("⌯︙بـوت جـمثون يعـمل بـنجاح ")
-    print(
-        f"يجـب تفـعيل وضع الأنلايـن ثم أرسـل {cmdhr}فحص لـرؤيـة اذا كـان البوت شـغال\
-        \nللمسـاعدة تواصـل  https://t.me/jmthon"
-    )
-    print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
+    print("--------------------------------------------------------")
+    print("تم بنجاح اكتمال تنصيب سورس جمثون المجاني ✓")
+    print(" - ارسل  فحص  للتأكد من البوت\n-  ولعرض اوامر السورس ارشل  .الاوامر\n-  للمزيد من المعلومات ادخل الى مجموعتك في التليجرام")
+    print("-------------------------------------------------------")
     await verifyLoggerGroup()
     await add_bot_to_logger_group(BOTLOG_CHATID)
     if PM_LOGGER_GROUP_ID != -100:
