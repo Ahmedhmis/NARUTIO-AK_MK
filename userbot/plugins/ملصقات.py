@@ -65,9 +65,9 @@ def pack_nick(username, pack, is_anim):
         else:
             packnick = f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol.{pack}"
     elif is_anim:
-        packnick = f"@{username} Vol.{pack} (Animated)"
+        packnick = f"@{username} حقـوق.{pack} (Animated)"
     else:
-        packnick = f"@{username} Vol.{pack}"
+        packnick = f"@{username} حقـوق.{pack}"
     return packnick
 
 
