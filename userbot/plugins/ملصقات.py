@@ -218,7 +218,7 @@ async def add_to_pack(
 
 @jmthon.ar_cmd(
     pattern="ملصق(?:\s|$)([\s\S]*)",
-    command=("kang", plugin_category),
+    command=("ملصق", plugin_category),
 )
 async def kang(args):
     "jmthon userbot"
