@@ -51,7 +51,8 @@ async def start(event):
                 ],
                 [
                 Button.inline("• اوامر البوت •", data="adrz"),
-            ],
+               ],   
+               ],
         )
     else:
         if already_added(event.sender_id):
