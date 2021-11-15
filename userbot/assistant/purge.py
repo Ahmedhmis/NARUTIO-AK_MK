@@ -1,6 +1,12 @@
-# (c) Copyright JMTHON 2020-21
-# جميع الحقوق محفودظة لسورس جمثون
-# By ~  @RR9R7
+# @Jmthon - < https://t.me/Jmthon >
+# Copyright (C) 2021 - JMTHON-AR
+# All rights reserved.
+#
+# This file is a part of < https://github.com/JMTHON-AR/JMTHON >
+# Please read the GNU Affero General Public License in;
+# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
+# ===============================================================
+
 import asyncio
 
 from telethon import events
