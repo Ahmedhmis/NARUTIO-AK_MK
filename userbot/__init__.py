@@ -1,3 +1,11 @@
+# @Jmthon - < https://t.me/Jmthon >
+# Copyright (C) 2021 - JMTHON-AR
+# All rights reserved.
+#
+# This file is a part of < https://github.com/JMTHON-AR/JMTHON >
+# Please read the GNU Affero General Public License in;
+# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE 
+# ===============================================================
 import time
 
 import heroku3
@@ -7,7 +15,7 @@ from .core.logger import logging
 from .core.session import jmthon
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
-__version__ = "5.0.0"
+__version__ = "1.0.0"
 __license__ = "كـتابة وتـعديل فريـق جـمثون"
 __author__ = "جـمثون <https://T.ME/JMTHON>"
 __copyright__ = "JMTHON TEAM (C) 2020 - 2021  " + __author__
@@ -20,11 +28,6 @@ bot = jmthon
 StartTime = time.time()
 JMVERSION = "5.0.0"
 
-ROZDEV = [
-    "1657933680",
-    "1715051616",
-    "1694386561",
-]
 
 if Config.UPSTREAM_REPO == "Jmthon-iq":
     UPSTREAM_REPO_URL = "https://github.com/JMTHON-AR/JM-THON"
