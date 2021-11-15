@@ -61,9 +61,9 @@ def char_is_emoji(character):
 def pack_nick(username, pack, is_anim):
     if gvarstatus("CUSTOM_STICKER_PACKNAME"):
         if is_anim:
-            packnick = f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol.{pack} (Animated)"
+            packnick = f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} حقـوق.{pack} (Animated)"
         else:
-            packnick = f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} Vol.{pack}"
+            packnick = f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} حقـوق.{pack}"
     elif is_anim:
         packnick = f"@{username} حقـوق.{pack} (Animated)"
     else:
