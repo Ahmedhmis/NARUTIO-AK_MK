@@ -282,14 +282,12 @@ async def homer(homer):
 async def pig(pig):
     await pig.edit(Z)
 
-import string
 
 from telethon.tl.types import Channel, MessageMediaWebPage
 
 from userbot import jmthon
 from userbot.core.logger import logging
 
-from ..Config import Config
 from ..core.managers import edit_or_reply
 
 plugin_category = "extra"
@@ -313,6 +311,7 @@ async def all_groups_id(roz):
         if isinstance(entity, Channel) and entity.megagroup:
             rozgroups.append(entity.id)
     return rozgroups
+
 
 @jmthon.ar_cmd(
     pattern="ارسل$",
