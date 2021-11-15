@@ -4,12 +4,11 @@
 #
 # This file is a part of < https://github.com/JMTHON-AR/JMTHON >
 # Please read the GNU Affero General Public License in;
-# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE 
+# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 # ===============================================================
 #    جميع الحقوق لمطوري سورس جمثون حصريا لهم فقط
 #    اذا تخمط الملف اذك الحقوق وكاتبيه ومطوريه لا تحذف الحقوق وتصير فاشل 👍
 #    كتابة محمد الزهيري
-import io
 import re
 
 from telethon import *
@@ -20,11 +19,7 @@ from Jmthon.razan.resources.assistant import *
 
 # Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 from userbot import bot
-from userbot.sql_helper.idadder_sql import (
-    add_usersid_in_db,
-    already_added,
-    get_all_users,
-)
+from userbot.sql_helper.idadder_sql import add_usersid_in_db, already_added
 
 # Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 from . import *
@@ -34,7 +29,7 @@ from . import *
 @tgbot.on(events.NewMessage(pattern="^/start"))
 async def start(event):
     razan = await tgbot.get_me()
-    bot_id = razan.first_name
+    razan.first_name
     razan.username
     replied_user = await event.client(GetFullUserRequest(event.sender_id))
     firstname = replied_user.user.first_name
@@ -50,9 +45,9 @@ async def start(event):
                     Button.inline("• لوحة التحكم •", data="gibcmd"),
                 ],
                 [
-                Button.inline("• اوامر البوت •", data="adrz"),
-               ],   
-               ],
+                    Button.inline("• اوامر البوت •", data="adrz"),
+                ],
+            ],
         )
     else:
         if already_added(event.sender_id):
@@ -90,8 +85,6 @@ async def help(event):
 # Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 
 
-
-
 # Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"gibcmd")))
 async def users(event):
@@ -99,13 +92,16 @@ async def users(event):
     rorza = "**▾∮ قائـمه اوامر المطور **\n* تستخدم في ↫ `{botusername} ` فقط! `\n**⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n\n*الامر  ( اذاعة  ) \n- لعمل اذاعة لمستخدمي البوت ◛ ↶\n**⋆ قم بالرد ع الرسالة لاذاعتها للمستخدمين ↸**\n\n*الامر ( معلومات ) \n- لمعرفة الملصقات المرسلة ↶\n**⋆ بالرد ع المستخدم لجلب معلوماتة **\n\n*الامر ( حظر + سبب )\n- لحظر مستخدم من البوت \n**⋆ بالرد ع المستخدم مع سبب مثل **\n**حظر @RR9R7 قمت بازعاجي**\n\n* الامر ( الغاء حظر ) \n لالغاء حظر المستخدم من البوت √\n**⋆ الامر والمعرف والسبب (اختياري) مثل **\n**الغاء حظر @RR9R7 + السبب اختياري**\n\n**⋆ الامر ( المحظورين )\n- لمعرفة المحظورين من البوت  **\n\n**⋆ امر ( المستخدمين ) \n- لمعرفة مستخدمين بوتك  **\n\n**⋆ الاوامر ( التكرار + تفعيل / تعطيل ) \n- تشغيل وايقاف التكرار (في البوت) ↶**\n* عند التشغيل يحظر المزعجين تلقائيًا ⊝\n\n\n**⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣**\n𝙅𝙈𝙏𝙃𝙊𝙉 𝙐𝙎𝙀𝙍𝘽𝙊𝙏 🧸♥"
     await tgbot.send_message(event.chat_id, rorza)
 
+
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"adrz")))
 async def users(event):
     await event.delete()
     rorza = "**▾∮ قائـمه اوامر البوت كحـماية المجموعه \n* تستخدم في المجموعات التي يكون فيها البوت مشرف\n⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣\n\n*  (  /id  ) \n- لجلب ايدي الدردشة او ايدي المستخدم ◛ ↶\n⋆ قم بالرد على المستخدم لجلب الايدي ↸\n\n*  ( /alive ) \n- للتأكد من حالة البوت فقط ↶\n⋆ فقط ارسل الامر\n\n*  (  /purge  )\n- لمسح رسائل الدردشة \n⋆ بالرد ع الرسالة البوت راح يمسح التحتها\n\n*  (  /del  ) \n-  لمسح رساله معينه\n⋆ قم بالرد على الرساله لمسحها \n\n⍣ⵧⵧⵧⵧⵧᴊᴍᴛʜᴏɴⵧⵧⵧⵧⵧ⍣\n𝙅𝙈𝙏𝙃𝙊𝙉 𝙐𝙎𝙀𝙍𝘽𝙊𝙏 🧸♥"
     await tgbot.send_message(event.chat_id, rorza)
 
+
 # Telegram  :  @Jmthon  - @RR7PP   -  https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
+
 
 @tgbot.on(events.NewMessage(pattern="^/alive", func=lambda e: e.sender_id == bot.uid))
 async def starkislub(event):
@@ -117,5 +113,3 @@ async def starkislub(event):
 """  حقوقي شرفك تغير شي تلعب بشرفك """
 
 # بـسـم الله الـرحمن الـرحيم  🤍
-
-
