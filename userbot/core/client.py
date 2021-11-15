@@ -297,7 +297,7 @@ CatUserBotClient.fast_download_file = download_file
 CatUserBotClient.fast_upload_file = upload_file
 CatUserBotClient.reload = restart_script
 CatUserBotClient.get_msg_link = get_message_link
-CatUserBotClient.check_testcases = checking
+#CatUserBotClient.check_testcases = checking
 try:
     send_message_check = TelegramClient.send_message
 except AttributeError:
