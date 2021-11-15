@@ -17,7 +17,7 @@ from .utils import (
     verifyLoggerGroup,
 )
 
-LOGS = logging.getLogger("JMTHON")
+LOGS = logging.getLogger("")
 
 print(userbot.__copyright__)
 print("جميع الحقوق والملفات محفوظة " + userbot.__license__)
@@ -49,12 +49,12 @@ async def startup_process():
     await verifyLoggerGroup()
     await load_plugins("plugins")
     await load_plugins("assistant")
-    print("--------------------------------------------------------")
+    print("----------------------------------")
     print("تم بنجاح اكتمال تنصيب سورس جمثون المجاني ✓")
     print(
-        " - ارسل  فحص  للتأكد من البوت\n-  ولعرض اوامر السورس ارشل  .الاوامر\n-  للمزيد من المعلومات ادخل الى مجموعتك في التليجرام"
+        " - ارسل  .فحص  للتأكد من البوت\n-  ولعرض اوامر السورس ارسل  .الاوامر\n-  للمزيد من المعلومات ادخل الى مجموعتك في التليجرام"
     )
-    print("-------------------------------------------------------")
+    print("----------------------------------")
     await verifyLoggerGroup()
     await add_bot_to_logger_group(BOTLOG_CHATID)
     if PM_LOGGER_GROUP_ID != -100:
