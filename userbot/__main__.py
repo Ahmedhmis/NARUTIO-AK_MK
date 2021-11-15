@@ -4,7 +4,7 @@
 #
 # This file is a part of < https://github.com/JMTHON-AR/JMTHON >
 # Please read the GNU Affero General Public License in;
-# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE 
+# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 # ===============================================================
 import sys
 
