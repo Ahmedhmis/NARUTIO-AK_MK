@@ -217,17 +217,9 @@ async def add_to_pack(
     return pack, packname
 
 
-@jmthon.ar_cmd(
-    pattern="ملصق(?:\s|$)([\s\S]*)",
-    command=("ملصق", plugin_category),
-    info={
-        "header": "To kang a sticker.",
-        "description": "Kang's the sticker/image to the specified pack and uses the emoji('s) you picked",
-        "usage": "{tr}kang [emoji('s)] [number]",
-    },
-)
-async def kang(args):  # sourcery no-metrics
-    "To kang a sticker."
+@jmthon.ar_cmd(pattern="ملصق(?:\s|$)([\s\S]*)",command=("kang", plugin_category),)
+async def kang(args):
+    "jmthon userbot"
     photo = None
     emojibypass = False
     is_anim = False
@@ -239,17 +231,17 @@ async def kang(args):  # sourcery no-metrics
             user.first_name.encode("utf-8").decode("ascii")
             username = user.first_name
         except UnicodeDecodeError:
-            username = f"cat_{user.id}"
+            username = f"rz_{user.id}"
     else:
         username = user.username
     userid = user.id
     if message and message.media:
         if isinstance(message.media, MessageMediaPhoto):
-            catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
+            rozevent = await edit_or_reply(args, f"-  يتم اضافة الملصق الى الحزمة")
             photo = io.BytesIO()
             photo = await args.client.download_media(message.photo, photo)
         elif "image" in message.media.document.mime_type.split("/"):
-            catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
+            rozevent = await edit_or_reply(args, f"-  يتم اضافة الملصق الى الحزمة")
             photo = io.BytesIO()
             await args.client.download_file(message.media.document, photo)
             if (
@@ -259,7 +251,7 @@ async def kang(args):  # sourcery no-metrics
                 emoji = message.media.document.attributes[1].alt
                 emojibypass = True
         elif "tgsticker" in message.media.document.mime_type:
-            catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
+            rozevent = await edit_or_reply(args, f"-  يتم اضافة الملصق الى الحزمة")
             await args.client.download_file(
                 message.media.document, "AnimatedSticker.tgs"
             )
@@ -272,26 +264,26 @@ async def kang(args):  # sourcery no-metrics
             is_anim = True
             photo = 1
         else:
-            await edit_delete(args, "⌯︙الملف غير مدعوم")
+            await edit_delete(args, "- الملف غير مدعوم")
             return
     else:
-        await edit_delete(args, "⌯︙لايمكنني اخذ هاذا")
+        await edit_delete(args, "-  لا استطيع اخذ هذا الملصق")
         return
     if photo:
         splat = ("".join(args.text.split(maxsplit=1)[1:])).split()
-        emoji = emoji if emojibypass else "♥"
+        emoji = emoji if emojibypass else "🤍"
         pack = 1
         if len(splat) == 2:
             if char_is_emoji(splat[0][0]):
                 if char_is_emoji(splat[1][0]):
-                    return await catevent.edit("-")
-                pack = splat[1]  # User sent both
+                    return await rozevent.edit("تأكد من الامر بشكل صحيح")
+                pack = splat[1]  
                 emoji = splat[0]
             elif char_is_emoji(splat[1][0]):
-                pack = splat[0]  # User sent both
+                pack = splat[0] 
                 emoji = splat[1]
             else:
-                return await catevent.edit("-")
+                return await rozevent.edit("تأكد من الامر بشكل صحيح")
         elif len(splat) == 1:
             if char_is_emoji(splat[0][0]):
                 emoji = splat[0]
@@ -317,7 +309,7 @@ async def kang(args):  # sourcery no-metrics
         ):
             async with args.client.conversation("@Stickers") as conv:
                 packname, emoji = await add_to_pack(
-                    catevent,
+                    rozevent,
                     conv,
                     args,
                     packname,
@@ -329,18 +321,20 @@ async def kang(args):  # sourcery no-metrics
                     emoji,
                     cmd,
                 )
+            if packname is None:
+                return
             await edit_delete(
-                catevent,
-                f"تـم اخذ الملصق بنـجاح\
-                    \n ⌯︙حزمة ملصقاتك هنا  [اضغط هنا](t.me/addstickers/{packname}) *",
+                rozevent,
+                f"-  تم بنجاح اخذ الملصق \
+                    \n الحزمة الخاصة بك هي  [اضغط هنا](t.me/addstickers/{packname}) و الايموجي الخاص هز {emoji}",
                 parse_mode="md",
                 time=10,
             )
         else:
-            await catevent.edit("**- يتم احضار حزمة جديدة ⌔︙**")
+            await rozevent.edit("- يتم احضار حزمة جديدة")
             async with args.client.conversation("@Stickers") as conv:
                 otherpack, packname, emoji = await newpacksticker(
-                    catevent,
+                    rozevent,
                     conv,
                     cmd,
                     args,
@@ -351,20 +345,22 @@ async def kang(args):  # sourcery no-metrics
                     packname,
                     is_anim,
                 )
+            if otherpack is None:
+                return
             if otherpack:
                 await edit_delete(
-                    catevent,
-                    f"⌯︙تم صنع الملصق لحزمه مختلفه !\
-                    \n⌯︙والحزمة التي تم إنشاؤها حديثًا هي` [اضغط هنا](t.me/addstickers/{packname}) `  استخدم  {emoji}` للعثور على الملصقات المصنوعه",
-                    parse_mode="md",
+                    rozevent,
+                    f"-  تم بنجاح اخذ الملصق لحزمة ثانيـة\
+                    \n الحزمة الخاصة بك هي  [اضغط هنا](t.me/addstickers/{packname}) و الايموجي الخاص هز {emoji}",
+                parse_mode="md",
                     time=10,
                 )
             else:
                 await edit_delete(
-                    catevent,
-                    f"** تم اخذ الملصق بنجاح ♥!\
-                    \nالحزمة الخاص بك هي [اضغط هنا](t.me/addstickers/{packname})  السمايل المستخدم هو {emoji}`",
-                    parse_mode="md",
+                    rozevent,
+                    f"-  تم بنجاح اخذ الملصق \
+                    \n الحزمة الخاصة بك هي  [اضغط هنا](t.me/addstickers/{packname}) و الايموجي الخاص هز {emoji}",
+                parse_mode="md",
                     time=10,
                 )
 
