@@ -1,3 +1,11 @@
+# @Jmthon - < https://t.me/Jmthon >
+# Copyright (C) 2021 - JMTHON-AR
+# All rights reserved.
+#
+# This file is a part of < https://github.com/JMTHON-AR/JMTHON >
+# Please read the GNU Affero General Public License in;
+# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
+# ===============================================================
 from datetime import datetime
 from math import floor
 
@@ -64,7 +72,7 @@ async def ban_user_from_bot(user, reason, reply_to=None):
         LOGS.error(str(e))
     banned_msg = f"**تم حظرك من ااستخدام هذا البوت\nالسبب** : {reason}"
     await jmthon.tgbot.send_message(user.id, banned_msg)
-    info = f"**#المستخدمين_المحظورين**\
+    info = f"**المستخدمين المحظورين**\
             \n\n👤 {_format.mentionuser(get_display_name(user) , user.id)}\
             \n**الاسم الاول:** {user.first_name}\
             \n**الايدي:** `{user.id}`\
@@ -81,9 +89,9 @@ async def unban_user_from_bot(user, reason, reply_to=None):
         LOGS.error(str(e))
     banned_msg = f"**تم الغاء حظرك من البوت يمكنك التواصل مع مالك البوت.**"
     if reason is not None:
-        banned_msg += f"\n**السبب:** __{reason}__"
+        banned_msg += f"\n**السبب:** {reason}"
     await jmthon.tgbot.send_message(user.id, banned_msg)
-    info = f"**#المستخدمين_غير_المحظورين**\
+    info = f"**غير المحظورين**\
             \n\n👤 {_format.mentionuser(get_display_name(user) , user.id)}\
             \n**الأسم الاول:** {user.first_name}\
             \n**الايدي:** `{user.id}`"
