@@ -2,7 +2,6 @@ import asyncio
 import base64
 import io
 import math
-import random
 import urllib.request
 from os import remove
 
@@ -217,7 +216,10 @@ async def add_to_pack(
     return pack, packname
 
 
-@jmthon.ar_cmd(pattern="ملصق(?:\s|$)([\s\S]*)",command=("kang", plugin_category),)
+@jmthon.ar_cmd(
+    pattern="ملصق(?:\s|$)([\s\S]*)",
+    command=("kang", plugin_category),
+)
 async def kang(args):
     "jmthon userbot"
     photo = None
@@ -277,10 +279,10 @@ async def kang(args):
             if char_is_emoji(splat[0][0]):
                 if char_is_emoji(splat[1][0]):
                     return await rozevent.edit("تأكد من الامر بشكل صحيح")
-                pack = splat[1]  
+                pack = splat[1]
                 emoji = splat[0]
             elif char_is_emoji(splat[1][0]):
-                pack = splat[0] 
+                pack = splat[0]
                 emoji = splat[1]
             else:
                 return await rozevent.edit("تأكد من الامر بشكل صحيح")
@@ -352,7 +354,7 @@ async def kang(args):
                     rozevent,
                     f"-  تم بنجاح اخذ الملصق لحزمة ثانيـة\
                     \n الحزمة الخاصة بك هي  [اضغط هنا](t.me/addstickers/{packname}) و الايموجي الخاص هز {emoji}",
-                parse_mode="md",
+                    parse_mode="md",
                     time=10,
                 )
             else:
@@ -360,7 +362,7 @@ async def kang(args):
                     rozevent,
                     f"-  تم بنجاح اخذ الملصق \
                     \n الحزمة الخاصة بك هي  [اضغط هنا](t.me/addstickers/{packname}) و الايموجي الخاص هز {emoji}",
-                parse_mode="md",
+                    parse_mode="md",
                     time=10,
                 )
 
