@@ -1,3 +1,11 @@
+# @Jmthon - < https://t.me/Jmthon >
+# Copyright (C) 2021 - JMTHON-AR
+# All rights reserved.
+#
+# This file is a part of < https://github.com/JMTHON-AR/JMTHON >
+# Please read the GNU Affero General Public License in;
+# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
+# ===============================================================
 import sys
 
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
@@ -27,7 +35,7 @@ try:
         connection_retries=None,
     )
 except Exception as e:
-    print(f"⌯︙كـود تـيرمـكس - {str(e)}")
+    print(f"[STRING SESSION] - {str(e)}")
     sys.exit()
 
 
