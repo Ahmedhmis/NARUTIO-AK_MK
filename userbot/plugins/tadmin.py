@@ -97,8 +97,8 @@ async def tmuter(event):  # sourcery no-metrics
 
 
 @jmthon.ar_cmd(
-    pattern="حظره(?:\s|$)([\s\S]*)",
-    command=("حظره", plugin_category),
+    pattern="احظره(?:\s|$)([\s\S]*)",
+    command=("احظره", plugin_category),
     info={
         "header": "لحـظر المسـتخـدم من مجمـوعة معيـنة مـؤقـتا",
         "description": "لحـظر مستخـدم مؤقـتا مـع وقـت انـت تحـدده.",
