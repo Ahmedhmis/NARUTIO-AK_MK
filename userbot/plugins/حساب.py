@@ -1,4 +1,4 @@
-from# @Jmthon - < https://t.me/Jmthon >
+# @Jmthon - < https://t.me/Jmthon >
 # Copyright (C) 2021 - JMTHON-AR
 # All rights reserved.
 #
