@@ -26,7 +26,7 @@ LOGS = logging.getLogger("جـمثون")
 bot = jmthon
 
 StartTime = time.time()
-JMVERSION = "5.0.0"
+JMVERSION = "5.2.0"
 
 
 if Config.UPSTREAM_REPO == "Jmthon-iq":
