@@ -38,20 +38,6 @@ def user_full_name(user):
 @jmthon.ar_cmd(
     pattern="معلوماتي$",
     command=("معلوماتي", plugin_category),
-    info={
-        "header": "To get statistics of your telegram account.",
-        "description": "Shows you the count of  your groups, channels, private chats...etc if no input is given.",
-        "flags": {
-            "g": "To get list of all group you in",
-            "ga": "To get list of all groups where you are admin",
-            "go": "To get list of all groups where you are owner/creator.",
-            "c": "To get list of all channels you in",
-            "ca": "To get list of all channels where you are admin",
-            "co": "To get list of all channels where you are owner/creator.",
-        },
-        "usage": ["{tr}stat", "{tr}stat <flag>"],
-        "examples": ["{tr}stat g", "{tr}stat ca"],
-    },
 )
 async def stats(event):  # sourcery no-metrics
     "To get statistics of your telegram account."
@@ -97,19 +83,19 @@ async def stats(event):  # sourcery no-metrics
     time.time() - start_time
     inline_mention(await event.client.get_me())
     response = f"✛━━━━━━━━━━━━━✛ \n"
-    response += f"**⌯︙الدردشات الخاصة ️  :** {private_chats} \n"
-    response += f"**⌯︙المستخـدمين : {private_chats - bots} \n"
-    response += f"**⌯︙الـبوتـات :** {bots} \n"
-    response += f"**⌯︙المجـموعـات :** {groups} \n"
-    response += f"**⌯︙القنـوات  :** {broadcast_channels} \n"
-    response += f"**⌯︙المجـموعات التـي تكـون فيها مشرف  :** {admin_in_groups} \n"
-    response += f"**⌯︙المجموعات التـي تـكون انت مالكـها  **: {creator_in_groups} \n"
+    response += f"**- الدردشات الخاصة ️  :** {private_chats} \n"
+    response += f"**- المستخـدمين :** {private_chats - bots} \n"
+    response += f"**- الـبوتـات :** {bots} \n"
+    response += f"**- المجـموعـات :** {groups} \n"
+    response += f"**- القنـوات  :** {broadcast_channels} \n"
+    response += f"**- المجـموعات التـي تكـون فيها مشرف  :** {admin_in_groups} \n"
+    response += f"**- المجموعات التـي تـكون انت مالكـها  **: {creator_in_groups} \n"
     response += (
-        f"**⌯︙القنوات التـي تكـون فيها مشـرف :** {admin_in_broadcast_channels} \n"
+        f"**- القنوات التـي تكـون فيها مشـرف :** {admin_in_broadcast_channels} \n"
     )
-    response += f"**⌯︙صلاحيات الاشـراف  :** {admin_in_broadcast_channels - creator_in_channels} \n"
-    response += f"**⌯︙المحـادثـات الغيـر مقـروء**: {unread} \n"
-    response += f"**⌯︙الـتاكـات الغيـر مقـروء** : {unread_mentions} \n"
+    response += f"**- صلاحيات الاشـراف  :** {admin_in_broadcast_channels - creator_in_channels} \n"
+    response += f"**- المحـادثـات الغيـر مقـروء**: {unread} \n"
+    response += f"**- الـتاكـات الغيـر مقـروء** : {unread_mentions} \n"
     response += f"✛━━━━━━━━━━━━━✛\n"
     await cat.edit(response)
 
