@@ -6,6 +6,7 @@ from userbot import jmthon
 from ..core.managers import edit_or_reply
 from ..helpers import get_user_from_event
 
+
 @jmthon.on(admin_cmd(pattern="رفع مرتي(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
