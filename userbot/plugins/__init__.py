@@ -9,6 +9,7 @@ import requests
 import spamwatch as spam_watch
 from validators.url import url
 
+from Jmthon.razan.resources.strings._plugins import *
 from Jmthon.razan.resources.Gif import *
 
 from .. import *
