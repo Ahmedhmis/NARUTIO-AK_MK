@@ -6,7 +6,24 @@ from userbot import jmthon
 from ..core.managers import edit_or_reply
 from ..helpers import get_user_from_event
 
-plugin_category = "utils"
+@jmthon.on(admin_cmd(pattern="رفع مرتي(?:\s|$)([\s\S]*)"))
+async def permalink(mention):
+    user, custom = await get_user_from_event(mention)
+    if not user:
+        return
+    if user.id == 1694386561:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+    if user.id == 2034443585:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+    if user.id == 1715051616:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
+    if user.id == 1106830477:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
+    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    await edit_or_reply(
+        mention,
+        f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه مـࢪتك مـشي نخـلف 😹🤤",
+    )
 
 
 @jmthon.on(admin_cmd(pattern="كت(?: |$)(.*)"))
