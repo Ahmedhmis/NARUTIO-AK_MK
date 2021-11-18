@@ -74,6 +74,7 @@ temp = """- {ALIVE_TEXT}
 **{EMOJI} الوقـت :** `{uptime}`
 **{EMOJI} المسـتخدم:** {mention}"""
 
+
 @jmthon.on(admin_cmd(pattern="امر فحص(?: |$)(.*)"))
 async def _(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
