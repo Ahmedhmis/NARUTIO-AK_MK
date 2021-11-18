@@ -9,10 +9,7 @@ from ..helpers import get_user_from_event
 plugin_category = "utils"
 
 
-@jmthon.ar_cmd(
-    pattern="كت(?:\s|$)([\s\S]*)",
-    command=("كت", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="كت(?: |$)(.*)"))
 async def mention(mention):
     reza = random.choice(kttwerz)
     await edit_or_reply(mention, f"**- {reza}**")
