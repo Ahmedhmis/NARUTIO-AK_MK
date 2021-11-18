@@ -16,9 +16,7 @@ from ..core.managers import edit_or_reply
 from ..helpers.functions import check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
-from . import mention
-
-plugin_category = "bot"
+from . import *
 
 # كتـابة وتعـديل:  @RR9R7
 
@@ -75,3 +73,8 @@ temp = """- {ALIVE_TEXT}
 **{EMOJI} أصدار البـايثون :** `{pyver}`
 **{EMOJI} الوقـت :** `{uptime}`
 **{EMOJI} المسـتخدم:** {mention}"""
+
+@jmthon.on(admin_cmd(pattern="امر فحص(?: |$)(.*)"))
+async def _(event):
+    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
+        await event.edit(ALIVERZ)
