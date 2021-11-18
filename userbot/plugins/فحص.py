@@ -17,7 +17,6 @@ from ..helpers.functions import check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
 from . import mention
-from .decorators import sudo_cmd
 
 plugin_category = "bot"
 
