@@ -28,6 +28,7 @@ async def permalink(mention):
         mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه بڪلبك 🖤 "
     )
 
+
 @jmthon.on(admin_cmd(pattern="رفع زوجي(?: |$)(.*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
@@ -40,6 +41,7 @@ async def permalink(mention):
         mention,
         f"- المستخدم [{tag}](tg://user?id={user.id}) \nتـم رفعه زوجج روحوا خلفوا 🤤😂",
     )
+
 
 @jmthon.on(admin_cmd(pattern="رفع مطي(?: |$)(.*)"))
 async def permalink(mention):
@@ -58,6 +60,7 @@ async def permalink(mention):
     await edit_or_reply(
         mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n تـم رفـعه مطي هـنا "
     )
+
 
 @jmthon.on(admin_cmd(pattern="رفع مرتي(?: |$)(.*)"))
 async def permalink(mention):
@@ -218,4 +221,3 @@ async def permalink(mention):
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     rzona = random.choice(osfroz)
     await edit_or_reply(mention, f"{rzona}")
-
