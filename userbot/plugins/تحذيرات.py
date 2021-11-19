@@ -15,7 +15,6 @@ from ..core.managers import edit_or_reply
 from ..sql_helper import warns_sql as sql
 
 
-
 @jmthon.on(admin_cmd(pattern="تحذير(?: |$)(.*)"))
 async def _(event):
     warn_reason = event.pattern_match.group(1)
