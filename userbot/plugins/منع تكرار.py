@@ -51,7 +51,6 @@ async def _(event):
         )
 
 
-
 @jmthon.on(admin_cmd(pattern="ضع تكرار(?: |$)(.*)"))
 async def _(event):
     "لوضع عدد تكرار الرسائل في المجموعة"
