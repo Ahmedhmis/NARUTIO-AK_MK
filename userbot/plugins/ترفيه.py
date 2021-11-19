@@ -4,7 +4,7 @@
 #
 # This file is a part of < https://github.com/JMTHON-AR/JM-THON >
 # Please read the GNU Affero General Public License in;
-# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE 
+# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
 # ===============================================================
 
 import random
@@ -35,6 +35,7 @@ async def permalink(mention):
         f"- المستخدم [{tag}](tg://user?id={user.id}) \n تـم رفعـه مـࢪتك مـشي نخـلف 😹🤤",
     )
 
+
 @jmthon.on(admin_cmd(pattern="رفع جلب(?: |$)(.*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
@@ -53,7 +54,6 @@ async def permalink(mention):
         mention,
         f"- المستخدم [{tag}](tg://user?id={user.id}) \n تـم رفعـه جلب خليه خله ينبح 😂🐶",
     )
-
 
 
 @jmthon.on(admin_cmd(pattern="كت(?: |$)(.*)"))
@@ -139,6 +139,7 @@ async def permalink(mention):
         mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n تـم رفعـه تاج 👑🔥"
     )
 
+
 @jmthon.on(admin_cmd(pattern="رفع قرد(?: |$)(.*)"))
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
@@ -158,7 +159,6 @@ async def permalink(mention):
         mention,
         f"- المستخدم [{tag}](tg://user?id={user.id}) \n تـم رفعـه قرد واعطائه موزة 🐒🍌",
     )
-
 
 
 @jmthon.on(admin_cmd(pattern="اوصف(?: |$)(.*)"))
