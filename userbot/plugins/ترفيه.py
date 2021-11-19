@@ -221,3 +221,8 @@ async def permalink(mention):
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     rzona = random.choice(osfroz)
     await edit_or_reply(mention, f"{rzona}")
+
+@jmthon.on(admin_cmd(pattern="امر ترفيه(?: |$)(.*)"))
+async def _(event):
+    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
+        await event.edit(Trfehn)
