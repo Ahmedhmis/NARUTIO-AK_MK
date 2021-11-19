@@ -1,3 +1,12 @@
+# @Jmthon - < https://t.me/Jmthon >
+# Copyright (C) 2021 - JMTHON-AR
+# All rights reserved.
+#
+# This file is a part of < https://github.com/JMTHON-AR/JMTHON >
+# Please read the GNU Affero General Public License in;
+# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
+# ===============================================================
+
 import html
 
 from userbot import jmthon
@@ -5,20 +14,10 @@ from userbot import jmthon
 from ..core.managers import edit_or_reply
 from ..sql_helper import warns_sql as sql
 
-plugin_category = "admin"
 
 
-@jmthon.ar_cmd(
-    pattern="تحذير(?:\s|$)([\s\S]*)",
-    command=("تحذير", plugin_category),
-    info={
-        "header": "لتحذير المستخدم.",
-        "description": "سيحذر المستخدم الذي تم الرد عليه.",
-        "usage": "تحذير <السبب>",
-    },
-)
+@jmthon.on(admin_cmd(pattern="تحذير(?: |$)(.*)"))
 async def _(event):
-    "لتحذير المستخدم"
     warn_reason = event.pattern_match.group(1)
     if not warn_reason:
         warn_reason = "- لا يوجد سبب ، 🗒"
@@ -48,16 +47,8 @@ async def _(event):
     await edit_or_reply(event, reply)
 
 
-@jmthon.ar_cmd(
-    pattern="التحذيرات",
-    command=("التحذيرات", plugin_category),
-    info={
-        "header": "للحصول على قائمة تحذيرات المستخدمين.",
-        "usage": "التحذير <بالرد>",
-    },
-)
+@jmthon.on(admin_cmd(pattern="التحذيرات(?: |$)(.*)"))
 async def _(event):
-    "للحصول على قائمة تحذيرات المستخدمين."
     reply_message = await event.get_reply_message()
     if not reply_message:
         return await edit_delete(
@@ -84,19 +75,8 @@ async def _(event):
     await event.edit(text)
 
 
-@jmthon.ar_cmd(
-    pattern="ح(ذف) ?التحذير$",
-    command=("حذف التحذير", plugin_category),
-    info={
-        "header": "لحذف تحذيرات المستخدم الذي تم الرد عليه",
-        "usage": [
-            "{tr}ح التحذير",
-            "{tr}حذف التحذير",
-        ],
-    },
-)
+@jmthon.on(admin_cmd(pattern="حذف التحذير(?: |$)(.*)"))
 async def _(event):
-    "لحذف او اعادة تحذيرات المستخدم الذي تم الرد عليه"
     reply_message = await event.get_reply_message()
     sql.reset_warns(reply_message.sender_id, event.chat_id)
     await edit_or_reply(event, "**▸┊تم إعادة ضبط التحذيرات!**")
