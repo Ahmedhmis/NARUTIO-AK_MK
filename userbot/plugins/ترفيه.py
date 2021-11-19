@@ -222,6 +222,7 @@ async def permalink(mention):
     rzona = random.choice(osfroz)
     await edit_or_reply(mention, f"{rzona}")
 
+
 @jmthon.on(admin_cmd(pattern="امر ترفيه(?: |$)(.*)"))
 async def _(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
