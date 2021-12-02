@@ -1,33 +1,21 @@
-from telethon import Button, events
-
-from Jmthon.razan.resources.mybot import *
-
-from ..Config import Config
 import asyncio
 import html
-import os
-import re
-from math import ceil
-import time
-import datetime
-from telethon import Button, custom, events, functions
-from telethon.tl.functions.users import GetFullUserRequest
-from userbot import CMD_HELP, CMD_LIST
-from userbot import jmthon
 import json
-import math
 import os
 import random
 import re
 import time
+from math import ceil
 from uuid import uuid4
 
-from telethon import Button, types
+from telethon import Button, custom, events, types
 from telethon.errors import QueryIdInvalidError
-from telethon.events import CallbackQuery, InlineQuery
+from telethon.events import InlineQuery
+from telethon.tl.functions.users import GetFullUserRequest
 from youtubesearchpython import VideosSearch
 
-from userbot import jmthon
+from Jmthon.razan.resources.mybot import *
+from userbot import CMD_HELP, CMD_LIST, jmthon
 
 from ..Config import Config
 from ..helpers.functions import rand_key
@@ -38,9 +26,8 @@ from ..helpers.functions.utube import (
     result_formatter,
     ytsearch_data,
 )
-from ..plugins import mention
 from ..sql_helper.globals import gvarstatus
-from . import CMD_INFO, GRP_INFO, PLG_INFO, check_owner
+from . import GRP_INFO
 from .logger import logging
 
 CUSTOM_HELP_EMOJI = os.environ.get("CUSTOM_HELP_EMOJI", "")
@@ -50,12 +37,15 @@ LOGS = logging.getLogger(__name__)
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
 CATLOGO = "https://telegra.ph/file/88f00e9c84c0a01207adb.jpg"
 tr = Config.COMMAND_HAND_LER
+
+
 def getkey(val):
     for key, value in GRP_INFO.items():
         for plugin in value:
             if val == plugin:
                 return key
     return None
+
 
 def ibuild_keyboard(buttons):
     keyb = []
@@ -66,8 +56,9 @@ def ibuild_keyboard(buttons):
             keyb.append([Button.url(btn[0], btn[1])])
     return keyb
 
+
 @jmthon.tgbot.on(InlineQuery)
-async def inline_handler(event):  
+async def inline_handler(event):
     builder = event.builder
     result = None
     query = event.text
@@ -313,9 +304,7 @@ async def inline_handler(event):
         photo = types.InputWebDocument(
             url=CATLOGO, size=0, mime_type="image/jpeg", attributes=[]
         )
-        text, msg_entities = await event.client._parse_message_text(
-            "jmthon.", "md"
-        )
+        text, msg_entities = await event.client._parse_message_text("jmthon.", "md")
         result = types.InputBotInlineResult(
             id=str(uuid4()),
             type="photo",
@@ -329,8 +318,10 @@ async def inline_handler(event):
             ),
         )
         await event.answer([result] if result else None)
-        
+
+
 if Config.TG_BOT_USERNAME is not None and tgbot is not None:
+
     @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
     async def inline_handler(event):
         builder = event.builder
@@ -341,7 +332,9 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
             buttons = paginate_help(0, CMD_LIST, "helpme")
             result = builder.article(
                 "© مساعدة جمثون",
-                text="{}\n الملفات الحالية في سورس جمثون العربي: {}".format(query, len(CMD_LIST)),
+                text="{}\n الملفات الحالية في سورس جمثون العربي: {}".format(
+                    query, len(CMD_LIST)
+                ),
                 buttons=buttons,
                 link_preview=False,
             )
@@ -351,42 +344,42 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
                 text=f"**- حالة بوت جمثون للمستخدم [{DEFAULTUSER}](tg://user?id={myid})**\n\n- البوت يعمل بنجاح يا صاح\n\n@Jmthon ",
                 buttons=[
                     [custom.Button.inline("الحالة", data="statcheck")],
-                    [Button.url("تنصيب جمثون", "https://heroku.com/deploy?template=https://github.com/JMTHON-AR/Jmthon")],
+                    [
+                        Button.url(
+                            "تنصيب جمثون",
+                            "https://heroku.com/deploy?template=https://github.com/JMTHON-AR/Jmthon",
+                        )
+                    ],
                 ],
             )
         elif event.query.user_id == bot.uid and query == "alive":
             ALIVE = ALV_TXT
             if ALIVE_PIC and ALIVE_PIC.endswith((".jpg", ".png")):
-               result = builder.photo(
-                 ALIVE_PIC,
-                 text = ALIVE,
-              
-                 buttons = [
-                   [
-                     Button.url("قناة جمثون", "https://t.me/Jmthon"),
-                     Button.url("كروب جمثون", "https://t.me/GroupJmthon")
-                   ],
-                   [
-                     Button.inline("• حول مالكي •", data="master")
-                   ],
-                ],
-              )
+                result = builder.photo(
+                    ALIVE_PIC,
+                    text=ALIVE,
+                    buttons=[
+                        [
+                            Button.url("قناة جمثون", "https://t.me/Jmthon"),
+                            Button.url("كروب جمثون", "https://t.me/GroupJmthon"),
+                        ],
+                        [Button.inline("• حول مالكي •", data="master")],
+                    ],
+                )
             else:
-              result = builder.document(
-                 text = ALIVE,
-                 title = "Jmthon",
-                 file = ALIVE_PIC,
-                 buttons = [
-                   [
-                     Button.url("قناة جمثون", "https://t.me/Jmthon"),
-                     Button.url("كروب جمثون", "https://t.me/GroupJmthon")
-                   ],
-                   [
-                     Button.inline("• حول مالكي •", data="master")
-                   ],
-                ],
-              )
-                
+                result = builder.document(
+                    text=ALIVE,
+                    title="Jmthon",
+                    file=ALIVE_PIC,
+                    buttons=[
+                        [
+                            Button.url("قناة جمثون", "https://t.me/Jmthon"),
+                            Button.url("كروب جمثون", "https://t.me/GroupJmthon"),
+                        ],
+                        [Button.inline("• حول مالكي •", data="master")],
+                    ],
+                )
+
         elif event.query.user_id == bot.uid and query.startswith("**احم"):
             JMTHONBT = USER_BOT_NO_WARN.format(DEFAULTUSER, myid, MESAG)
             result = builder.photo(
@@ -395,27 +388,28 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
                 buttons=[
                     [
                         custom.Button.inline("• لطلب شي •", data="rzeq"),
-                        custom.Button.inline("• للسؤال •", data="jmk")
+                        custom.Button.inline("• للسؤال •", data="jmk"),
                     ],
                     [
                         custom.Button.inline("• للدردشة •", data="chat"),
-                        custom.Button.inline("• شي اخر •", data="elsi")],
+                        custom.Button.inline("• شي اخر •", data="elsi"),
+                    ],
                 ],
             )
         elif event.query.user_id == bot.uid and query == "paste":
-              ok = event.text.split("-")[1]
-              link = "https://spaceb.in/" + ok
-              raw = f"https://spaceb.in/api/v1/documents/{ok}/raw"
-              result = builder.article(
-                   title= "Paste",
-                   text = "لصق الكود في المحرر",
-                   buttons=[
-            [
-                Button.url("الكود ", url=link),
-                Button.url("النص️", url=raw),
-            ],
-        ],
-    )
+            ok = event.text.split("-")[1]
+            link = "https://spaceb.in/" + ok
+            raw = f"https://spaceb.in/api/v1/documents/{ok}/raw"
+            result = builder.article(
+                title="Paste",
+                text="لصق الكود في المحرر",
+                buttons=[
+                    [
+                        Button.url("الكود ", url=link),
+                        Button.url("النص️", url=raw),
+                    ],
+                ],
+            )
         else:
             result = builder.article(
                 "سورس جمثون  - الافضل في الشرق الاوسط",
@@ -423,27 +417,20 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
                 buttons=[
                     [custom.Button.url("المطور", "https://t.me/rr9r7")],
                     [
-                        custom.Button.url(
-                            "السورس", "https://t.me/Jmthon"
-                        ),
+                        custom.Button.url("السورس", "https://t.me/Jmthon"),
                         custom.Button.url(
                             "تنصيب ",
                             "https://heroku.com/deploy?template=https://github.com/JMTHON-AR/Jmthon",
-                             ),
+                        ),
                     ],
-                    [
-                        custom.Button.url(
-                            "مجموعة جمثون", "https://t.me/GroupJMTHON"
-                        )
-                    ],
+                    [custom.Button.url("مجموعة جمثون", "https://t.me/GroupJMTHON")],
                 ],
                 link_preview=False,
             )
         await event.answer([result] if result else None)
+
     @tgbot.on(
-        events.callbackquery.CallbackQuery(
-            data=re.compile(rb"helpme_next\((.+?)\)")
-        )
+        events.callbackquery.CallbackQuery(data=re.compile(rb"helpme_next\((.+?)\)"))
     )
     async def on_plug_in_callback_query_handler(event):
         if event.query.user_id == bot.uid:
@@ -462,7 +449,9 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
             buttons = paginate_help(0, CMD_LIST, "helpme")
             await event.edit("▾∮ فتح القائمة الرئيسيية مره اخرى ", buttons=buttons)
         else:
-            reply_jmthon_alert = "عذرا لا تستطيع الضغط هنا هذا الخيار ليس لك، نصب جمثون لنفسك"
+            reply_jmthon_alert = (
+                "عذرا لا تستطيع الضغط هنا هذا الخيار ليس لك، نصب جمثون لنفسك"
+            )
             await event.answer(reply_jmthon_alert, cache_time=0, alert=True)
 
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"rzeq")))
@@ -481,7 +470,7 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
                 first_name = first_name.replace("\u2060", "")
             rozsend = f"- مرحبا {MYUSER}, [{first_name}](tg://user?id={jmthon}) يريد طلب شيء ما \n ربما يريد ان يخبرك شيء أذهب وتأكد"
             await tgbot.send_message(LOG_JMTHON, rozsend)
-            
+
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"chat")))
     async def on_pm_click(event):
         event.query.user_id
@@ -542,10 +531,13 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
     async def on_plug_in_callback_query_handler(event):
         if event.query.user_id == bot.uid:
             await event.edit(
-                "تم غلق القائمة", buttons=[Button.inline("• فتح القائمة •", data="reopen")]
+                "تم غلق القائمة",
+                buttons=[Button.inline("• فتح القائمة •", data="reopen")],
             )
         else:
-            reply_jmthon_alert = "عذرا لا تستطيع الضغط هنا هذا الخيار ليس لك، نصب جمثون لنفسك"
+            reply_jmthon_alert = (
+                "عذرا لا تستطيع الضغط هنا هذا الخيار ليس لك، نصب جمثون لنفسك"
+            )
             await event.answer(reply_jmthon_alert, cache_time=0, alert=True)
 
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"statcheck")))
@@ -554,26 +546,20 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
         await event.answer(text, alert=True)
 
     @tgbot.on(
-        events.callbackquery.CallbackQuery(
-            data=re.compile(rb"helpme_prev\((.+?)\)")
-        )
+        events.callbackquery.CallbackQuery(data=re.compile(rb"helpme_prev\((.+?)\)"))
     )
     async def on_plug_in_callback_query_handler(event):
         if event.query.user_id == bot.uid:
             current_page_number = int(event.data_match.group(1).decode("UTF-8"))
-            buttons = paginate_help(
-                current_page_number - 1, CMD_LIST, "helpme"
-            )
+            buttons = paginate_help(current_page_number - 1, CMD_LIST, "helpme")
             await event.edit(buttons=buttons)
         else:
-            reply_jmthon_alert = "عذرا لا تستطيع الضغط هنا هذا الخيار ليس لك .  نصب جمثون لنفسك"
+            reply_jmthon_alert = (
+                "عذرا لا تستطيع الضغط هنا هذا الخيار ليس لك .  نصب جمثون لنفسك"
+            )
             await event.answer(reply_jmthon_alert, cache_time=0, alert=True)
 
-    @tgbot.on(
-        events.callbackquery.CallbackQuery(
-            data=re.compile(b"us_plugin_(.*)")
-        )
-    )
+    @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"us_plugin_(.*)")))
     async def on_plug_in_callback_query_handler(event):
         if event.query.user_id == bot.uid:
             plugin_name = event.data_match.group(1).decode("UTF-8")
@@ -591,8 +577,10 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
             except BaseException:
                 pass
             if help_string == "":
-                reply_jmthon_alert = "{} ليس له معلومات كثيرة.\n أرسل .مساعدة {}".format(
-                    plugin_name, plugin_name
+                reply_jmthon_alert = (
+                    "{} ليس له معلومات كثيرة.\n أرسل .مساعدة {}".format(
+                        plugin_name, plugin_name
+                    )
                 )
             else:
                 reply_jmthon_alert = help_string
@@ -625,9 +613,7 @@ def paginate_help(page_number, loaded_plugins, prefix):
             helpable_plugins.append(p)
     helpable_plugins = sorted(helpable_plugins)
     modules = [
-        custom.Button.inline(
-            "{} {}".format(tele, x), data="us_plugin_{}".format(x)
-        )
+        custom.Button.inline("{} {}".format(tele, x), data="us_plugin_{}".format(x))
         for x in helpable_plugins
     ]
     pairs = list(zip(modules[::number_of_cols], modules[1::number_of_cols]))
