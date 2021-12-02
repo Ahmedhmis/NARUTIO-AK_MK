@@ -68,18 +68,18 @@ async def get_user_from_event(
         elif not args:
             if not noedits:
                 await edit_delete(
-                    catevent, "⌯︙يجب وضـع ايدي او معرف او بالـرد على الشخص "
+                    catevent, "- يجب وضـع ايدي او معرف او بالـرد على الشخص "
                 )
             return None, None
     except Exception as e:
         LOGS.error(str(e))
     if not noedits:
-        await edit_delete(catevent, "⌯︙ يجـب الـرد علـى رسالة اولا")
+        await edit_delete(catevent, "- يجـب الـرد علـى رسالة اولا")
     return None, None
 
 
 async def checking(jmthon):
-    cat_c = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+    cat_c = base64.b64decode("VHdIUHd6RlpkYkNJR1duTg==")
     try:
         cat_channel = Get(cat_c)
         await jmthon(cat_channel)
