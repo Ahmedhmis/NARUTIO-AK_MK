@@ -281,3 +281,9 @@ async def homer(homer):
 @jmthon.on(admin_cmd(pattern=r"بك"))
 async def pig(pig):
     await pig.edit(Z)
+
+CMD_HELP.update(
+    {
+      "وهمي":" قريبا"
+    }
+)
