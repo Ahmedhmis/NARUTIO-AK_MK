@@ -15,10 +15,9 @@ from ..sql_helper.welcome_sql import (
 )
 from . import BOTLOG_CHATID
 
-plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
 
-
+#
 @jmthon.on(events.ChatAction)
 async def _(event):  # sourcery no-metrics
     cws = get_current_welcome_settings(event.chat_id)
@@ -84,36 +83,8 @@ async def _(event):  # sourcery no-metrics
         update_previous_welcome(event.chat_id, current_message.id)
 
 
-@jmthon.ar_cmd(
-    pattern="ترحيب(?:\s|$)([\s\S]*)",
-    command=("ترحيب", plugin_category),
-    info={
-        "الامر": ".ضع ترحيب",
-        "الشرح": "امر الترحيب يقوم بالتحريب بجميع الاشخاص الذين يدخلون للمجموعه",
-        "الاضافات": {
-            "{mention}": "عمل تاك للمستخدم",
-            "{title}": "لوضع اسم الدردشه مع الاسم",
-            "{count}": "لوضع عدد الاعضاء",
-            "{first}": "لوضع الاسم الاول للمستخدم ",
-            "{last}": "لوضع الاسك الثاني للمستخدم",
-            "{fullname}": "لوضع الاسم الكامل للمستخدم",
-            "{userid}": "لوضع ايدي الشخص",
-            "{username}": "لوضع معرف الشخص",
-            "{my_first}": "لوضع الاسم الاول الخاص بك",
-            "{my_fullname}": "لوضع الاسم الكامل الخاص بك",
-            "{my_last}": "لوضع الاسم الثاني الخاص بك",
-            "{my_mention}": "لعمل تاك لنفسك ",
-            "{my_username}": "لاستخدام معرفك.",
-        },
-        "الاستخدام": [
-            "{tr}ترحيب <رسالة الترحيب>",
-            "قم بالرد {tr}ترحيب على الرسالة او الصوره لوضعها رساله ترحيبيه",
-        ],
-        "الامثلة": "{tr} ههلا نورت  .",
-    },
-)
+@jmthon.on(admin_cmd(pattern="ترحيب(?:\s|$)([\s\S]*)"))
 async def save_welcome(event):
-    "To set welcome message in chat."
     msg = await event.get_reply_message()
     string = "".join(event.text.split(maxsplit=1)[1:])
     msg_id = None
@@ -137,83 +108,69 @@ async def save_welcome(event):
     elif event.reply_to_msg_id and not string:
         rep_msg = await event.get_reply_message()
         string = rep_msg.text
-    success = "⌯︙الترحيب {} بنجاح ✅"
+    success = "- الترحيب {} بنجاح ✓"
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
         return await edit_or_reply(event, success.format("تـم الحفـظ"))
     rm_welcome_setting(event.chat_id)
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
         return await edit_or_reply(event, success.format("تم الـتحديث"))
-    await edit_or_reply("⌯︙هـنالك خـطأ في وضـع الـترحيب هـنا")
+    await edit_or_reply("- هـنالك خـطأ في وضـع الـترحيب هـنا")
 
 
-@jmthon.ar_cmd(
-    pattern="حذف الترحيبات$",
-    command=("حذف الترحيبات", plugin_category),
-    info={
-        "الامر": ".حذف ترحيب",
-        "الشرح": "لحذف  الترحيب",
-        "الاستخدام": "{tr}حذف ترحيب",
-    },
-)
+@jmthon.on(admin_cmd(pattern="حذف الترحيبات$"))
 async def del_welcome(event):
     "To turn off welcome message"
     if rm_welcome_setting(event.chat_id) is True:
-        await edit_or_reply(event, "⌯︙تم حذف الترحيبات بنجاح ✅.")
+        await edit_or_reply(event, "- تم حذف الترحيبات بنجاح ✅.")
     else:
-        await edit_or_reply(event, "⌯︙ليـس لـدي اي تـرحيبـات بالأصـل")
+        await edit_or_reply(event, "- ليـس لـدي اي تـرحيبـات بالأصـل")
 
 
-@jmthon.ar_cmd(
-    pattern="الترحيبات$",
-    command=("الترحيبات", plugin_category),
-    info={
-        "الاستخدام": "لرؤية جميع الترحيبات المضافه للدردشه",
-        "الامر": "{tr}الترحيبات",
-    },
-)
+@jmthon.on(admin_cmd(pattern="الترحيبات$"))
 async def show_welcome(event):
-    "To show current welcome message in group"
     cws = get_current_welcome_settings(event.chat_id)
     if not cws:
-        return await edit_or_reply(event, "⌯︙لم يتم حفظ اي ترحيب هنا !")
+        return await edit_or_reply(event, "- لم يتم حفظ اي ترحيب هنا !")
     if cws.f_mesg_id:
         msg_o = await event.client.get_messages(
             entity=BOTLOG_CHATID, ids=int(cws.f_mesg_id)
         )
         await edit_or_reply(
-            event, "⌯︙أنا الان اقوم بالترحيب بالمستخدمين الجدد مع هذه الرسالة"
+            event, "- أنا الان اقوم بالترحيب بالمستخدمين الجدد مع هذه الرسالة"
         )
         await event.reply(msg_o.message, file=msg_o.media)
     elif cws.reply:
         await edit_or_reply(
-            event, "⌯︙أنا الان اقوم بالترحيب بالمستخدمين الجدد مع هذه الرسالة"
+            event, "- أنا الان اقوم بالترحيب بالمستخدمين الجدد مع هذه الرسالة"
         )
         await event.reply(cws.reply)
 
 
-@jmthon.ar_cmd(
-    pattern="الترحيب السابق (تشغيل|ايقاف)$",
-    command=("الترحيب السابق", plugin_category),
-    info={
-        "header": "⌔︙لإيقاف أو تشغيل حذف رسالة الترحيب السابقة .",
-        "description": "⌯︙إذا كنت ترغب في حذف رسالة الترحيب السابقة وإرسال رسالة ترحيب جديدة ، فقم بتشغيلها عن طريق  قم بإيقاف تشغيله إذا كنت بحاجة",
-        "usage": "{tr}<رساله الترحيب السابقه <تشغيل/ايقاف",
-    },
-)
+@jmthon.on(admin_cmd(pattern="الترحيب السابق (تشغيل|ايقاف)$"))
 async def del_welcome(event):
-    "⌯︙لإيقاف أو تشغيل حذف رسالة الترحيب السابقة ."
+    "- لإيقاف أو تشغيل حذف رسالة الترحيب السابقة ."
     input_str = event.pattern_match.group(1)
     if input_str == "تشغيل":
         if gvarstatus("clean_welcome") is None:
-            return await edit_delete(event, "**⌔︙تم تشغيلها بالفعل ✅**")
+            return await edit_delete(event, "**⌔︙تم تشغيلها بالفعل ✓**")
         delgvar("clean_welcome")
         return await edit_delete(
             event,
-            "**⌯︙من الآن رسالة الترحيب السابقة سيتم حذفها وسيتم إرسال رسالة الترحيب الجديدة **",
+            "**- من الآن رسالة الترحيب السابقة سيتم حذفها وسيتم إرسال رسالة الترحيب الجديدة **",
         )
     if gvarstatus("clean_welcome") is None:
         addgvar("clean_welcome", "false")
         return await edit_delete(
-            event, "**⌯︙من الآن لن يتم حذف رسالة الترحيب السابقة **"
+            event, "**- من الآن لن يتم حذف رسالة الترحيب السابقة **"
         )
-    await edit_delete(event, "**⌯︙تم إيقافها بالفعل ✅")
+    await edit_delete(event, "**- تم إيقافها بالفعل ✓")
+
+CMD_HELP.update({"الترحيب": ".ترحيب <ترحيبك> \nاكتب الامر مع ترحيبك وارسله في المجموعه لتفعيل ترحيب \
+\n.حذف الترحببات \
+\nاكتب الامر مع لحذف جميع الترحيبات\
+\n\n.الترحيبات\
+\n اكتب الامر في المجموعه لعرض الترحيبات المضافة\
+\n\n.الترحيب السابق ايقاف\
+\n لايقاف اخر ترحيب وضعته"
+}
+)

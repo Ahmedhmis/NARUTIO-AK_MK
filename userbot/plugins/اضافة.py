@@ -6,8 +6,8 @@ from telethon.errors import (
 from telethon.tl import functions
 from telethon.tl.functions.channels import GetFullChannelRequest
 from telethon.tl.functions.messages import GetFullChatRequest
-
-from userbot import jmthon
+#
+from userbot import jmthon, CMD_HELP
 from userbot.utils import admin_cmd
 
 
@@ -111,3 +111,10 @@ async def get_users(event):
     return await roz.edit(
         f"**▾∮اڪتـملت الأضافـة ✅** \n\n• تـم بنجـاح اضافـة `{s}` \n• خـطأ بأضافـة `{f}`"
     )
+
+CMD_HELP.update(
+    {
+        "اضافة": ".ضيف <معرف المجموعه>\
+\n تكتب الامر ومعرف المجموعه الي تريد تسحب منها الاعضاء وترسل بمجموعتك الامر ... \n"
+    }
+)

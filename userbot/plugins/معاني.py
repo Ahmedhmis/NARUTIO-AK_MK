@@ -5,7 +5,7 @@ from userbot import jmthon
 from userbot.utils import sudo_cmd
 
 from ..helpers.utils import reply_id
-
+#jmthon 
 
 @jmthon.on(admin_cmd(pattern="معنى ?(.*)"))
 @jmthon.on(sudo_cmd(pattern="معنى ?(.*)", allow_sudo=True))

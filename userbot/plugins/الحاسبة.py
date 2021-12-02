@@ -4,7 +4,7 @@
 # Copyright ©️ 2021 RR9R7 . All Rights Reserved
 # You are free to use this code in any of your project, but you MUST include the following in your README.md (Copy & paste)
 # ##Credits -  (  @RR7PP  - @JMTHON  )
-
+#
 
 # 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PPimport re
 # 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
@@ -50,15 +50,7 @@ lst = list(zip(tultd[::4], tultd[1::4], tultd[2::4], tultd[3::4]))
 lst.append([Button.inline("=", data="calc=")])
 
 
-@jmthon.ar_cmd(
-    pattern="حاسبة(?:\s|$)([\s\S]*)",
-    command=("حاسبة", plugin_category),
-    info={
-        "header": "حـاسبة عـلمية",
-        "usage": "{tr}حاسبة",
-        "description": "امر حاسبة بوضع الانلاين مميزة ورائعة.",
-    },
-)
+@jmthon.on(admin_cmd(pattern="حاسبة(?:\s|$)([\s\S]*)"))
 async def icalc(e):
     if e.client._bot:
         return await e.reply(
@@ -183,3 +175,7 @@ async def _(e):
 
 
 # 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
+
+CMD_HELP.update(
+    {"الحسابة": ".حاسبة" "\n فقط اكتب الامر لعرض حاسبة علميه تحتاج الى تفعيل وضع الانلاين اولا\n\n"}
+)

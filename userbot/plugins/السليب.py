@@ -3,7 +3,7 @@ from datetime import datetime
 
 from telethon.tl import functions, types
 
-from userbot import jmthon
+from userbot import jmthon, CMD_HELP
 
 from ..Config import Config
 from ..core.logger import logging
@@ -12,10 +12,8 @@ from ..helpers.tools import media_type
 from ..helpers.utils import _format
 from . import BOTLOG, BOTLOG_CHATID
 
-plugin_category = "utils"
-
 LOGS = logging.getLogger(__name__)
-
+#
 
 class AFK:
     def __init__(self):
@@ -63,7 +61,7 @@ async def set_not_afk(event):
     ):
         shite = await event.client.send_message(
             event.chat_id,
-            "⌯︙** تم تعطيـل امر السـليب والـرجوع الى الوضع الطبيعي**",
+            "- ** تم تعطيـل امر السـليب والـرجوع الى الوضع الطبيعي**",
         )
         AFK_.USERAFK_ON = {}
         AFK_.afk_time = None
@@ -73,8 +71,8 @@ async def set_not_afk(event):
         if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "⌯︙انتهـاء امر السليب \n"
-                + "`⌯︙تم تعطـيله والرجوع للوضع الطبيعي كان مفعل لـ"
+                "⌔∮ انتهاء امر السليب \n"
+                + "`⌔∮ تم تعطيله والرجوع للوضع الطبيعي كان مفعل لـ"
                 + endtime
                 + "`",
             )
@@ -114,18 +112,18 @@ async def on_afk(event):  # sourcery no-metrics
         msg = None
         if AFK_.afk_type == "media":
             if AFK_.reason:
-                message_to_reply = f"**⌯︙انا الان في وضعيه عدم الاتصال 💤** \n**⌯︙تم تفعيل وضع السليب منذ 🕐 :** `{endtime}`\n ⌯︙السـبب : {AFK_.reason}"
+                message_to_reply = f"**- انا الان في وضعيه عدم الاتصال 💤** \n**- تم تفعيل وضع السليب منذ 🕐 :** `{endtime}`\n - السـبب : {AFK_.reason}"
             else:
-                message_to_reply = f"**⌯︙انا الان في وضعيه عدم الاتصال 💤** \n**⌯︙تم تفعيل وضع السليب منذ 🕐 :** `{endtime}`"
+                message_to_reply = f"**- انا الان في وضعيه عدم الاتصال 💤** \n**- تم تفعيل وضع السليب منذ 🕐 :** `{endtime}`"
             if event.chat_id:
                 msg = await event.reply(message_to_reply, file=AFK_.media_afk.media)
         elif AFK_.afk_type == "text":
             if AFK_.msg_link and AFK_.reason:
-                message_to_reply = f"**⌯︙انا الان في وضعيه عدم الاتصال 💤** \n**⌯︙تم تفعيل وضع السليب منذ 🕐 :** `{endtime}`\n ⌯︙السـبب : {AFK_.reason}"
+                message_to_reply = f"**- انا الان في وضعيه عدم الاتصال 💤** \n**- تم تفعيل وضع السليب منذ 🕐 :** `{endtime}`\n - السـبب : {AFK_.reason}"
             elif AFK_.reason:
-                message_to_reply = f"**⌯︙انا الان في وضعيه عدم الاتصال 💤** \n**⌯︙تم تفعيل وضع السليب منذ 🕐 :** `{endtime}`\n ⌯︙السـبب : {AFK_.reason}"
+                message_to_reply = f"**- انا الان في وضعيه عدم الاتصال 💤** \n**- تم تفعيل وضع السليب منذ 🕐 :** `{endtime}`\n - السـبب : {AFK_.reason}"
             else:
-                message_to_reply = f"**⌯︙انا الان في وضعيه عدم الاتصال 💤** \n**⌯︙تم تفعيل وضع السليب منذ 🕐 :** `{endtime}`"
+                message_to_reply = f"**- انا الان في وضعيه عدم الاتصال 💤** \n**- تم تفعيل وضع السليب منذ 🕐 :** `{endtime}`"
             if event.chat_id:
                 msg = await event.reply(message_to_reply)
         if event.chat_id in AFK_.last_afk_message:
@@ -142,14 +140,14 @@ async def on_afk(event):  # sourcery no-metrics
         except Exception as e:
             LOGS.info(str(e))
         messaget = media_type(event)
-        resalt = f"<b>⌯︙المجموعة : </b><code>{hmm.title}</code>"
+        resalt = f"<b>- المجموعة : </b><code>{hmm.title}</code>"
         if full is not None:
-            resalt += f"\n<b>⌯︙المـرسل : </b> 👤{_format.htmlmentionuser(full.first_name , full.id)}"
+            resalt += f"\n<b>- المـرسل : </b> 👤{_format.htmlmentionuser(full.first_name , full.id)}"
         if messaget is not None:
-            resalt += f"\n<b>⌯︙نـوع الـرسالـة  : </b><code>{messaget}</code>"
+            resalt += f"\n<b>- نـوع الـرسالـة  : </b><code>{messaget}</code>"
         else:
-            resalt += f"\n<b>⌯︙الـرسالـة  : </b>{event.message.message}"
-        resalt += f"\n<b>⌯︙رابـط الـرسالـة   : </b><a href = 'https://t.me/c/{hmm.id}/{event.message.id}'> اضغـط هـنا</a>"
+            resalt += f"\n<b>- الـرسالـة  : </b>{event.message.message}"
+        resalt += f"\n<b>- رابـط الـرسالـة   : </b><a href = 'https://t.me/c/{hmm.id}/{event.message.id}'> اضغـط هـنا</a>"
         if not event.is_private:
             await event.client.send_message(
                 Config.PM_LOGGER_GROUP_ID,
@@ -159,22 +157,7 @@ async def on_afk(event):  # sourcery no-metrics
             )
 
 
-@jmthon.ar_cmd(
-    pattern="سليب(?:\s|$)([\s\S]*)",
-    command=("سليب", plugin_category),
-    info={
-        "header": "Enables afk for your account",
-        "description": "When you are in afk if any one tags you then your bot will reply as he is offline.\
-        AFK mean away from keyboard.",
-        "options": "If you want AFK reason with hyperlink use [ ; ] after reason, then paste the media link.",
-        "usage": [
-            "{tr}afk <reason>",
-            "{tr}afk <reason> ; <link>",
-        ],
-        "examples": "{tr}afk Let Me Sleep",
-        "note": "Switches off AFK when you type back anything, anywhere. You can use #afk in message to continue in afk without breaking it",
-    },
-)
+@jmthon.on(admin_cmd(pattern="سليب(?:\s|$)([\s\S]*)"))
 async def _(event):
     "To mark yourself as afk i.e. Away from keyboard"
     AFK_.USERAFK_ON = {}
@@ -203,54 +186,40 @@ async def _(event):
         if AFK_.reason:
             await edit_delete(
                 event,
-                f"⌯︙انا الان في وضعيه عدم الاتصال يرجـى المراسلة لاحقـا بسـبب  {AFK_.reason} ️",
+                f"- انا الان في وضعيه عدم الاتصال يرجـى المراسلة لاحقـا بسـبب  {AFK_.reason} ️",
                 5,
             )
         else:
             await edit_delete(
                 event,
-                f"**⌯︙انا الان في وضعيه عدم الاتصال يرجـى المراسلة لاحقـا 💤 ️**",
+                f"**- انا الان في وضعيه عدم الاتصال يرجـى المراسلة لاحقـا 💤 ️**",
                 5,
             )
         if BOTLOG:
             if AFK_.reason:
                 await event.client.send_message(
                     BOTLOG_CHATID,
-                    f"**⌯︙امـر السليـب 💤 :** \n **تم تشغيل الوضع بسبب مع السبب ️** {AFK_.reason}",
+                    f"**- امـر السليـب 💤 :** \n **تم تشغيل الوضع بسبب مع السبب ️** {AFK_.reason}",
                 )
             else:
                 await event.client.send_message(
                     BOTLOG_CHATID,
-                    f"**⌯︙امـر السليـب 💤 :** \n **تم تشغيل الامر بدون ذكـر السبب ❕**",
+                    f"**- امـر السليـب 💤 :** \n **تم تشغيل الامر بدون ذكـر السبب ❕**",
                 )
 
 
-@jmthon.ar_cmd(
-    pattern="سليب_ميديا(?:\s|$)([\s\S]*)",
-    command=("سليب_ميديا", plugin_category),
-    info={
-        "header": "Enables afk for your account",
-        "description": "When you are in afk if any one tags you then your bot will reply as he is offline.\
-         AFK mean away from keyboard. Here it supports media unlike afk command",
-        "options": "If you want AFK reason with hyperlink use [ ; ] after reason, then paste the media link.",
-        "usage": [
-            "{tr}mafk <reason> and reply to media",
-        ],
-        "examples": "{tr}mafk Let Me Sleep",
-        "note": "Switches off AFK when you type back anything, anywhere. You can use #afk in message to continue in afk without breaking it",
-    },
-)
+@jmthon.on(admin_cmd(pattern="سليب_ميديا(?:\s|$)([\s\S]*)"))
 async def _(event):
     "To mark yourself as afk i.e. Away from keyboard (supports media)"
     reply = await event.get_reply_message()
     media_t = media_type(reply)
     if media_t == "Sticker" or not media_t:
         return await edit_or_reply(
-            event, "⌯︙امـر السـليب : المرجـو قم بالـرد علـى الصورة بالامـر "
+            event, "- امـر السـليب : المرجـو قم بالـرد علـى الصورة بالامـر "
         )
     if not BOTLOG:
         return await edit_or_reply(
-            event, "⌯︙لإستخـدام هذا الامر يجـب اضافـة متغيـر PRIVATE_GROUP_BOT_API_ID "
+            event, "- لإستخـدام هذا الامر يجـب اضافـة متغيـر PRIVATE_GROUP_BOT_API_ID "
         )
     AFK_.USERAFK_ON = {}
     AFK_.afk_time = None
@@ -273,23 +242,29 @@ async def _(event):
         if AFK_.reason:
             await edit_delete(
                 event,
-                f"⌯︙انا الان في وضعيه عدم الاتصال يرجـى المراسلة لاحقـا بسـبب  {AFK_.reason} ️",
+                f"- انا الان في وضعيه عدم الاتصال يرجـى المراسلة لاحقـا بسـبب  {AFK_.reason} ️",
                 5,
             )
         else:
             await edit_delete(
                 event,
-                f"**⌯︙انا الان في وضعيه عدم الاتصال يرجـى المراسلة لاحقـا 💤 ️**",
+                f"**- انا الان في وضعيه عدم الاتصال يرجـى المراسلة لاحقـا 💤 ️**",
                 5,
             )
         AFK_.media_afk = await reply.forward_to(BOTLOG_CHATID)
         if AFK_.reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"**⌯︙امـر السليـب 💤 :** \n **تم تشغيل الوضع بسبب مع السبب ️** {AFK_.reason}",
+                f"**- امـر السليـب 💤 :** \n **تم تشغيل الوضع بسبب مع السبب ️** {AFK_.reason}",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"**⌯︙امـر السليـب 💤 :** \n **تم تشغيل الامر بدون ذكـر السبب ❕**",
+                f"**- امـر السليـب 💤 :** \n **تم تشغيل الامر بدون ذكـر السبب ❕**",
             )
+
+CMD_HELP.update(
+    {
+    "السليب": "\n.سليب <السبب(اختياري)\nلتشغيل وضع عدم الاتصال وضع السليب\n\n.سليب_ميديا <بالرد ؏ صورة>\n نفس امر السليب لكن يظهر لك صورة قم بالرد على الصورة"
+    }
+)

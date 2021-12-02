@@ -7,7 +7,7 @@ import heroku3
 import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
-
+#
 from userbot import HEROKU_APP, UPSTREAM_REPO_URL, jmthon
 
 from ..Config import Config
@@ -20,7 +20,6 @@ from ..sql_helper.global_collection import (
 )
 from ..sql_helper.globals import delgvar
 
-plugin_category = "tools"
 cmdhd = Config.COMMAND_HAND_LER
 
 LOGS = logging.getLogger(__name__)
@@ -65,7 +64,7 @@ async def gen_chlog(repo, diff):
 
 async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
-        f"**⌯︙قام مطورين السورس بتحديث جمثون**\n⌯︙**التـغييرات\n** {changelog}"
+        f"**قام مطورين السورس بتحديث جمثون**\n**التـغييرات\n** {changelog}"
     )
     if len(changelog_str) > 4096:
         await event.edit("`Changelog is too big, view the file to see it.`")
@@ -107,7 +106,7 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     jasme = await event.edit(
-        "** ⌯︙تم تحديث سورس جمثون بنجاح انتظر قليلا سوف نخبرك بعد اعادة التشغيل !**"
+        "**-  تم تحديث سورس جمثون بنجاح انتظر قليلا سوف نخبرك بعد اعادة التشغيل !**"
     )
     await event.client.reload(jasme)
 
@@ -183,28 +182,12 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         pass
 
 
-@jmthon.ar_cmd(
-    pattern="تحديث(| الان)?$",
-    command=("تحديث", plugin_category),
-    info={
-        "header": "To update userbot.",
-        "description": "I recommend you to do update deploy atlest once a week.",
-        "options": {
-            "now": "Will update bot but requirements doesnt update.",
-            "deploy": "Bot will update completly with requirements also.",
-        },
-        "usage": [
-            "{tr}update",
-            "{tr}تحديث الان",
-            "{tr}update deploy",
-        ],
-    },
-)
+@jmthon.on(admin_cmd(pattern="تحديث(| الان)?$"))
 async def upstream(event):
     "To check if the bot is up to date and update if specified"
     conf = event.pattern_match.group(1).strip()
     event = await edit_or_reply(
-        event, "**⌯︙يـتـم البـحـث عـن تـحديثـات سـورس جـمـثـون انـتـظـر**"
+        event, "**⌔∮ يـتـم البـحـث عـن تـحديثـات سـورس جـمـثـون انـتـظـر**"
     )
     off_repo = UPSTREAM_REPO_URL
     force_update = False
@@ -257,20 +240,28 @@ async def upstream(event):
     # Special case for deploy
     if changelog == "" and not force_update:
         await event.edit(
-            "**⌯︙سورس جمثون محدث الى اخر اصدار **\n"
+            "**⌔∮ سورس جمثون محدث الى اخر اصدار **\n"
             f"**قـنـاة سـورس جـمـثـون** : @JMTHON"
         )
         return repo.__del__()
     if conf == "" and not force_update:
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
-        return await event.respond(f"⌔ :  لتحديث سورس جمثون ارسل : `.تحديث الان` ")
+        return await event.respond(f"⌔ : لتحديث سورس جمثون ارسل : `.تحديث الان` ")
 
     if force_update:
         await event.edit(
             "`Force-Syncing to latest stable userbot code, please wait...`"
         )
     if conf == "الان":
-        await event.edit("** ⌯︙جار تحـديـث سـورس جـمثـون انـتـظـر قـليـلا 🔨**")
+        await event.edit("**• جار تحـديـث سـورس جـمثـون انـتـظـر قـليـلا 🔨**")
         await update(event, repo, ups_rem, ac_br)
     return
+
+CMD_HELP.update(
+    {
+        "التحديث": "**`.تحديث`\
+\n للتحقق من وجود تحديثات في السورس ... \
+"
+    }
+)ذ

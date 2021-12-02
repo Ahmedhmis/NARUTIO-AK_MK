@@ -2,7 +2,7 @@ import os
 
 from userbot import jmthon
 from userbot.utils import admin_cmd, sudo_cmd
-
+#jmthon 
 
 @jmthon.on(admin_cmd(pattern=r"قراءة", outgoing=True))
 @jmthon.on(sudo_cmd(pattern=r"قراءة", allow_sudo=True))

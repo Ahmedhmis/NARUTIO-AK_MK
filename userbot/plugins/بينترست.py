@@ -1,20 +1,16 @@
-""" جميع الحقوق محفوظة لسورس جمثون
-لا تصير حدث وتخمط حقويقي شرفك لتلعب بشرفك """
-
 import os
 import re
 
 import requests
 
-from userbot import jmthon
-
+from userbot import CMD_HELP, jmthon
+#
 try:
     from pyquery import PyQuery as pq
 except ModuleNotFoundError:
     os.system("pip3 install pyquery")
     from pyquery import PyQuery as pq
 
-plugin_category = "extra"
 
 
 def get_download_url(link):
@@ -30,12 +26,9 @@ def get_download_url(link):
     return download_url
 
 
-@jmthon.ar_cmd(
-    pattern="بينت?(?:\s|$)([\s\S]*)",
-    command=("بينت", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="بينت?(.*)"))
+@jmthon.on(sudo_cmd(pattern="بينت?(.*)", allow_sudo=True))
 async def _(event):
-    "لتحميل الصور من برنامج بينترست خاص بجمثون فقط"
     R = event.pattern_match.group(1)
     links = re.findall(r"\bhttps?://.*\.\S+", R)
     await event.delete()
@@ -49,3 +42,6 @@ async def _(event):
     RR7PP = get_download_url(R)
     await event.client.send_file(event.chat.id, RR7PP)
     await A.delete()
+
+
+CMD_HELP.update({"بينترست": "**╮•❐ الامـر ⦂** `.بينت` <رابط صورة/فيديو>\nالوظيفة ⦂ يستخدم الامر بكتابته مع رابط الصورة او الفيديو الخاص بموقع بينترست لتحميلها لك"})
