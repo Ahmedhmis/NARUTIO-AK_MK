@@ -1,59 +1,50 @@
-# Copyright (C) 2021 JMTHON TEAM
-# FILES WRITTEN BY  @RR7PP
-
 import asyncio
 
-from userbot import jmthon
+from userbot import CMD_HELP
+from userbot.utils import admin_cmd
 
-from ..core.managers import edit_or_reply
-from ..helpers.utils import _format
-from . import ALIVE_NAME
-
-plugin_category = "fun"
-
-
-@jmthon.ar_cmd(
-    pattern="تهكير$",
-    command=("تهكير", plugin_category),
-    info={
-        "header": "Fun hack animation.",
-        "description": "Reply to user to show hack animation",
-        "note": "This is just for fun. Not real hacking.",
-        "usage": "{tr}hack",
-    },
-)
+#
+@jmthon.on(admin_cmd(pattern=r"(.*)", outgoing=True))
 async def _(event):
-    "Fun hack animation."
-    if event.reply_to_msg_id:
-        reply_message = await event.get_reply_message()
-        idd = reply_message.sender_id
-        if idd == 1694386561:
-            await edit_or_reply(
-                event, "**⌯︙عـذرا لا استـطيع اخـتراق مـطوري اعـتذر او سيقـوم بتهـكيرك**"
-            )
-        else:
-            event = await edit_or_reply(event, "يتـم الاختـراق ..")
-            animation_chars = [
-                "⌯︙تـم الربـط بسـيرفرات الـتهكير الخـاصة",
-                "تـم تحـديد الضحـية",
-                "**تهكيـر**... 0%\n▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ",
-                "**تهكيـر**... 4%\n█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ",
-                "**تهكيـر**... 8%\n██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ",
-                "**تهكيـر**... 20%\n█████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ",
-                "**تهكيـر**... 36%\n█████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ",
-                "**تهكيـر**... 52%\n█████████████▒▒▒▒▒▒▒▒▒▒▒▒ ",
-                "**تهكيـر**... 84%\n█████████████████████▒▒▒▒ ",
-                "**تهكيـر**... 100%\n████████████████████████ ",
-                f"⌯︙** تـم اخـتراق الضـحية**..\n\nقـم بالـدفع الى {ALIVE_NAME} لعـدم نشـر معلوماتك وصـورك",
-            ]
-            animation_interval = 3
-            animation_ttl = range(11)
-            for i in animation_ttl:
-                await asyncio.sleep(animation_interval)
-                await event.edit(animation_chars[i % 11])
-    else:
-        await edit_or_reply(
-            event,
-            "⌯︙لم يتـم التعـرف على المستـخدم",
-            parse_mode=_format.parse_pre,
-        )
+
+    if event.fwd_from:
+
+        return
+
+    animation_interval = 2
+
+    animation_ttl = range(0, 11)
+
+    input_str = event.pattern_match.group(1)
+
+    if input_str == "تهكير":
+
+        await event.edit(input_str)
+
+        animation_chars = [
+            "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
+            "█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
+            "██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
+            "█████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
+            "█████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
+            "█████████████▒▒▒▒▒▒▒▒▒▒▒▒ `",
+            "█████████████████████▒▒▒▒ `",
+            "█████████████████████████ `",
+            "- تم اختراق الضيحه وارسال جميع معلوماته في الرسائل المحفوظة\n\n فحبيبي اذا تحب اذا تبقى تكمز كل شي يمي\n\n#ترفيه",
+        ]
+
+        for i in animation_ttl:
+
+            await asyncio.sleep(animation_interval)
+
+            await event.edit(animation_chars[i % 11])
+
+
+CMD_HELP.update({"تهكير": ".تهكير \nفقط ارسل الامر الترفيه"})
+
+#  قبل لا تفكر تخمط هذا الملف ترا الملف متعوب عليه لا تخمط واني حذرتك
+# حسب قوانين موقع github https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
+# تنص على انه اي شخص ياخذ الملف بدون ذكر حقوق طبع والنشر سيتم حذف حسابه من قبل صاحب الملف اقتضى التنوي
+# Copyright ©️ 2021 RR9R7 . All Rights Reserved
+# You are free to use this code in any of your project, but you MUST include the following in your README.md (Copy & paste)
+# ##Credits -  (  @RR7PP  - @JMTHON  )

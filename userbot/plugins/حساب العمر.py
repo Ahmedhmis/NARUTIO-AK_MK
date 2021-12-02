@@ -1,12 +1,12 @@
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import jmthon
+from userbot import jmthon, CMD_HELP
 from userbot.utils import sudo_cmd
 
 from ..helpers.utils import reply_id
 
-
+#
 @jmthon.on(admin_cmd(pattern="احسب ?(.*)"))
 @jmthon.on(sudo_cmd(pattern="احسب ?(.*)", allow_sudo=True))
 async def _(event):
@@ -43,3 +43,5 @@ async def _(event):
         else:
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
+
+CMD_HELP.update({"حساب العمر ": "`.احسب <سنة الميلاد>` \nلحساب عمرك بالتفصيل الكامل اكتب الامر مع مواليدك \n مثل : .احسب 2005/8/1"})

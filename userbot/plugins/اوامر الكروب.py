@@ -13,15 +13,17 @@ from telethon.tl.types import (
     UserStatusOnline,
     UserStatusRecently,
 )
-
+#
 from userbot import jmthon
+from telethon.tl.types import ChannelParticipantsKicked
+
+from userbot import jmthon, CMD_HELP
 
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
 from . import BOTLOG, BOTLOG_CHATID
 
 LOGS = logging.getLogger(__name__)
-plugin_category = "admin"
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
@@ -44,9 +46,7 @@ async def ban_user(chat_id, i, rights):
         return False, str(exc)
 
 
-from telethon.tl.types import ChannelParticipantsKicked
 
-from userbot import jmthon
 
 
 @jmthon.on(admin_cmd(pattern="حذف المحظورين(?: |$)(.*)"))
@@ -67,29 +67,16 @@ async def _(event):
     await event.edit("**- تم حذف جميع المحظورين بنجاح ✓**")
 
 
-@jmthon.ar_cmd(
-    pattern="تفليش بالطرد$",
-    command=("تفليش بالطرد", plugin_category),
-    info={
-        "header": "To kick everyone from group.",
-        "description": "To Kick all from the group except admins.",
-        "usage": [
-            "{tr}kickall",
-        ],
-    },
-    groups_only=True,
-    require_admin=True,
-)
+@jmthon.on(admin_cmd(pattern="تفليش بالطرد$"))
 async def _(event):
-    "To kick everyone from group."
     result = await event.client(
         functions.channels.GetParticipantRequest(event.chat_id, event.client.uid)
     )
     if not result.participant.admin_rights.ban_users:
         return await edit_or_reply(
-            event, "⌯︙- يبدو انه ليس لديك صلاحيات الحذف في هذه الدردشة "
+            event, "- يبدو انه ليس لديك صلاحيات الحذف في هذه الدردشة "
         )
-    catevent = await edit_or_reply(event, "`يتم الطرد انتظر قليلا `")
+    catevent = await edit_or_reply(event, "-")
     admins = await event.client.get_participants(
         event.chat_id, filter=ChannelParticipantsAdmins
     )
@@ -106,32 +93,19 @@ async def _(event):
         except Exception as e:
             LOGS.info(str(e))
             await sleep(0.5)
-    await catevent.edit(f"⌯︙ تم بنجاح طرد من {total} الاعضاء ✅ ")
+    await catevent.edit(f" تم بنجاح طرد من {total} الاعضاء ✅ ")
 
 
-@jmthon.ar_cmd(
-    pattern="تفليش بالحظر$",
-    command=("تفليش بالحظر", plugin_category),
-    info={
-        "header": "To ban everyone from group.",
-        "description": "To ban all from the group except admins.",
-        "usage": [
-            "{tr}kickall",
-        ],
-    },
-    groups_only=True,
-    require_admin=True,
-)
+@jmthon.on(admin_cmd(pattern="تفليش بالحظر$"))
 async def _(event):
-    "To ban everyone from group."
     result = await event.client(
         functions.channels.GetParticipantRequest(event.chat_id, event.client.uid)
     )
     if not result:
         return await edit_or_reply(
-            event, "⌯︙- يبدو انه ليس لديك صلاحيات الحذف في هذه الدردشة ❕"
+            event, "- يبدو انه ليس لديك صلاحيات الحذف في هذه الدردشة ❕"
         )
-    catevent = await edit_or_reply(event, "`جار الحظر انتظر قليلا  `")
+    catevent = await edit_or_reply(event, "-")
     admins = await event.client.get_participants(
         event.chat_id, filter=ChannelParticipantsAdmins
     )
@@ -149,34 +123,24 @@ async def _(event):
                 await sleep(0.5)  # for avoid any flood waits !!-> do not remove it
         except Exception as e:
             LOGS.info(str(e))
-    await catevent.edit(f"⌯︙ تم بنجاح حظر من {total} الاعضاء ✅ ")
+    await catevent.edit(f" تم بنجاح حظر من {total} الاعضاء ✅ ")
 
 
-@jmthon.ar_cmd(
-    pattern="المحذوفين ?([\s\S]*)",
-    command=("المحذوفين", plugin_category),
-    info={
-        "header": "To check deleted accounts and clean",
-        "description": "Searches for deleted accounts in a group. Use `.zombies clean` to remove deleted accounts from the group.",
-        "usage": ["{tr}zombies", "{tr}zombies clean"],
-    },
-    groups_only=True,
-)
+@jmthon.on(admin_cmd(pattern="المحذوفين ?([\s\S]*)"))
 async def rm_deletedacc(show):
-    "To check deleted accounts and clean"
     con = show.pattern_match.group(1).lower()
     del_u = 0
-    del_status = "⌯︙ لم يتم العثور على حسابات متروكه او حسابات محذوفة الكروب نظيف"
+    del_status = " لم يتم العثور على حسابات متروكه او حسابات محذوفة الكروب نظيف"
     if con != "اطردهم":
         event = await edit_or_reply(
-            show, "⌯︙ يتم البحث عن حسابات محذوفة او حسابات متروكة انتظر"
+            show, " يتم البحث عن حسابات محذوفة او حسابات متروكة انتظر"
         )
         async for user in show.client.iter_participants(show.chat_id):
             if user.deleted:
                 del_u += 1
                 await sleep(0.5)
         if del_u > 0:
-            del_status = f"⌯︙تـم العـثور : **{del_u}** على حسابات محذوفة ومتروكه في هذه الدردشه من الحسابات في هذه الدردشه,\
+            del_status = f"تـم العـثور : **{del_u}** على حسابات محذوفة ومتروكه في هذه الدردشه من الحسابات في هذه الدردشه,\
                            \nاطردهم بواسطه  `.المحذوفين اطردهم`"
         await event.edit(del_status)
         return
@@ -186,7 +150,7 @@ async def rm_deletedacc(show):
     if not admin and not creator:
         await edit_delete(show, "أنا لسـت مشرف هـنا", 5)
         return
-    event = await edit_or_reply(show, "⌯︙جاري حذف الحسابات المحذوفة")
+    event = await edit_or_reply(show, "جاري حذف الحسابات المحذوفة")
     del_u = 0
     del_a = 0
     async for user in show.client.iter_participants(show.chat_id):
@@ -196,7 +160,7 @@ async def rm_deletedacc(show):
                 await sleep(0.5)
                 del_u += 1
             except ChatAdminRequiredError:
-                await edit_delete(event, "⌯︙ ليس لدي صلاحيات الحظر هنا", 5)
+                await edit_delete(event, " ليس لدي صلاحيات الحظر هنا", 5)
                 return
             except UserAdminInvalidError:
                 del_a += 1
@@ -215,20 +179,8 @@ async def rm_deletedacc(show):
         )
 
 
-@jmthon.ar_cmd(
-    pattern="احصائيات الاعضاء ?([\s\S]*)",
-    command=("احصائيات الاعضاء", plugin_category),
-    info={
-        "header": "To get breif summary of members in the group",
-        "description": "To get breif summary of members in the group . Need to add some features in future.",
-        "usage": [
-            "{tr}ikuck",
-        ],
-    },
-    groups_only=True,
-)
-async def _(event):  # sourcery no-metrics
-    "To get breif summary of members in the group.1 11"
+@jmthon.on(admin_cmd(pattern="احصائيات الاعضاء ?([\s\S]*)"))
+async def _(event):
     input_str = event.pattern_match.group(1)
     if input_str:
         chat = await event.get_chat()
@@ -261,7 +213,7 @@ async def _(event):  # sourcery no-metrics
                 if status:
                     c += 1
                 else:
-                    await et.edit("⌯︙ احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
+                    await et.edit(" احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
                     e.append(str(e))
                     break
         if isinstance(i.status, UserStatusLastMonth):
@@ -271,7 +223,7 @@ async def _(event):  # sourcery no-metrics
                 if status:
                     c += 1
                 else:
-                    await et.edit("⌯︙ احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
+                    await et.edit(" احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
                     e.append(str(e))
                     break
         if isinstance(i.status, UserStatusLastWeek):
@@ -281,7 +233,7 @@ async def _(event):  # sourcery no-metrics
                 if status:
                     c += 1
                 else:
-                    await et.edit("⌯︙ احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
+                    await et.edit(" احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
                     e.append(str(e))
                     break
         if isinstance(i.status, UserStatusOffline):
@@ -289,7 +241,7 @@ async def _(event):  # sourcery no-metrics
             if "o" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await et.edit("⌯︙ احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
+                    await et.edit(" احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
                     e.append(str(e))
                     break
                 else:
@@ -299,7 +251,7 @@ async def _(event):  # sourcery no-metrics
             if "q" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await et.edit("⌯︙ احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
+                    await et.edit(" احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
                     e.append(str(e))
                     break
                 else:
@@ -311,7 +263,7 @@ async def _(event):  # sourcery no-metrics
                 if status:
                     c += 1
                 else:
-                    await et.edit("⌯︙احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
+                    await et.edit("احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
                     e.append(str(e))
                     break
         if i.bot:
@@ -319,7 +271,7 @@ async def _(event):  # sourcery no-metrics
             if "b" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await et.edit("⌯︙احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
+                    await et.edit("احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
                     e.append(str(e))
                     break
                 else:
@@ -331,7 +283,7 @@ async def _(event):  # sourcery no-metrics
                 if status:
                     c += 1
                 else:
-                    await et.edit("⌯︙احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
+                    await et.edit("احتاج الى صلاحيات المشرفين للقيام بهذا الامر ")
                     e.append(str(e))
         elif i.status is None:
             n += 1
@@ -362,3 +314,13 @@ async def _(event):  # sourcery no-metrics
             p, d, y, m, w, o, q, r, b, n
         )
     )
+
+
+CMD_HELP.update(
+    {
+        "اوامر الكروب": "•  .حذف المحظورين\n فقط اكتب الامر لحذف جميع المحظورين في المجموعه\
+         \n\n• .المحذوفين\n   اكتب الامر لعرض الحسابات المحذوفه في المجموعة وحذفها\
+         \n\n• .احصائيات الاعضاء\n      لعرض احصائيات الاعضاء في المجموعه يجب ان تكون مشرف\
+         \n\n• .تفليش\n    فقط اكتب الامر لتفليذ المجموعه يجب ان تكون مشرف"
+    }
+)

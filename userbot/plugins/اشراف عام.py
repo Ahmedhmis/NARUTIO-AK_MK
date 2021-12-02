@@ -1,12 +1,11 @@
 #    جميع الحقوق محفوظة كتابة وتعديل  :   @RR7PP
 #    اخمط مع ذكر الحقوق غيرها انت مطور فاشل
-marculs = 9
 from telethon.tl.functions.channels import EditAdminRequest
 from telethon.tl.types import ChatAdminRights, MessageEntityMentionName
 
-from userbot import jmthon
+from userbot import jmthon, CMD_HELP
 from userbot.utils import admin_cmd
-
+#
 
 async def get_full_user(event):
     args = event.pattern_match.group(1).split(":", 1)
@@ -161,3 +160,12 @@ async def gben(userbot):
     return await razan.edit(
         f"**▾∮المستخدم [{user.first_name}](tg://user?id={user.id})\n▾∮ تم تنزيله في : {i} من المجموعات**"
     )
+
+CMD_HELP.update(
+    {
+        "اشراف عام": ".ارفع <بالرد ؏ شخص>\
+\n لرفع المستخدم مشرف في جميع المجموعات ... \
+\n\n.نزل <بالرد ؏ شخص>\n بالرد على الشخص لتنزيله من رتبة المشرف في جميع المجموعات"
+
+    }
+)

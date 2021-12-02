@@ -1,7 +1,7 @@
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import jmthon
-
+from userbot import jmthon, CMD_HELP
+#
 
 @jmthon.on(admin_cmd(pattern="تيكتوك(?: |$)(.*)"))
 async def _(event):
@@ -33,3 +33,8 @@ async def _(event):
 
 
 # TELEGRAM   :  @Jmthon  - @RR7PP
+CMD_HELP.update(
+    {
+        "تيكتوك":".تيكتوك <رابط فيد>\n اكتب الامر مع رابط الفيديو من تيكتوك لتحميله وارساله لك" 
+        }
+        )

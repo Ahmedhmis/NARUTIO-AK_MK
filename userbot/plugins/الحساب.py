@@ -7,8 +7,8 @@ from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
 from telethon.tl.functions.photos import DeletePhotosRequest, GetUserPhotosRequest
 from telethon.tl.types import InputPhoto
 
-from userbot import jmthon
-
+from userbot import jmthon, CMD_HELP
+#
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
 
@@ -97,16 +97,24 @@ async def remove_profilepic(delpfp):
         for sep in pfplist.photos
     ]
     await delpfp.client(DeletePhotosRequest(id=input_photos))
-    await edit_delete(delpfp, f"تم حذف صـورة من صور حسابك بنجاح ✅")
+    await edit_delete(delpfp, f"⌔∮ تم حذف صـورة من صور حسابك بنجاح ✅")
 
 
 @jmthon.on(admin_cmd(pattern="انشائي$"))
 async def _(event):
-    "To list all public channels and groups."
     result = await event.client(GetAdminedPublicChannelsRequest())
-    output_str = "⌯︙جميع القنوات والمجموعات التي قمت بأنشائها :\n"
+    output_str = "- جميع القنوات والمجموعات التي قمت بأنشائها :\n"
     output_str += "".join(
         f" - {channel_obj.title} @{channel_obj.username} \n"
         for channel_obj in result.chats
     )
     await edit_or_reply(event, output_str)
+CMD_HELP.update(
+    {
+        "الحساب": "• .وضع بايو <بايو>\n     لتغيير البايو الخاص بحسابك اكتب الامر وبايو\
+         \n\n• .وضع اسم <اسم>\n     لتغيير اسم حسابك الشخصي اكتب الامر واسمك\
+         \n\n• .وضع صورة (رد على صورة)\n      لتغيير صورة حسابك الشخصية بالرد على الصورة التي تريدها\
+         \n\n• .انشائي\n فقط ارسل الامر لعرض القنوات والمجموعات التي انشئتها\
+         \n\n• .حذف صورة <عدد>(اختياري العدد)\n    لحذف صورة لك حسابك الشخصي اذا ما حددت عدد راح يحذف صورة فقط"
+    }
+)
