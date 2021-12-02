@@ -52,17 +52,17 @@ async def cmd_list(event):
                 await event.edit(string)
         elif input_str:
             if input_str in CMD_LIST:
-                string = "الأوامر المتاحة فـي:  {}** \n\n".format(input_str)
+                string = "الأوامر المتاحة فـي:  {} \n\n".format(input_str)
                 if input_str in CMD_HELP:
                     for i in CMD_HELP[input_str]:
                         string += i
-                    string += "\n\n**@jmthon**"
+                    string += "\n\n@jmthon"
                     await event.edit(string)
                 else:
                     for i in CMD_LIST[input_str]:
                         string += "    " + i
                         string += "\n"
-                    string += "\n**@jmthon**"
+                    string += "\n@jmthon"
                     await event.edit(string)
             else:
                 await event.edit(input_str + " ليس في قائمة الاوامر تاكد جيدا من الامر")
