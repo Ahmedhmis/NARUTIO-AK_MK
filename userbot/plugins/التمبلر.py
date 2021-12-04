@@ -102,36 +102,6 @@ async def _(event):
     return await event.edit(f"{arj}")
 
 
-@jmthon.ar_cmd(
-    pattern="المتحركات$",
-    command=("المتحركات", plugin_category),
-)
-async def _(event):
-    await event.edit(
-        "قائمة اوامر المتـحركات :\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n ⌯︙اختر احدى هذه القوائم\n\n- ( `.متحركات كيوت` ) \n- ( `.متحركات ساد` )\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JMTHON"
-    )
-
-
-@jmthon.ar_cmd(
-    pattern="متحركات ساد$",
-    command=("متحركات ساد", plugin_category),
-)
-async def _(event):
-    await event.edit(
-        "قائمة اوامر متحـرات سـاد :\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n ⌯︙اختر احدى هذه القوائم\n\n- ( `.س1` ) \n- ( `.س2` )   \n- (`.س3`)\n- ( `.س4`) \n- ( `.س5` ) \n- ( `.س6` )\n- ( `.س7` )\n- ( `.س8` )\n- ( `.س9` )\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JMTHON"
-    )
-
-
-@jmthon.ar_cmd(
-    pattern="متحركات كيوت$",
-    command=("متحركات كيوت", plugin_category),
-)
-async def _(event):
-    await event.edit(
-        "قائمة اوامر متحـرات كيـوت :\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n ⌯︙اختر احدى هذه القوائم\n\n- ( `.ك1` ) \n- ( `.ك2` )   \n- (`.ك3`)\n- ( `.ك4`) \n- ( `.ك5` ) \n- ( `.ك6` )\n- ( `.ك7` )\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JMTHON"
-    )
-
-
 # by ~ @RR9R7
 @jmthon.ar_cmd(
     pattern="اشهر مزغرفة$",
