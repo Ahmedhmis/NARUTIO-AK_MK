@@ -18,7 +18,7 @@ gifrz_10 = "https://t.me/GiFO8/14"
 gifrz_11 = "https://t.me/GiFO8/15"
 gifrz_12 = "https://t.me/GiFO8/16"
 
-ROZ = (
+ROZG = (
     "- [𝖩𝖬𝖳𝖧𝖮𝖭 𝖴𝖲𝖤𝖱𝖡𝖮T - 𝖠𝖭𝖨𝖬𝖤 𝖦𝖨𝖥](t.me/Jmthon) \n\n"
     "**⌔∮ قائـمه المتحـركات :**\n\n"
     "- `.و1`\n"
