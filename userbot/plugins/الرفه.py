@@ -22,7 +22,7 @@ async def permalink(mention):
         mention, f"- نسبة الرجولة لـ [{muh}](tg://user?id={user.id}) هـي {sos} 🥵🖤"
     )
 
-@jmthon.on(admin_cmd(pattern="رفع حيوان?: |$)(.*)"))
+@jmthon.on(admin_cmd(pattern="رفع حيوان(?: |$)(.*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -34,7 +34,7 @@ async def permalink(mention):
         mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه حيوان 🐏"
     )
 
-@jmthon.on(admin_cmd(pattern="رفع بزون?: |$)(.*)"))
+@jmthon.on(admin_cmd(pattern="رفع بزون(?: |$)(.*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -46,7 +46,7 @@ async def permalink(mention):
         mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه بزون 🐈"
     )
 
-@jmthon.on(admin_cmd(pattern="رفع زاحف?: |$)(.*)"))
+@jmthon.on(admin_cmd(pattern="رفع زاحف(?: |$)(.*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
