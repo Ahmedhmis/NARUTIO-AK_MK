@@ -14,55 +14,23 @@ from ..sql_helper.locks_sql import get_locks, is_locked, update_lock
 from ..utils import is_admin
 from . import BOTLOG, get_user_from_event
 
-plugin_category = "admin"
 
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RR7PP
 
 
-@jmthon.ar_cmd(
-    pattern="قفل (.*)",
-    command=("قفل", plugin_category),
-    info={
-        "header": "To lock the given permission for entire group.",
-        "description": "Db options will lock for admins also,",
-        "api options": {
-            "msg": "To lock messages",
-            "media": "To lock media like videos/photo",
-            "sticker": "To lock stickers",
-            "gif": "To lock gif.",
-            "preview": "To lock link previews.",
-            "game": "To lock games",
-            "inline": "To lock using inline bots",
-            "poll": "To lock sending polls.",
-            "invite": "To lock add users permission",
-            "pin": "To lock pin permission for users",
-            "info": "To lock changing group description",
-            "all": "To lock above all options",
-        },
-        "db options": {
-            "bots": "To lock adding bots by users",
-            "commands": "To lock users using commands",
-            "email": "To lock sending emails",
-            "forward": "To lock forwording messages for group",
-            "url": "To lock sending links to group",
-        },
-        "usage": "{tr}lock <permission>",
-    },
-    groups_only=True,
-    require_admin=True,
-)
+@jmthon.on(admin_cmd(pattern="قفل (.*)"))
 async def _(event):  # sourcery no-metrics
     "To lock the given permission for entire group."
     input_str = event.pattern_match.group(1)
     peer_id = event.chat_id
     if not event.is_group:
-        return await edit_delete(event, "⌯︙هذه ليست مجموعة لقفل بعض الصلاحيات")
+        return await edit_delete(event, "⌔∮ هذه ليست مجموعة لقفل بعض الصلاحيات")
     chat_per = (await event.get_chat()).default_banned_rights
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
     if input_str in (("bots", "commands", "email", "forward", "url")):
         update_lock(peer_id, input_str, True)
-        await edit_or_reply(event, "⌯︙تـم قفل {} بنجـاح ✅".format(input_str))
+        await edit_or_reply(event, "⌔∮ تـم قفل {} بنجـاح ✅".format(input_str))
     else:
         msg = chat_per.send_messages
         media = chat_per.send_media
@@ -78,21 +46,21 @@ async def _(event):  # sourcery no-metrics
         if input_str == "الدردشه":
             if msg:
                 return await edit_delete(
-                    event, "⌯︙المجموعه بالتأكيد مقفولة من الرسائل "
+                    event, "⌔∮ المجموعه بالتأكيد مقفولة من الرسائل "
                 )
             msg = True
             locktype = "الدردشه"
         elif input_str == "الوسائط":
             if media:
                 return await edit_delete(
-                    event, "⌯︙المجمـوعة بالتأكـيد مقفولة من الوسائط ⌁"
+                    event, "⌔∮ المجمـوعة بالتأكـيد مقفولة من الوسائط ⌁"
                 )
             media = True
             locktype = "الوسائط"
         elif input_str == "الملصقات":
             if sticker:
                 return await edit_delete(
-                    event, "⌯︙المجمـوعة بالتأكـيد مقفولة من الملصقات ⌁"
+                    event, "⌔∮ المجمـوعة بالتأكـيد مقفولة من الملصقات ⌁"
                 )
             sticker = True
             locktype = "الملصقات"
@@ -106,21 +74,21 @@ async def _(event):  # sourcery no-metrics
         elif input_str == "المتحركه":
             if gif:
                 return await edit_delete(
-                    event, "⌯︙المجمـوعة بالتأكـيد مقفولة من المتحركه ⌁"
+                    event, "⌔∮ المجمـوعة بالتأكـيد مقفولة من المتحركه ⌁"
                 )
             gif = True
             locktype = "المتحركه"
         elif input_str == "الالعاب":
             if gamee:
                 return await edit_delete(
-                    event, "⌯︙المجمـوعة بالتأكـيد مقفولة من الالعاب ⌁"
+                    event, "⌔∮ المجمـوعة بالتأكـيد مقفولة من الالعاب ⌁"
                 )
             gamee = True
             locktype = "الالعاب"
         elif input_str == "الانلاين":
             if ainline:
                 return await edit_delete(
-                    event, "⌯︙المجمـوعة بالتأكـيد مقفولة من الانلاين ⌁"
+                    event, "⌔∮ المجمـوعة بالتأكـيد مقفولة من الانلاين ⌁"
                 )
             ainline = True
             locktype = "الانلاين"
@@ -208,38 +176,7 @@ async def _(event):  # sourcery no-metrics
             )
 
 
-@jmthon.ar_cmd(
-    pattern="فتح (.*)",
-    command=("فتح", plugin_category),
-    info={
-        "header": "To unlock the given permission for entire group.",
-        "description": "Db options/api options will unlock only if they are locked.",
-        "api options": {
-            "msg": "To unlock messages",
-            "media": "To unlock media like videos/photo",
-            "sticker": "To unlock stickers",
-            "gif": "To unlock gif.",
-            "preview": "To unlock link previews.",
-            "game": "To unlock games",
-            "inline": "To unlock using inline bots",
-            "poll": "To unlock sending polls.",
-            "invite": "To unlock add users permission",
-            "pin": "To unlock pin permission for users",
-            "info": "To unlock changing group description",
-            "all": "To unlock above all options",
-        },
-        "db options": {
-            "bots": "To unlock adding bots by users",
-            "commands": "To unlock users using commands",
-            "email": "To unlock sending emails",
-            "forward": "To unlock forwording messages for group",
-            "url": "To unlock sending links to group",
-        },
-        "usage": "{tr}unlock <permission>",
-    },
-    groups_only=True,
-    require_admin=True,
-)
+@jmthon.on(admin_cmd(pattern="فتح (.*)")) 
 async def _(event):  # sourcery no-metrics
     "To unlock the given permission for entire group."
     input_str = event.pattern_match.group(1)
@@ -393,15 +330,7 @@ async def _(event):  # sourcery no-metrics
 
 
 # BY  @RR7PP  -  @UUNZZ
-@jmthon.ar_cmd(
-    pattern="الصلاحيات$",
-    command=("الصلاحيات", plugin_category),
-    info={
-        "header": "To see the active locks in the current group",
-        "usage": "{tr}locks",
-    },
-    groups_only=True,
-)
+@jmthon.on(admin_cmd(pattern="الصلاحيات$")) 
 async def _(event):  # sourcery no-metrics
     "To see the active locks in the current group"
     res = ""
