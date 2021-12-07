@@ -17,30 +17,8 @@ NO_PERM = "**▾↫ عذرًا احتاج الى صلاحيات! **"
 # for ~ @Jmthon ~ @RR7PP
 
 
-@jmthon.ar_cmd(
-    pattern="قيده(?:\s|$)([\s\S]*)",
-    command=("قيده", plugin_category),
-    info={
-        "header": "لتقيـيـد المسـتخـدم من ارسـال الـرسـائل مـؤقـتا",
-        "description": "لـكتـم مستخـدم مؤقـتا مـع وقـت انـت تحـدده.",
-        "وحـدات الـوقت": {
-            "s": "بالثـواني",
-            "m": "بالـدقائق",
-            "h": "بالـساعات",
-            "d": "بالأيـام",
-            "w": "بالأسـابيع",
-        },
-        "usage": [
-            "{tr}قيده <ايدي/معرف/بالرد> <وقت>",
-            "{tr}قيده <ايدي/معرف/بالرد> <وقت> <سبب>",
-        ],
-        "examples": ["{tr}قيده لتـقـييـد المسـتخـدم لـمدة يومـين"],
-    },
-    groups_only=True,
-    require_admin=True,
-)
-async def tmuter(event):  # sourcery no-metrics
-    "لتقييد شخص من المجموعة بشكل مؤقت"
+@jmthon.on(admin_cmd(pattern="قيده(?:\s|$)([\s\S]*)"))
+async def tmuter(event):
     catevent = await edit_or_reply(event, "**▾∮ جاري** `┆تقييد┆` **المستخدم ✘ ...**")
     user, reason = await get_user_from_event(event, catevent)
     if not user:
@@ -96,29 +74,8 @@ async def tmuter(event):  # sourcery no-metrics
         return await catevent.edit(f"`{str(e)}`")
 
 
-@jmthon.ar_cmd(
-    pattern="احظره(?:\s|$)([\s\S]*)",
-    command=("احظره", plugin_category),
-    info={
-        "header": "لحـظر المسـتخـدم من مجمـوعة معيـنة مـؤقـتا",
-        "description": "لحـظر مستخـدم مؤقـتا مـع وقـت انـت تحـدده.",
-        "وحـدات الـوقت": {
-            "s": "بالثـواني",
-            "m": "بالـدقائق",
-            "h": "بالـساعات",
-            "d": "بالأيـام",
-            "w": "بالأسـابيع",
-        },
-        "usage": [
-            "{tr}حظره <ايدي/معرف/بالرد> <وقت>",
-            "{tr}حظره <ايدي/معرف/بالرد> <وقت> <سبب>",
-        ],
-        "examples": ["{tr}حظره لحـظر المسـتخـدم لـمدة يومـين"],
-    },
-    groups_only=True,
-    require_admin=True,
-)
-async def tban(event):  # sourcery no-metrics
+@jmthon.on(admin_cmd(pattern="احظره(?:\s|$)([\s\S]*)"))
+async def tban(event):
     "To ban a person for specific time"
     catevent = await edit_or_reply(event, "`banning....`")
     user, reason = await get_user_from_event(event, catevent)

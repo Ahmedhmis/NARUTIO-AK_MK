@@ -20,21 +20,13 @@ from . import get_user_from_event
 plugin_category = "fun"
 
 
-@jmthon.ar_cmd(
-    pattern="تقليد$",
-    command=("تقليد", plugin_category),
-    info={
-        "header": "To repeat messages sent by the user.",
-        "description": "Reply to user with this cmd so from then his every text and sticker messages will be repeated back to him.",
-        "usage": "{tr}addecho <reply>",
-    },
-)
+@jmthon.on(admin_cmd(pattern="تقليد$"))
 async def echo(event):
     "To echo the user messages"
     if event.reply_to_msg_id is None:
-        return await edit_or_reply(event, "⌯︙يرجى الرد على الشخص الذي تـريد ازعاجه ❕")
-    catevent = await edit_or_reply(event, "⌯︙يتم تفعيل هذا الامر انتظر قليلا ❕")
-    user, rank = await get_user_from_event(event, catevent, nogroup=True)
+        return await edit_or_reply(event, "⌔∮ يرجى الرد على الشخص الذي تـريد ازعاجه ،")
+    jmthonevent = await edit_or_reply(event, "⌔∮ يتم تفعيل هذا الامر انتظر قليلا ،")
+    user, rank = await get_user_from_event(event, jmthonevent, nogroup=True)
     if not user:
         return
     reply_msg = await event.get_reply_message()
@@ -50,33 +42,25 @@ async def echo(event):
     user_username = user.username
     if is_echo(chat_id, user_id):
         return await edit_or_reply(
-            event, "⌯︙تـم تفـعيل وضـع الازعاج على الشخص بنجاح ✅ "
+            event, "⌔∮ تـم تفـعيل وضـع الازعاج على الشخص بنجاح ✓"
         )
     try:
         addecho(chat_id, user_id, chat_name, user_name, user_username, chat_type)
     except Exception as e:
-        await edit_delete(catevent, f"⌯︙Error:\n`{str(e)}`")
+        await edit_delete(jmthonevent, f"⌔∮ خطأ\n`{str(e)}`")
     else:
         await edit_or_reply(
-            catevent,
-            "⌯︙تـم تفعـيل امـر التقليد علـى هذا الشـخص\n ⌯︙سـيتم تقليـد جميع رسائلـه هـنا",
+            jmthonevent,
+            "**⌔∮ تـم تفعـيل امـر التقليد علـى هذا الشـخص\nسـيتم تقليـد جميع رسائلـه هـنا**",
         )
 
 
-@jmthon.ar_cmd(
-    pattern="مسح المقلدهم",
-    command=("مسح المقلدهم", plugin_category),
-    info={
-        "header": "To stop repeating paticular user messages.",
-        "description": "Reply to user with this cmd to stop repeating his messages back.",
-        "usage": "{tr}rmecho <reply>",
-    },
-)
+@jmthon.on(admin_cmd(pattern="مسح المقلدهم"))
 async def echo(event):
     "To stop echoing the user messages"
     if event.reply_to_msg_id is None:
         return await edit_or_reply(
-            event, "Reply to a User's message to echo his messages"
+            event, "يجب الرد على رسالة المستخدم لتقليد رسائله، "
         )
     reply_msg = await event.get_reply_message()
     user_id = reply_msg.sender_id
@@ -85,26 +69,14 @@ async def echo(event):
         try:
             remove_echo(chat_id, user_id)
         except Exception as e:
-            await edit_delete(catevent, f"⌯︙Error:\n`{str(e)}`")
+            await edit_delete(catevent, f"⌔∮ خطأ:\n`{str(e)}`")
         else:
             await edit_or_reply(event, "Echo has been stopped for the user")
     else:
         await edit_or_reply(event, "The user is not activated with echo")
 
 
-@jmthon.ar_cmd(
-    pattern="الغاء التقليد( -a)?",
-    command=("الغاء التقليد", plugin_category),
-    info={
-        "header": "To delete echo in this chat.",
-        "description": "To stop echoing users messages of all enabled users in the paticular chat or all chats.",
-        "flags": {"a": "To stop in all chats"},
-        "usage": [
-            "{tr}delecho",
-            "{tr}delecho -a",
-        ],
-    },
-)
+@jmthon.on(admin_cmd(pattern="الغاء التقليد( -a)?"))
 async def echo(event):
     "To delete echo in this chat."
     input_str = event.pattern_match.group(1)
@@ -130,20 +102,7 @@ async def echo(event):
             await edit_or_reply(event, "⌯︙تـم ايقاف وضـع الازعاج على الجميع بنجاح ✅")
 
 
-@jmthon.ar_cmd(
-    pattern="المقلدهم( -a)?$",
-    command=("المقلدهم", plugin_category),
-    info={
-        "header": "shows the list of users for whom you enabled echo",
-        "flags": {
-            "a": "To list echoed users in all chats",
-        },
-        "usage": [
-            "{tr}listecho",
-            "{tr}listecho -a",
-        ],
-    },
-)
+@jmthon.on(admin_cmd(pattern="المقلدهم( -a)?$"))
 async def echo(event):  # sourcery no-metrics
     "To list all users on who you enabled echoing."
     input_str = event.pattern_match.group(1)
