@@ -8,8 +8,8 @@ plugin_category = "extra"
 
 # by ~ @RR9R7
 @jmthon.ar_cmd(
-    pattern="م17$",
-    command=("م17", plugin_category),
+    pattern="م20$",
+    command=("م20", plugin_category),
 )
 async def _(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
