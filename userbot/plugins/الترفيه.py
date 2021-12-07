@@ -8,10 +8,9 @@
 # ===============================================================
 
 import random
-#
 from Jmthon.razan.resources.strings import *
 from userbot import jmthon, CMD_HELP
-
+from userbot import jmthon
 from ..core.managers import edit_or_reply
 from ..helpers import get_user_from_event
 
@@ -28,53 +27,6 @@ async def permalink(mention):
         mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه بڪلبك 🖤 "
     )
 
-@jmthon.on(admin_cmd(pattern="رفع ساقط?: |$)(.*)"))
-async def permalink(mention):
-    user, custom = await get_user_from_event(mention)
-    if not user:
-        return
-    if custom:
-        return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(
-        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه ساقط 😹✌"
-    )
-
-@jmthon.on(admin_cmd(pattern="رفع حيوان?: |$)(.*)"))
-async def permalink(mention):
-    user, custom = await get_user_from_event(mention)
-    if not user:
-        return
-    if custom:
-        return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(
-        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه حيوان 🐏"
-    )
-
-@jmthon.on(admin_cmd(pattern="رفع بزون?: |$)(.*)"))
-async def permalink(mention):
-    user, custom = await get_user_from_event(mention)
-    if not user:
-        return
-    if custom:
-        return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(
-        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه بزون 🐈"
-    )
-
-@jmthon.on(admin_cmd(pattern="رفع زاحف?: |$)(.*)"))
-async def permalink(mention):
-    user, custom = await get_user_from_event(mention)
-    if not user:
-        return
-    if custom:
-        return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(
-        mention, f"- المستخدم [{tag}](tg://user?id={user.id}) \n- تـم رفعـه زاحف 🐍💞"
-    )
 
 @jmthon.on(admin_cmd(pattern="رفع زوجي(?: |$)(.*)"))
 async def permalink(mention):
@@ -201,23 +153,6 @@ async def permalink(mention):
         mention, f"- نسبة الانوثة لـ [{muh}](tg://user?id={user.id}) هـي {sos} 🥵🖤"
     )
 
-@jmthon.on(admin_cmd(pattern="نسبة الرجولة(?: |$)(.*)"))
-async def permalink(mention):
-    user, custom = await get_user_from_event(mention)
-    if not user:
-        return
-    if user.id == 1715051616:
-        return await edit_or_reply(mention, f"**100%**")
-    if user.id == 1694386561:
-        return await edit_or_reply(mention, f"**100%**")
-    if user.id == 2034443585:
-        return await edit_or_reply(mention, f"**100%**")
-    muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    sos = random.choice(kz)
-    await edit_or_reply(
-        mention, f"- نسبة الرجولة لـ [{muh}](tg://user?id={user.id}) هـي {sos} 🥵🖤"
-    )
-
 
 @jmthon.on(admin_cmd(pattern="نسبة الغباء(?: |$)(.*)"))
 async def permalink(mention):
@@ -285,4 +220,3 @@ async def permalink(mention):
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     rzona = random.choice(osfroz)
     await edit_or_reply(mention, f"{rzona}")
-
