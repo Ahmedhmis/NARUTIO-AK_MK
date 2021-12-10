@@ -17,7 +17,7 @@ from . import BOTLOG, get_user_from_event
 
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RR7PP
-
+plugin_category = "admin" 
 
 @jmthon.on(admin_cmd(pattern="قفل (.*)"))
 async def _(event):  # sourcery no-metrics
