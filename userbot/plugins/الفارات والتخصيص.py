@@ -222,3 +222,4 @@ async def custom_catuserbot(event):
             f" ⌯︙حـذف فـار\
                     \n**{input_str}** تـم حـذف هـذا الفـار",
         )
+#Jmthon
