@@ -35,7 +35,7 @@ digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a
 RR7PP = Config.TIME_JM or ""
 
 normzltext = "1234567890"
-namerzfont = ["1‌","‌2‌","‌3‌","‌4‌","‌5‌","‌6‌","‌7‌","‌8‌","‌9‌","‌0‌"]  #For @RR9R7  :)
+namerzfont = Config.TI_FN or "𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵𝟬"
 
 async def digitalpicloop():
     DIGITALPICSTART = gvarstatus("digitalpic") == "true"
