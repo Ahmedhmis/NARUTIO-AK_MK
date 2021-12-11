@@ -99,6 +99,10 @@ async def autobio_loop():
     while AUTOBIOSTART:
         time.strftime("%d.%m.%Y")
         HI = time.strftime("%I:%M")
+        for normal in HI:
+            if normal in normzltext:
+                namefont = namerzfont[normzltext.index(normal)]
+                HI = HI.replace(normal, namefont)
         bio = f"{DEFAULTUSERBIO} {HI}"
         LOGS.info(bio)
         try:
