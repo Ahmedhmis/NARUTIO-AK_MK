@@ -245,9 +245,10 @@ async def verifyLoggerGroup():
                 + str(e)
             )
     else:
-        descript = "⌯︙لا تحذف هذه المجموعة أو تغير إلى مجموعة (إذا قمت بتغيير المجموعة ، فسيتم فقد كل شيئ .)"
+        descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - @jmthon"
+        photobt = await jmthon.upload_file(file="Jmthon/razan/resources/start/Jmthonp.jpg")
         _, groupid = await create_supergroup(
-            "مجموعه بوت جمثون الخاص بك", jmthon, Config.TG_BOT_USERNAME, descript
+            "مجموعة اشعارات جمثون ", jmthon, Config.TG_BOT_USERNAME, descript, photobt
         )
         addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
         print("⌯︙تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات.")
@@ -274,8 +275,9 @@ async def verifyLoggerGroup():
             )
     else:
         descript = "⌯︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @JMTHON"
+        photobt = await jmthon.upload_file(file="Jmthon/razan/resources/start/Jmthonp.jpg")
         _, groupid = await create_supergroup(
-            "كـروب تخزين الخاص", jmthon, Config.TG_BOT_USERNAME, descript
+            "مجموعة التخزين", jmthon, Config.TG_BOT_USERNAME, descript, photobt
         )
         addgvar("PM_LOGGER_GROUP_ID", groupid)
         print("تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه.")
