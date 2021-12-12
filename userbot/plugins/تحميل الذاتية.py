@@ -8,7 +8,7 @@
 from userbot import *
 #
 
-@jmthon.on(admin_cmd(pattern="جلب الصورة"))
+@jmthon.on(admin_cmd(pattern="(جلب الصورة|ذاتية)"))
 async def oho(event):
     if not event.is_reply:
         return await event.edit("يجـب عـليك الـرد عـلى صـورة ذاتيـة الـتدمير")
@@ -24,6 +24,3 @@ async def oho(event):
   """,
     )
     await event.delete()
-
-
-CMD_HELP.update({"تحميل الذاتية": "**╮•❐ الامـر ⦂** `.جلب الصورة` <بالرد>\nالوظيفة ⦂ يستخدم الامر بالرد على الصورة او الفيديو ذاتية التدمير لتحميلها وحفظها في الرسائل المحفوظة"})
