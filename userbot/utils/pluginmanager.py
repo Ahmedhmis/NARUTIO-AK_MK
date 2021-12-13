@@ -131,3 +131,32 @@ def start_assistant(shortname):
         spec.loader.exec_module(mod)
         sys.modules["userbot.plugins.assistant" + shortname] = mod
         print("بنجاح يتم تحميل " + shortname)
+
+def spam_jmthon(shortname):
+    if shortname.startswith("__"):
+        pass
+    elif shortname.endswith("_"):
+        import importlib
+        import sys
+        from pathlib import Path
+
+        path = Path(f"userbot/plugins/Spam/{shortname}.py")
+        name = "userbot.plugins.Spam.{}".format(shortname)
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        print("- بدأ ملفات السبام")
+        print("تم تحميل" + shortname)
+    else:
+        import importlib
+        import sys
+        from pathlib import Path
+
+        path = Path(f"userbot/plugins/Spam/{shortname}.py")
+        name = "userbot.plugins.Spam.{}".format(shortname)
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        mod.tgbot = bot.tgbot
+        spec.loader.exec_module(mod)
+        sys.modules["Spam" + shortname] = mod
+        print("[السبام ] ~ جمثون ~ حفظ  ~" + shortname)
