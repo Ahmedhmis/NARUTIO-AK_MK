@@ -64,7 +64,7 @@ async def spam():
                 shortname = path1.stem
                 start_spam(shortname.replace(".py", ""))
     else:
-        print("- لم يتم تحميل ملفات السبام -)
+        print("- لم يتم تحميل ملفات السبام -") 
 
 async def startup_process():
     check = await ipchange()
