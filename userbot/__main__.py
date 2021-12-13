@@ -22,7 +22,6 @@ from .utils import (
     ipchange,
     load_plugins,
     setup_bot,
-    spam_jmthon,
     startupmessage,
     verifyLoggerGroup,
 )
@@ -50,23 +49,6 @@ class CatCheck:
 
 Catcheck = CatCheck()
 
-spam = os.environ.get("SPAM", None)
-
-
-async def spam():
-    if spam == "ON":
-        import glob
-
-        path = "userbot/plugins/Spam/*.py"
-        files = glob.glob(path)
-        for name in files:
-            with open(name) as f:
-                path1 = Path(f.name)
-                shortname = path1.stem
-                start_spam(shortname.replace(".py", ""))
-    else:
-        print("- لم يتم تحميل ملفات السبام -") 
-
 async def startup_process():
     check = await ipchange()
     if check is not None:
@@ -91,7 +73,6 @@ async def startup_process():
 
 
 jmthon.loop.run_until_complete(startup_process())
-jmthon.loop.run_until_complete(spam())
 jmthon.loop.run_until_complete(autozs())
 jmthon.loop.run_until_complete(autojo())
 
