@@ -46,7 +46,6 @@ async def start(event):
                 ],
                 [
                     Button.inline("• اوامر البوت •", data="adrz"),
-                    Button.inline("• اخترق حسابات •", data="jm_hhack"),
                 ],
             ],
         )
