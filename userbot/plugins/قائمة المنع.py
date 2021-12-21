@@ -2,8 +2,6 @@ import re
 
 from telethon.utils import get_display_name
 
-from userbot import jmthon, CMD_HELP
-
 from ..core.managers import edit_or_reply
 from ..sql_helper import blacklist_sql as sql
 #
@@ -72,11 +70,3 @@ async def _(event):
     else:
         OUT_JM = "**▾∮ لم تقوم بأضافة اي كلمة الى قائمة المنع\n استخدم `.منع` **<الكلمة> ✎✓**"
     await edit_or_reply(event, OUT_JM)
-
-CMD_HELP.update(
-    {
-        "قائمة المنع": ".منع <كلمة>\n الوظيفة⦂ لمنع ارسال كلمه معينه في الدردشة\
-            \n\n`.القائمة السوداء`\nالوظيفة ⦂ لعرض الكلمات التي تم منعها في الدردشة.\
-            \n\n`.الغاء منع` <كلمة>\nالوظيفة ⦂ للسماح في الكلمة في هذه الدردشة"
-    }
-)
