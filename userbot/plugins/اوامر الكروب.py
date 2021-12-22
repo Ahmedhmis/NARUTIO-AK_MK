@@ -67,45 +67,15 @@ async def _(event):
     await event.edit("**- تم حذف جميع المحظورين بنجاح ✓**")
 
 
-@jmthon.on(admin_cmd(pattern="تفليش بالطرد$"))
+@bot.on(admin_cmd(pattern=r"تفليش (.*)"))
+@bot.on(sudo_cmd(pattern=r"تفليش (.*)", allow_sudo=True))
 async def _(event):
-    result = await event.client(
-        functions.channels.GetParticipantRequest(event.chat_id, event.client.uid)
-    )
-    if not result.participant.admin_rights.ban_users:
-        return await edit_or_reply(
-            event, "- يبدو انه ليس لديك صلاحيات الحذف في هذه الدردشة "
-        )
-    catevent = await edit_or_reply(event, "-")
-    admins = await event.client.get_participants(
-        event.chat_id, filter=ChannelParticipantsAdmins
-    )
-    admins_id = [i.id for i in admins]
-    total = 0
-    success = 0
-    async for user in event.client.iter_participants(event.chat_id):
-        total += 1
-        try:
-            if user.id not in admins_id:
-                await event.client.kick_participant(event.chat_id, user.id)
-                success += 1
-                await sleep(0.5)
-        except Exception as e:
-            LOGS.info(str(e))
-            await sleep(0.5)
-    await catevent.edit(f" تم بنجاح طرد من {total} الاعضاء ✅ ")
-
-
-@jmthon.on(admin_cmd(pattern="تفليش بالحظر$"))
-async def _(event):
-    result = await event.client(
-        functions.channels.GetParticipantRequest(event.chat_id, event.client.uid)
-    )
+    result = await event.client.get_permissions(event.chat_id, event.client.uid)
     if not result:
         return await edit_or_reply(
-            event, "- يبدو انه ليس لديك صلاحيات الحذف في هذه الدردشة ❕"
+            event, "عذر ليس لديك الصلاحيات الكافية لاستخدام هذا الامر"
         )
-    catevent = await edit_or_reply(event, "-")
+    jmthonevent = await edit_or_reply(event, "جـارِ")
     admins = await event.client.get_participants(
         event.chat_id, filter=ChannelParticipantsAdmins
     )
@@ -120,10 +90,13 @@ async def _(event):
                     EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS)
                 )
                 success += 1
-                await sleep(0.5)  # for avoid any flood waits !!-> do not remove it
+                await sleep(0.5)
         except Exception as e:
             LOGS.info(str(e))
-    await catevent.edit(f" تم بنجاح حظر من {total} الاعضاء ✅ ")
+            await sleep(0.5)
+    await jmthonevent.edit(
+        f"- تم بنجاح التفليش  {success} من {total} الاعضاء"
+    )
 
 
 @jmthon.on(admin_cmd(pattern="المحذوفين ?([\s\S]*)"))
