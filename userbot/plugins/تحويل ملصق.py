@@ -1,12 +1,11 @@
-"""QuotLy: Avaible commands: .تحويل
-"""
+
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-
+from userbot import jmthon
 from userbot.utils import admin_cmd
-#
 
-@borg.on(admin_cmd(pattern="تحويل م ?(.*)"))
+
+@jmthon.on(admin_cmd(pattern="تحويل لملصق ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -42,7 +41,3 @@ async def _(event):
 
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RR7PP
-CMD_HELP.update(
-    {
-        "تحويل ملصق":".تحويل م\n بالرد على الرسالة لتحويلها الى ملصق بأسم حسابك" 
-        })
