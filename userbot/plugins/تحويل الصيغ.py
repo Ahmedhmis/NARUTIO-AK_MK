@@ -205,17 +205,24 @@ async def _(event):
 # Copyright  By  @JMTHON  © 2021
 # WRITE BY  @RR7PP
 
-@jmthon.on(admin_cmd(pattern="تحويل متحركة ?(.*)"))
-@jmthon.on(sudo_cmd(pattern="تحويل متحركة ?(.*)", allow_sudo=True))
+
+@jmthon.on(admin_cmd(pattern="تحويل متحركة (?: |$)(.*)"))
 async def _(event):
     if event.fwd_from:
         return
     input_str = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
-    if event.reply_to_msg_id:
+    if event.reply_to_msg_id and not event.pattern_match.group(1):
         reply_to_id = await event.get_reply_message()
+        reply_to_id = str(reply_to_id.message)
+    else:
+        reply_to_id = str(event.pattern_match.group(1))
+    if not reply_message.media:
+        return await edit_or_reply(
+            event, "يستخدم الامر بالرد على فيديو بـ  `.تحويل متحركة`"
+        )
     chat = "@VideoToGifConverterBot"
-    rzevent = await edit_or_reply(event, "**جـارِ التحـويل 🤍...**")
+    rzevent = await edit_or_reply(event, "**- جـارِ التحـويا انتـظر ...**")
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -225,10 +232,13 @@ async def _(event):
             response = await response
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await rzevent.edit("رجاءا الغي حظر @VideoToGifConverterBot")
+            await rzevent.edit(
+                "**- تحـقق من انـك لم تقـم بحظر البوت @VideoToGifConverterBot .. ثم اعـد استخدام الامـر ..**"
+            )
             return
         if response.text.startswith("I can't find that"):
-            await rzevent.edit("-")
+            await rzevent.edit("**-**")
         else:
             await rzevent.delete()
             await event.client.send_message(event.chat_id, response.message)
+        
