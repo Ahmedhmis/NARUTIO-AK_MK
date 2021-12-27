@@ -2,7 +2,7 @@ import random
 import time
 from datetime import datetime
 from platform import python_version
-
+import re
 from telethon import version
 from telethon.errors.rpcerrorlist import (
     MediaEmptyError,
@@ -11,7 +11,7 @@ from telethon.errors.rpcerrorlist import (
 )
 
 from userbot import JMVERSION, StartTime, jmthon
-
+from​ ..​Config​ ​import​ ​Config
 from ..core.managers import edit_or_reply
 from ..helpers.functions import check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
@@ -33,12 +33,15 @@ async def amireallyalive(event):
     EMOJI = gvarstatus("ALIVE_EMOJI") or "  - "
     ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "** بـوت جـمثـون يعـمل بنـجـاح **"
     RR7_IMG = gvarstatus("ALIVE_PIC")
+    ​botme​ ​=​ ​Config​.​TG_BOT_USERNAME
+    ​timen ​=​ ​time​.​strftime​(​"%I:%M"​)
     jmthon_caption = gvarstatus("ALIVE_TEMPLATE") or temp
     caption = jmthon_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,
         EMOJI=EMOJI,
         mention=mention,
         uptime=uptime,
+        TM=timen,
         telever=version.__version__,
         jmver=JMVERSION,
         pyver=python_version(),
@@ -70,8 +73,9 @@ temp = """- {ALIVE_TEXT}
 **{EMOJI} قاعدۿ البيانات :** تعمل بنـجاح
 **{EMOJI} أصـدار التـيليثون :** `{telever}`
 **{EMOJI} أصـدار جـمثون :** `{jmver}`
+**{EMOJI} الوقت الحالي:** `{timen}` 
+**{EMOJI} معرف بوتك:**{botme}
 **{EMOJI} أصدار البـايثون :** `{pyver}`
-**{EMOJI} الوقـت :** `{uptime}`
 **{EMOJI} المسـتخدم:** {mention}"""
 
 
