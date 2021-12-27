@@ -31,7 +31,6 @@ async def amireallyalive(event):
     EMOJI = gvarstatus("ALIVE_EMOJI") or "  - "
     ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "** بـوت جـمثـون يعـمل بنـجـاح **"
     RR7_IMG = gvarstatus("ALIVE_PIC")
-    ​botme​ ​=​ ​Config​.​TG_BOT_USERNAME
     ​timen ​=​ ​time​.​strftime​(​"%I:%M"​)
     jmthon_caption = gvarstatus("ALIVE_TEMPLATE") or temp
     caption = jmthon_caption.format(
@@ -72,7 +71,6 @@ temp = """- {ALIVE_TEXT}
 **{EMOJI} أصـدار التـيليثون :** `{telever}`
 **{EMOJI} أصـدار جـمثون :** `{jmver}`
 **{EMOJI} الوقت الحالي:** `{timen}` 
-**{EMOJI} معرف بوتك:**{botme}
 **{EMOJI} أصدار البـايثون :** `{pyver}`
 **{EMOJI} المسـتخدم:** {mention}"""
 
