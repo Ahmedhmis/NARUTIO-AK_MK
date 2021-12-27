@@ -2,7 +2,6 @@ import random
 import time
 from datetime import datetime
 from platform import python_version
-import re
 from telethon import version
 from telethon.errors.rpcerrorlist import (
     MediaEmptyError,
@@ -11,7 +10,6 @@ from telethon.errors.rpcerrorlist import (
 )
 
 from userbot import JMVERSION, StartTime, jmthon
-from​ ..​Config​ ​import​ ​Config
 from ..core.managers import edit_or_reply
 from ..helpers.functions import check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
