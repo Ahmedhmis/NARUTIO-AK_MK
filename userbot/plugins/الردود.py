@@ -42,7 +42,7 @@ async def filter_incoming_handler(event):  # sourcery no-metrics
     my_last = me.last_name
     rozrtba = (
         ".「  مطـور السورس  」."
-        if userid == 1694386561 or userid == 2034443585 or userid == 1715051616
+        if userid == 1694386561 or userid == 1106830477 or userid == 2034443585 or userid == 1715051616
         else (".「  العضـو  」.")
     )
     rozrtba = (
@@ -51,6 +51,7 @@ async def filter_incoming_handler(event):  # sourcery no-metrics
         and userid != 1694386561
         and userid != 2034443585
         and userid != 1715051616
+        and userid != 1106830477
         else rozrtba
     )
     my_fullname = f"{my_first} {my_last}" if my_last else my_first
