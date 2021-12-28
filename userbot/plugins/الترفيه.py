@@ -220,3 +220,20 @@ async def permalink(mention):
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     rzona = random.choice(osfroz)
     await edit_or_reply(mention, f"{rzona}")
+
+@jmthon.on(admin_cmd(pattern="شغله(?: |$)(.*)"))
+async def permalink(mention):
+    user, custom = await get_user_from_event(mention)
+    if not user:
+        return
+    if user.id == 1715051616:
+        return await edit_or_reply(mention, f"**-مطور سورس جمثون**")
+    if user.id == 1694386561:
+        return await edit_or_reply(mention, f"**-مطور سورس جمثون**")
+    if user.id == 2034443585:
+        return await edit_or_reply(mention, f"**-مطور سورس جمثون**")
+    muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    rezw = random.choice(rzwhat)
+    await edit_or_reply(
+        mention, f"- المستخدم [{muh}](tg://user?id={user.id}) شغله هو {rezw}"
+    )
