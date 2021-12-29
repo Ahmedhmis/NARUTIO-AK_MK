@@ -8,6 +8,7 @@ from os import remove
 import emoji as catemoji
 from PIL import Image
 from telethon.tl import functions, types
+from telethon.utils import get_input_document
 from telethon.tl.functions.messages import GetStickerSetRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from telethon.tl.types import (
@@ -370,173 +371,46 @@ async def kang(args):
                 )
 
 
-@jmthon.ar_cmd(
-    pattern="حزمة(?:\s|$)([\s\S]*)",
-    command=("حزمة", plugin_category),
-    info={
-        "header": "To kang entire sticker sticker.",
-        "description": "Kang's the entire sticker pack of replied sticker to the specified pack",
-        "usage": "{tr}pkang [number]",
-    },
-)
-async def pack_kang(event):  # sourcery no-metrics
-    "To kang entire sticker sticker."
-    user = await event.client.get_me()
-    if user.username:
-        username = user.username
+@jmthon.on(admin_cmd(pattern="حزمة"))
+async def jmthonpkg(_):
+    roz = await _.get_reply_message()
+    if not roz:
+        return await edit_or_reply(_, "**- يجب عليك الرد على حزمة  .**")
+    if len(_.text) > 9:
+        _packname = _.text.split(" ", maxsplit=1)[1]
     else:
-        try:
-            user.first_name.encode("utf-8").decode("ascii")
-            username = user.first_name
-        except UnicodeDecodeError:
-            username = f"cat_{user.id}"
-    photo = None
-    userid = user.id
-    is_anim = False
-    emoji = None
-    reply = await event.get_reply_message()
-    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    if not reply or media_type(reply) is None or media_type(reply) != "Sticker":
-        return await edit_delete(
-            event, "**⌯︙يجب الرد على الملصق لإرسال جميع الملصقات في تلك الحزمة**"
-        )
-    try:
-        stickerset_attr = reply.document.attributes[1]
-        catevent = await edit_or_reply(
-            event, "**يتم إحضار تفاصيل حزمة الملصقات ، انتظر**"
-        )
-    except BaseException:
-        return await edit_delete(event, "هاذا ليس ملصق قم بالرد ع الملصق ⌔︙", 5)
-    try:
-        get_stickerset = await event.client(
-            GetStickerSetRequest(
-                InputStickerSetID(
-                    id=stickerset_attr.stickerset.id,
-                    access_hash=stickerset_attr.stickerset.access_hash,
-                )
-            )
-        )
-    except Exception:
-        return await edit_delete(
-            catevent,
-            "أعتقد أن هذا الملصق ليس من أي حزمة. لذا ، لا أستطيع أخذ هذا الملصق الى",
-        )
-    kangst = 1
-    reqd_sticker_set = await event.client(
+        _packname = f"{_.sender_id}"
+    _id = roz.media.document.attributes[1].stickerset.id
+    _hash = roz.media.document.attributes[1].stickerset.access_hash
+    _get_stiks = await _.client(
         functions.messages.GetStickerSetRequest(
-            stickerset=types.InputStickerSetShortName(
-                short_name=f"{get_stickerset.set.short_name}"
-            )
+            stickerset=types.InputStickerSetID(id=_id, access_hash=_hash)
         )
     )
-    noofst = get_stickerset.set.count
-    blablapacks = []
-    blablapacknames = []
-    pack = None
-    for message in reqd_sticker_set.documents:
-        if "image" in message.mime_type.split("/"):
-            await edit_or_reply(
-                catevent,
-                f"**جاري اخذ حزمة الملصقات هذه . عملية الاستنساخ هي** : {kangst}/{noofst}",
+    stiks = []
+    for i in _get_stiks.documents:
+        jmt = get_input_document(i)
+        stiks.append(
+            types.InputStickerSetItem(
+                document=jmt,
+                emoji=(i.attributes[1]).alt,
             )
-            photo = io.BytesIO()
-            await event.client.download_file(message, photo)
-            if (
-                DocumentAttributeFilename(file_name="sticker.webp")
-                in message.attributes
-            ):
-                emoji = message.attributes[1].alt
-        elif "tgsticker" in message.mime_type:
-            await edit_or_reply(
-                catevent,
-                f"**جاري اخذ حزمة الملصقات هذه . عملية الاستنساخ هي** : {kangst}/{noofst}",
-            )
-            await event.client.download_file(message, "AnimatedSticker.tgs")
-            attributes = message.attributes
-            for attribute in attributes:
-                if isinstance(attribute, DocumentAttributeSticker):
-                    emoji = attribute.alt
-            is_anim = True
-            photo = 1
-        else:
-            await edit_delete(catevent, "** الملف غير مدعوم**")
-            return
-        if photo:
-            splat = ("".join(event.text.split(maxsplit=1)[1:])).split()
-            emoji = emoji or "🖤"
-            if pack is None:
-                pack = 1
-                if len(splat) == 1:
-                    pack = splat[0]
-                elif len(splat) > 1:
-                    return await edit_delete(
-                        catevent,
-                        "**𖥻 عذرا لا يمكن استخدام الاسم المعطى للحزمة أو لا توجد حزمة بهذا الاسم**",
-                    )
-            try:
-                cat = Get(cat)
-                await event.client(cat)
-            except BaseException:
-                pass
-            packnick = pack_nick(username, pack, is_anim)
-            packname = pack_name(userid, pack, is_anim)
-            cmd = "/newpack"
-            stfile = io.BytesIO()
-            if is_anim:
-                cmd = "/newanimated"
-            else:
-                image = await resize_photo(photo)
-                stfile.name = "sticker.png"
-                image.save(stfile, "PNG")
-            response = urllib.request.urlopen(
-                urllib.request.Request(f"http://t.me/addstickers/{packname}")
-            )
-            htmlstr = response.read().decode("utf8").split("\n")
-            if (
-                "  A <strong>Telegram</strong> user has created the <strong>Sticker&nbsp;Set</strong>."
-                in htmlstr
-            ):
-                async with event.client.conversation("@Stickers") as conv:
-                    pack, RR7PP_PACK = await newpacksticker(
-                        catevent,
-                        conv,
-                        cmd,
-                        event,
-                        pack,
-                        packnick,
-                        stfile,
-                        emoji,
-                        packname,
-                        is_anim,
-                        pkang=True,
-                    )
-            else:
-                async with event.client.conversation("@Stickers") as conv:
-                    pack, RR7PP_PACK = await add_to_pack(
-                        catevent,
-                        conv,
-                        event,
-                        packname,
-                        pack,
-                        userid,
-                        username,
-                        is_anim,
-                        stfile,
-                        emoji,
-                        cmd,
-                        pkang=True,
-                    )
-            if RR7PP_PACK not in blablapacks:
-                blablapacks.append(RR7PP_PACK)
-                blablapacknames.append(pack)
-        kangst += 1
-        await asyncio.sleep(2)
-    result = "** حزمة هذا الملصق تم اخذها لحزمت ملصقاتك التالية **:`\n"
-    for i in enumerate(blablapacks):
-        result += (
-            f"  •  [pack {blablapacknames[i[0]]}](t.me/addstickers/{blablapacks[i[0]]})"
         )
-    await catevent.edit(result)
+    try:
+        short_name = (await _.client(SuggestShortNameRequest(_packname))).short_name
+        jmthon_roz = await bot(
+            functions.stickers.CreateStickerSetRequest(
+                user_id=_.sender_id,
+                title=_packname,
+                short_name=f"u{short_name}_by_{bot.me.username}",
+                stickers=stiks,
+            )
+        )
+    except BaseException as er:
+        LOGS.exception(er)
+        return await edit_or_reply(_, str(er))
+    await edit_or_reply(
+        _, f"**- تم اخذ الحزمه بنجاح ✓ \nالحزمه  → [اضغط هنا](https://t.me/addstickers/{jmthon_roz.set.short_name})")
 
 
 @jmthon.ar_cmd(
