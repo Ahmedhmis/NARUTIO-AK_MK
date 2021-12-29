@@ -4,7 +4,7 @@ import io
 import math
 import urllib.request
 from os import remove
-
+from telethon.tl.functions.stickers import SuggestShortNameRequest
 import emoji as catemoji
 from PIL import Image
 from telethon.tl import functions, types
