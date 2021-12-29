@@ -42,6 +42,7 @@ pylast
 pymediainfo
 PyMuPDF
 pySmartDL
+pendulum
 python-barcode
 python-dotenv
 pytz
