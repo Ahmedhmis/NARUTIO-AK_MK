@@ -9,7 +9,6 @@ cowpy
 dataclasses
 DateTime
 emoji
-carbonnow
 fonttools
 geopy
 gitpython
@@ -43,7 +42,6 @@ pylast
 pymediainfo
 PyMuPDF
 pySmartDL
-pendulum
 python-barcode
 python-dotenv
 pytz
