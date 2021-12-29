@@ -9,6 +9,7 @@ cowpy
 dataclasses
 DateTime
 emoji
+carbonnow
 fonttools
 geopy
 gitpython
