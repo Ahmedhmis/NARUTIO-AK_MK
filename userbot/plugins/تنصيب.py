@@ -13,7 +13,7 @@ thumb_image_path = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg"
 
 
 @jmthon.ar_cmd(
-    pattern="تنصيب$",
+    pattern="ins$",
     command=("تنصيب", plugin_category),
     info={
         "header": "To install an external plugin.",
@@ -49,7 +49,7 @@ async def install(event):
 
 
 @jmthon.ar_cmd(
-    pattern="الغاء التنصيب (.*)",
+    pattern="uni (.*)",
     command=("الغاء التنصيب", plugin_category),
     info={
         "header": "To uninstall a plugin temporarily.",
