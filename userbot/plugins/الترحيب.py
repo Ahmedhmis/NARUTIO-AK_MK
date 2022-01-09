@@ -14,10 +14,14 @@ from ..sql_helper.welcome_sql import (
     update_previous_welcome,
 )
 from . import BOTLOG_CHATID
+from ..Config import Config
 
 LOGS = logging.getLogger(__name__)
 
-#
+WELCOME_CMD = Config.WELCOME_CMD or "ترحيب"
+WELCOMES_CMD = Config.WELCOMES_CMD or "الترحيبات"
+DELWELCOME_CMD = Config.DELWELCOME_CMD or "حذف الترحيبات"
+
 @jmthon.on(events.ChatAction)
 async def _(event):  # sourcery no-metrics
     cws = get_current_welcome_settings(event.chat_id)
@@ -83,7 +87,7 @@ async def _(event):  # sourcery no-metrics
         update_previous_welcome(event.chat_id, current_message.id)
 
 
-@jmthon.on(admin_cmd(pattern="ترحيب(?:\s|$)([\s\S]*)"))
+@jmthon.on(admin_cmd(pattern=f"{WELCOME_CMD}(?:\s|$)([\s\S]*)"))
 async def save_welcome(event):
     msg = await event.get_reply_message()
     string = "".join(event.text.split(maxsplit=1)[1:])
@@ -117,7 +121,7 @@ async def save_welcome(event):
     await edit_or_reply("- هـنالك خـطأ في وضـع الـترحيب هـنا")
 
 
-@jmthon.on(admin_cmd(pattern="حذف الترحيبات$"))
+@jmthon.on(admin_cmd(pattern=f"{DELWELCOME_CMD}$"))
 async def del_welcome(event):
     "To turn off welcome message"
     if rm_welcome_setting(event.chat_id) is True:
@@ -126,7 +130,7 @@ async def del_welcome(event):
         await edit_or_reply(event, "- ليـس لـدي اي تـرحيبـات بالأصـل")
 
 
-@jmthon.on(admin_cmd(pattern="الترحيبات$"))
+@jmthon.on(admin_cmd(pattern=f"{WELCOMES_CMD}$"))
 async def show_welcome(event):
     cws = get_current_welcome_settings(event.chat_id)
     if not cws:
@@ -164,13 +168,3 @@ async def del_welcome(event):
             event, "**- من الآن لن يتم حذف رسالة الترحيب السابقة **"
         )
     await edit_delete(event, "**- تم إيقافها بالفعل ✓")
-
-CMD_HELP.update({"الترحيب": ".ترحيب <ترحيبك> \nاكتب الامر مع ترحيبك وارسله في المجموعه لتفعيل ترحيب \
-\n.حذف الترحببات \
-\nاكتب الامر مع لحذف جميع الترحيبات\
-\n\n.الترحيبات\
-\n اكتب الامر في المجموعه لعرض الترحيبات المضافة\
-\n\n.الترحيب السابق ايقاف\
-\n لايقاف اخر ترحيب وضعته"
-}
-)
