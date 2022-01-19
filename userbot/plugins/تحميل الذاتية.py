@@ -7,8 +7,11 @@
 
 from userbot import *
 from userbot import jmthon
+from ..Config import Config
 
-@jmthon.on(admin_cmd(pattern="(جلب الصورة|احا)"))
+JMTHON_CMD = Config.SCPIC_CMD or "جلب الصورة" or "احا"
+
+@jmthon.on(admin_cmd(pattern=f"{JMTHON_CMD}"))
 async def dato(event):
     if not event.is_reply:
         return await event.edit("..")
