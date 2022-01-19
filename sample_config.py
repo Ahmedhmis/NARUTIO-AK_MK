@@ -41,6 +41,9 @@ class Config(object):
     # تعديلي
     
     BOTE_CMD = os.environ.get("BOTE_CMD", None)
+    LPRIV_CMD = os.environ.get("LPRIV_CMD", None)
+    LGROUP_CMD = os.environ.get("LGROUP_CMD", None)
+    
     SLEEPM_CMD = os.environ.get("SLEEPM_CMD", None)
     ADD_CMD = os.environ.get("ADD_CMD", None)
     SLEEP_CMD = os.environ.get("SLEEP_CMD", None)
