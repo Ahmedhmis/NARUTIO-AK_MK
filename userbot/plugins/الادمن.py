@@ -32,6 +32,7 @@ from telethon.tl.types import (  # جميع الحقوق محفوظة ديربا
 from datetime import datetime
 from userbot import BOTLOG, BOTLOG_CHATID, jmthon
 from userbot.utils import admin_cmd, errors_handler
+import userbot.sql_helper.gban_sql_helper as gban_sql
 
 from ..core.logger import logging
 from ..core.managers import edit_delete
