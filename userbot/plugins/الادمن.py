@@ -6,7 +6,7 @@ import asyncio
 # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
 from asyncio import sleep
 from os import remove
-
+from userbot.helpers.functions.utils import admin_groups
 from telethon.errors import (
     BadRequestError,
     ChatAdminRequiredError,
