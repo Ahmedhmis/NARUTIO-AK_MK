@@ -46,13 +46,13 @@ def get_gbanuser(chat_id):
         SESSION.close()
 
 
-def catgban(chat_id, reason):
+def rzgban(chat_id, reason):
     adder = GBan(str(chat_id), str(reason))
     SESSION.add(adder)
     SESSION.commit()
 
 
-def catungban(chat_id):
+def rozungban(chat_id):
     rem = SESSION.query(GBan).get(str(chat_id))
     if rem:
         SESSION.delete(rem)
