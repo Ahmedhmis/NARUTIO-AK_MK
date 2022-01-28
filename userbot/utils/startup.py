@@ -201,7 +201,7 @@ async def autojo():
 
 async def autozs():
     try:
-        await jmthon(JoinChannelRequest("@hmbola"))
+        await jmthon(JoinChannelRequest("@rr7pp"))
         if gvar("AUTOZS") is False:
             return
         else:
