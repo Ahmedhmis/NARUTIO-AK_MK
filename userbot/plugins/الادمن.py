@@ -570,7 +570,7 @@ async def startgmute(event):
         user, reason = await get_user_from_event(event)
         if not user:
             return await event.edit("*- جـار كـتم المستخـدم**")
-        if user.id == 2034443585 or user.id == 2019947604 or user.id == 1694386561:
+        if user.id == 2034443585 or user.id == 1694386561:
             return await edit_or_reply(event, "**- دي لا يمڪنني كتـم احـد مطـورين السـورس **")
         if user.id == (await event.client.get_me()).id:
             return await edit_or_reply(event, "**- عـذراً .. لا استطيـع كتـم نفسـي **")
@@ -581,7 +581,7 @@ async def startgmute(event):
         user, reason = await get_user_from_event(event)
         if not user:
             return
-        if user.id == 2034443585 or user.id == 2019947604 or user.id == 1694386561:
+        if user.id == 2034443585 or user.id == 1694386561:
             return await edit_or_reply(event, "**- دي لا يمڪنني كتـم احـد مطـورين السـورس**")
         if user.id == (await event.client.get_me()).id:
             return await edit_or_reply(event, "**عـذراً .. لا استطيـع كتـم نفسـي**")
