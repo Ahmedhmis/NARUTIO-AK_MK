@@ -27,7 +27,7 @@ vlist = [
     "MAX_FLOOD_IN_PMS",
     "START_TEXT",
     "TIME_JM",
-    "TEX_PIC",
+    "TEX_SEC",
     "CUSTOM_STICKER_PACKNAME",
 ]
 
@@ -67,10 +67,10 @@ async def bad(event):
         if cmd == "اضف_":
             if not vinfo and vname == "ALIVE_TEMPLATE":
                 return await edit_delete(event, f"تابع @JJOTT")
-            if not vinfo and vname == "TEX_PIC":
+            if not vinfo and vname == "PING_TEXT":
                 return await edit_delete(
                     event,
-                    f"اكـتب الامـر بـشكل صحـيح  :  .اضف_فار TEX_PIC النص الخاص بك",
+                    f"اكـتب الامـر بـشكل صحـيح  :  .اضف_فار PING_TEXT النص الخاص بك",
                 )
             if not vinfo:
                 return await edit_delete(event, f" ⌯︙يـجب وضع القـيمـة الصحـيح اولا**")
