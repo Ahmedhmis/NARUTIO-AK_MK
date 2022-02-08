@@ -27,6 +27,7 @@ vlist = [
     "MAX_FLOOD_IN_PMS",
     "START_TEXT",
     "TIME_JM",
+    "TEX_PIC",
     "CUSTOM_STICKER_PACKNAME",
 ]
 
