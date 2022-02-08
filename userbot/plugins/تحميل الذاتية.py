@@ -8,8 +8,10 @@
 from userbot import *
 from userbot import jmthon
 from ..Config import Config
+from ..sql_helper.globals import gvarstatus
 
 JMTHON_CMD = Config.SCPIC_CMD or "جلب الصورة"
+jmthon_caption = gvarstatus("TEX_PIC") or "..."
 
 @jmthon.on(admin_cmd(pattern=f"{JMTHON_CMD}"))
 async def dato(event):
@@ -26,4 +28,4 @@ async def dato(event):
 - Dev: @RR9R7
   """,
     )
-    await event.edit("احاا")
+    await event.edit(jmthon_caption)
