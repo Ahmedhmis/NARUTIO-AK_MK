@@ -11,7 +11,7 @@ from ..Config import Config
 from ..sql_helper.globals import gvarstatus
 
 JMTHON_CMD = Config.SCPIC_CMD or "جلب الصورة"
-jmthon_caption = gvarstatus("TEX_PIC") or "..."
+jmthon_caption = gvarstatus("TEX_SEC") or "..."
 
 @jmthon.on(admin_cmd(pattern=f"{JMTHON_CMD}"))
 async def dato(event):
