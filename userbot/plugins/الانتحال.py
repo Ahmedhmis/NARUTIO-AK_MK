@@ -4,7 +4,7 @@ import html
 
 from telethon.tl import functions
 from telethon.tl.functions.users import GetFullUserRequest
-#
+from ..Config import Config
 from ..Config import Config
 from . import (
     ALIVE_NAME,
@@ -20,8 +20,10 @@ from . import (
 DEFAULTUSER = str(AUTONAME) if AUTONAME else str(ALIVE_NAME)
 DEFAULTUSERBIO = str(DEFAULT_BIO) if DEFAULT_BIO else "الـحمد لله عـلى كـل شـيء"
 
+CLONE_CMD = Config.CLONE_CMD or "انتحال"
+RETRUN_CMD = Config.RETRUN_CMD or "اعادة"
 
-@jmthon.on(admin_cmd(pattern="انتحال(?:\s|$)([\s\S]*)"))
+@jmthon.on(admin_cmd(pattern=f"{CLONE_CMD}(?:\s|$)([\s\S]*)"))
 async def _(event):
     reply_jmthon, error_i_a = await get_user_from_event(event)
     if reply_jmthon is None:
@@ -54,7 +56,7 @@ async def _(event):
         )
 
 
-@jmthon.on(admin_cmd(pattern="اعادة$"))
+@jmthon.on(admin_cmd(pattern=f"{RETRUN_CMD}$"))
 async def _(event):
     name = f"{DEFAULTUSER}"
     roz = ""
@@ -72,10 +74,3 @@ async def _(event):
         await event.client.send_message(
             BOTLOG_CHATID, f"- تـم اعادة الـحساب الى وضـعه الاصلـي ✓"
         )
-
-CMD_HELP.update(
-    {
-        "الانتحال": "**الامـر⦂** `.انتحال` <بالرد ؏ شخص >\n **الوظيفة⦂** لانتحال حساب المستخدم من اسم وصورة والخ\
-            \n\n`.**الامـر⦂** `.اعادة`\n **الوظيفة⦂** لاعادة حسابك الى وضعه السابق الاصلي"
-    }
-)

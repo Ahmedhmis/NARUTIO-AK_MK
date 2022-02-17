@@ -100,18 +100,7 @@ async def log_tagged_messages(event):
         )
 
 
-@jmthon.ar_cmd(
-    pattern="تخزين الخاص (تشغيل|ايقاف)$",
-    command=("تخزين الخاص", plugin_category),
-    info={
-        "header": "To turn on or turn off logging of Private messages in pmlogger group.",
-        "description": "Set PM_LOGGER_GROUP_ID in vars to work this",
-        "usage": [
-            "{tr}تخزين الخاص تشغيل",
-            "{tr}تخزين الخاص ايقاف",
-        ],
-    },
-)
+@jmthon.on(admin_cmd(pattern="تخزين الخاص (تشغيل|ايقاف)$"))
 async def set_pmlog(event):
     "لتشغـيل او ايقـاف تخـزين رسائل الـخاص"
     input_str = event.pattern_match.group(1)
@@ -136,18 +125,7 @@ async def set_pmlog(event):
         await event.edit("**⌯︙ تـخزين رسـائل الخـاص بالفـعل معـطلة ✅**")
 
 
-@jmthon.ar_cmd(
-    pattern="تخزين الكروبات (تشغيل|ايقاف)$",
-    command=("تخزين الكروبات", plugin_category),
-    info={
-        "header": "To turn on or turn off group tags logging in pmlogger group.",
-        "description": "Set PM_LOGGER_GROUP_ID in vars to work this",
-        "usage": [
-            "{tr}grplog on",
-            "{tr}grplog off",
-        ],
-    },
-)
+@jmthon.on(admin_cmd(pattern="تخزين الكروبات (تشغيل|ايقاف)$"))
 async def set_grplog(event):
     "لتشغـيل او ايقـاف تخـزين رسائل الكروبات"
     input_str = event.pattern_match.group(1)

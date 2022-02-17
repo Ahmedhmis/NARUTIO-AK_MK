@@ -6,9 +6,13 @@ from telethon.errors import (
 from telethon.tl import functions
 from telethon.tl.functions.channels import GetFullChannelRequest
 from telethon.tl.functions.messages import GetFullChatRequest
-#
-from userbot import jmthon, CMD_HELP
+from ..sql_helper.globals import gvarstatus
+from userbot import jmthon
 from userbot.utils import admin_cmd
+
+from ..Config import Config
+
+ADD_CMD = Config.ADD_CMD or "ضيف"
 
 
 async def get_chatinfo(event):
@@ -71,7 +75,7 @@ def user_full_name(user):
 # تخمط اذكر حقوق غيرها انت فرخ و دي 😂
 
 
-@jmthon.on(admin_cmd(pattern=r"ضيف ?(.*)"))
+@jmthon.on(admin_cmd(pattern=f"{ADD_CMD} ?(.*)"))
 async def get_users(event):
     sender = await event.get_sender()
     me = await event.client.get_me()
@@ -111,10 +115,3 @@ async def get_users(event):
     return await roz.edit(
         f"**▾∮اڪتـملت الأضافـة ✅** \n\n• تـم بنجـاح اضافـة `{s}` \n• خـطأ بأضافـة `{f}`"
     )
-
-CMD_HELP.update(
-    {
-        "اضافة": ".ضيف <معرف المجموعه>\
-\n تكتب الامر ومعرف المجموعه الي تريد تسحب منها الاعضاء وترسل بمجموعتك الامر ... \n"
-    }
-)

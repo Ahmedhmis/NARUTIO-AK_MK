@@ -17,8 +17,8 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
         if query.startswith("السورس") and event.query.user_id == bot.uid:
             buttons = [
                 [
-                    Button.url("قنـاة السـورس ⚙️", "https://t.me/JMTHON"),
-                    Button.url("المطـور 👨🏼‍💻", "https://t.me/RR7PP"),
+                    Button.url("قنـاة السـورس ⚙️", "https://t.me/MusicElkeatib"),
+                    Button.url("المطـور 👨🏼‍💻", "https://t.me/SourceRiley"),
                 ]
             ]
             if ROZ_PIC and ROZ_PIC.endswith((".jpg", ".png", "gif", "mp4")):
@@ -55,4 +55,4 @@ async def repo(event):
     await event.delete()
 
 
-# edit by ~ @RR9R7
+

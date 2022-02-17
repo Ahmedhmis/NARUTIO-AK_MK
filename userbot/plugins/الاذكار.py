@@ -5,7 +5,7 @@ from userbot import jmthon
 
 plugin_category = "extra"
 
-# by ~ @RR9R7
+
 @jmthon.ar_cmd(
     pattern="اذكار الصباح",
     command=("اذكار الصباح", plugin_category),
@@ -16,7 +16,7 @@ async def _(event):
         return await event.edit(f"{roze}")
 
 
-# by ~ @RR9R7
+
 @jmthon.ar_cmd(
     pattern="اذكار المساء$",
     command=("اذكار المساء", plugin_category),
@@ -27,7 +27,7 @@ async def _(event):
         return await event.edit(f"{ror}")
 
 
-# by ~ @RR 9R7
+
 @jmthon.ar_cmd(
     pattern="احاديث$",
     command=("احاديث", plugin_category),

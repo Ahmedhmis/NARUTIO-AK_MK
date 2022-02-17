@@ -1,13 +1,16 @@
 from userbot import CMD_HELP
 from userbot import jmthon
+from ..Config import Config
 
+LGROUP_CMD = Config.LGROUP_CMD or "للكروبات"
+LPRIV_CMD = Config.LPRIV_CMD or "للخاص"
 GCAST_BLACKLIST = [
     -1001118102804,
     -1001161919602,
     ]
 #
 
-@jmthon.on(admin_cmd(pattern="للكروبات(?: |$)(.*)"))
+@jmthon.on(admin_cmd(pattern=f"{LGROUP_CMD}(?: |$)(.*)"))
 async def gcast(event):
     jmthon = event.pattern_match.group(1)
     if jmthon:
@@ -33,7 +36,7 @@ async def gcast(event):
         f"**- تم بنجاح الأذاعة الى ** `{done}` **من الدردشات ، خطأ في ارسال الى ** `{er}` **من الدردشات**"
     )
     
-@jmthon.on(admin_cmd(pattern="للخاص(?: |$)(.*)"))
+@jmthon.on(admin_cmd(pattern=f"{LPRIV_CMD}(?: |$)(.*)"))
 async def gucast(event):
     jmthon = event.pattern_match.group(1)
     if jmthon:
@@ -59,11 +62,3 @@ async def gucast(event):
     )
     
     
-CMD_HELP.update(
-    {
-      "الاذاعه": "**الامر: **`.للكروبات`<نص/بالرد ؏ ميديا> \
-        \n  •  **الوظيفة : **لعمل اذاعه في المجموعات لرسالة معينه او تستطيع بالرد على صورة او ملصق او الخ\
-        \n\n **الامر:** `.للخاص <نص/بالرد ؏ ميديا>` \
-        \n •  **الوظيفة  :** لعمل اذاعه لرسالة او صورة بالرد ؏ الشي التريد توسليه اذاعه بالامر "
-    }
-)

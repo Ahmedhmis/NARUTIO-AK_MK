@@ -17,6 +17,7 @@ extractor = URLExtract()
 vlist = [
     "ALIVE_PIC",
     "ALIVE_EMOJI",
+    "TIME_F",
     "ALIVE_TEMPLATE",
     "ALIVE_TEXT",
     "ALLOW_NSFW",
@@ -26,6 +27,7 @@ vlist = [
     "MAX_FLOOD_IN_PMS",
     "START_TEXT",
     "TIME_JM",
+    "TEX_SEC",
     "CUSTOM_STICKER_PACKNAME",
 ]
 
@@ -64,7 +66,7 @@ async def bad(event):
             vname = oldvars[vname]
         if cmd == "اضف_":
             if not vinfo and vname == "ALIVE_TEMPLATE":
-                return await edit_delete(event, f"تابع @JJOTT")
+                return await edit_delete(event, f"تابع @SourceRiley")
             if not vinfo and vname == "PING_TEXT":
                 return await edit_delete(
                     event,
@@ -222,3 +224,4 @@ async def custom_catuserbot(event):
             f" ⌯︙حـذف فـار\
                     \n**{input_str}** تـم حـذف هـذا الفـار",
         )
+#Jmthon

@@ -1,13 +1,4 @@
-#  قبل لا تفكر تخمط هذا الملف ترا الملف متعوب عليه لا تخمط واني حذرتك
-# حسب قوانين موقع github https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
-# تنص على انه اي شخص ياخذ الملف بدون ذكر حقوق طبع والنسر سيتم حذف حسابه من قبل صاحب الملف اقتضى التنوي
-# Copyright ©️ 2021 RR9R7 . All Rights Reserved
-# You are free to use this code in any of your project, but you MUST include the following in your README.md (Copy & paste)
-# ##Credits -  (  @RR7PP  - @JMTHON  )
-#
 
-# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PPimport re
-# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
 
 import re
 
@@ -16,7 +7,7 @@ from telethon.events import CallbackQuery, InlineQuery
 
 from userbot import jmthon
 
-# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
+
 from ..core.decorators import check_owner
 
 CALC = {}
@@ -54,7 +45,7 @@ lst.append([Button.inline("=", data="calc=")])
 async def icalc(e):
     if e.client._bot:
         return await e.reply(
-            "**الحـاسبة العـلمية لسـورس جمثون\n @JMTHON**", buttons=lst
+            "**الحـاسبة العـلمية لسـورس جمثون\n @MusicElkeatib**", buttons=lst
         )
     results = await e.client.inline_query(Config.TG_BOT_USERNAME, "calc")
     await results[0].click(e.chat_id, silent=True, hide_via=True)
@@ -71,15 +62,15 @@ async def inlinecalc(event):
     ) and string == "calc":
         event.builder
         calc = event.builder.article(
-            "Calc", text="**الحـاسبة العـلمية لسـورس جمثون\n @JMTHON**", buttons=lst
+            "Calc", text="**الحـاسبة العـلمية لسـورس جمثون\n @MusicElkeatib**", buttons=lst
         )
         await event.answer([calc])
 
 
-# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
+
 @jmthon.tgbot.on(CallbackQuery(data=re.compile(b"calc(.*)")))
 @check_owner
-async def _(e):  # sourcery no-metrics
+async def _(e):  
     x = (e.data_match.group(1)).decode()
     user = e.query.user_id
     get = None
@@ -87,7 +78,7 @@ async def _(e):  # sourcery no-metrics
         if CALC.get(user):
             CALC.pop(user)
         await e.edit(
-            "**الحـاسبة العـلمية لسـورس جمثون\n @JMTHON**",
+            "**الحـاسبة العـلمية لسـورس جمثون\n @MusicElkeatib**",
             buttons=[Button.inline("افتح مره اخرى", data="recalc")],
         )
     elif x == "C":
@@ -171,10 +162,10 @@ async def _(e):
     tultd = [Button.inline(f"{x}", data=f"calc{x}") for x in m]
     lst = list(zip(tultd[::4], tultd[1::4], tultd[2::4], tultd[3::4]))
     lst.append([Button.inline("=", data="calc=")])
-    await e.edit("**الحـاسبة العـلمية لسـورس جمثون\n @JMTHON**", buttons=lst)
+    await e.edit("**الحـاسبة العـلمية لسـورس جمثون\n @MusicElkeatib**", buttons=lst)
 
 
-# 𝗧𝗲𝗹𝗲𝗚𝗿𝗮𝗠 : @Jmthon  ~ @RR7PP
+
 
 CMD_HELP.update(
     {"الحسابة": ".حاسبة" "\n فقط اكتب الامر لعرض حاسبة علميه تحتاج الى تفعيل وضع الانلاين اولا\n\n"}

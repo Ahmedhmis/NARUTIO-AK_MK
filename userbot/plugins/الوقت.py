@@ -111,8 +111,7 @@ async def time_func(tdata):
         )
 
 
-# كـتابة  @RR7PP
-# تعديل وترتيب  @KiNGBrlin
+
 @jmthon.ar_cmd(
     pattern="الوقت(?:\s|$)([\s\S]*)",
     command=("الوقت", plugin_category),
@@ -126,7 +125,7 @@ async def _(event):
     "To show current time"
     reply_msg_id = await reply_id(event)
     current_time = dt.now().strftime(
-        f"⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡\n⚡JMTHON⚡\n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡\n   {os.path.basename(Config.TZ)}\n  Time: %I:%M:%S \n  Date: %d.%m.%y \n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡"
+        f"⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡\n⚡NARUTO⚡\n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡\n   {os.path.basename(Config.TZ)}\n  Time: %I:%M:%S \n  Date: %d.%m.%y \n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡"
     )
     input_str = event.pattern_match.group(1)
     if input_str:

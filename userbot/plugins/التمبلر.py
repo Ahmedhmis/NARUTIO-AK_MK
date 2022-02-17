@@ -6,10 +6,10 @@ from userbot import jmthon
 
 plugin_category = "extra"
 
-# by ~ @RR9R7
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
-    pattern="م17$",
-    command=("م17", plugin_category),
+    pattern="م20$",
+    command=("م20", plugin_category),
 )
 async def _(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
@@ -18,7 +18,7 @@ async def _(event):
         )
 
 
-# by ~ @RR9R7
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="الزغرفة$",
     command=("الزغرفة", plugin_category),
@@ -26,7 +26,7 @@ async def _(event):
 async def _(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         await event.edit(
-            "˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰFٓoٍَِNٌtSَ\n"
+            "˛ NARUTO ، ٰFٓoٍَِNٌtSَ\n"
             "•━═━═━═━═━━═━═━═━═━•\n"
             "**قائـمة اوامر الزغرفة :**\n"
             " `.زغرفة0`\n"
@@ -41,11 +41,11 @@ async def _(event):
             " `.زغرفة9`\n"
             " **اكتب الاسم مع الامر للـزغرفة فقط انكليزي**\n"
             "•━═━═━═━═━━═━═━═━═━•‌‌\n"
-            "˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt - [CَِٓHُ](t.me/JMTHON)"
+            "˛ NARUTO ، ٰUٍsٓEِrBُoََt - [CَِٓHُ](t.me/JMTHON)"
         )
 
 
-# by ~ @RR9R7
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="اسماء تمبلر$",
     command=("اسماء تمبلر", plugin_category),
@@ -102,37 +102,7 @@ async def _(event):
     return await event.edit(f"{arj}")
 
 
-@jmthon.ar_cmd(
-    pattern="المتحركات$",
-    command=("المتحركات", plugin_category),
-)
-async def _(event):
-    await event.edit(
-        "قائمة اوامر المتـحركات :\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n ⌯︙اختر احدى هذه القوائم\n\n- ( `.متحركات كيوت` ) \n- ( `.متحركات ساد` )\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JMTHON"
-    )
-
-
-@jmthon.ar_cmd(
-    pattern="متحركات ساد$",
-    command=("متحركات ساد", plugin_category),
-)
-async def _(event):
-    await event.edit(
-        "قائمة اوامر متحـرات سـاد :\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n ⌯︙اختر احدى هذه القوائم\n\n- ( `.س1` ) \n- ( `.س2` )   \n- (`.س3`)\n- ( `.س4`) \n- ( `.س5` ) \n- ( `.س6` )\n- ( `.س7` )\n- ( `.س8` )\n- ( `.س9` )\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JMTHON"
-    )
-
-
-@jmthon.ar_cmd(
-    pattern="متحركات كيوت$",
-    command=("متحركات كيوت", plugin_category),
-)
-async def _(event):
-    await event.edit(
-        "قائمة اوامر متحـرات كيـوت :\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n ⌯︙اختر احدى هذه القوائم\n\n- ( `.ك1` ) \n- ( `.ك2` )   \n- (`.ك3`)\n- ( `.ك4`) \n- ( `.ك5` ) \n- ( `.ك6` )\n- ( `.ك7` )\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JMTHON"
-    )
-
-
-# by ~ @RR9R7
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="اشهر مزغرفة$",
     command=("اشهر مزغرفة", plugin_category),
@@ -182,7 +152,7 @@ async def _(event):
         )
 
 
-# ˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt  #
+# ˛ NARUTO ، ٰUٍsٓEِrBُoََt  #
 
 
 @jmthon.ar_cmd(
@@ -223,8 +193,8 @@ async def _(event):
         )
 
 
-# ˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt  #
-# by ~ @RR9R7
+# ˛ NARUTO ، ٰUٍsٓEِrBُoََt  #
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="شباب1$",
     command=("شباب1", plugin_category),
@@ -270,8 +240,8 @@ async def _(event):
         )
 
 
-# ˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt  #
-# by ~ @RR9R7
+# ˛ NARUTO ، ٰUٍsٓEِrBُoََt  #
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="شباب2$",
     command=("شباب2", plugin_category),
@@ -324,8 +294,8 @@ async def _(event):
         )
 
 
-# ˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt  #
-# by ~ @RR9R7
+# ˛ NARUTO ، ٰUٍsٓEِrBُoََt  #
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="بنات1$",
     command=("بنات1", plugin_category),
@@ -385,8 +355,8 @@ async def _(event):
         )
 
 
-# ˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt  #
-# by ~ @RR9R7
+# ˛ NARUTO ، ٰUٍsٓEِrBُoََt  #
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="بنات2$",
     command=("بنات2", plugin_category),
@@ -430,8 +400,8 @@ async def _(event):
         )
 
 
-# ˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt  #
-# by ~ @RR9R7
+# ˛ NARUTO ، ٰUٍsٓEِrBُoََt  #
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="قنوات$",
     command=("قنوات", plugin_category),
@@ -485,8 +455,8 @@ async def _(event):
         )
 
 
-# ˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt  #
-# by ~ @RR9R7
+# ˛ NARUTO ، ٰUٍsٓEِrBُoََt  #
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="اختصارات1$",
     command=("اختصارات1", plugin_category),
@@ -583,8 +553,8 @@ async def _(event):
         )
 
 
-# ˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt  #
-# by ~ @RR9R7
+# ˛ NARUTO ، ٰUٍsٓEِrBُoََt  #
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="اختصارات2$",
     command=("اختصارات2", plugin_category),
@@ -624,8 +594,8 @@ async def _(event):
         )
 
 
-# ˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt  #
-# by ~ @RR9R7
+# ˛ NARUTO ، ٰUٍsٓEِrBُoََt  #
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="اختصارات3$",
     command=("اختصارات3", plugin_category),
@@ -676,8 +646,8 @@ async def _(event):
         )
 
 
-# ˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt  #
-# by ~ @RR9R7
+# ˛ NARUTO ، ٰUٍsٓEِrBُoََt  #
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="اختصارات4$",
     command=("اختصارات4", plugin_category),
@@ -726,8 +696,8 @@ async def _(event):
         )
 
 
-# ˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰUٍsٓEِrBُoََt  #
-# by ~ @RR9R7
+# ˛ NARUTO ، ٰUٍsٓEِrBُoََt  #
+# by ~ @MusicElkeatib
 @jmthon.ar_cmd(
     pattern="اختصارات5$",
     command=("اختصارات5", plugin_category),
@@ -805,4 +775,4 @@ async def _(event):
         )
 
 
-# by ~ @RR9R7
+# by ~ @MusicElkeatib

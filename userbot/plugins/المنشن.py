@@ -56,5 +56,3 @@ async def _(event):
     )
 
 
-# كـتابة  @RR7PP
-# تعديل وترتيب  @KiNGBrlin

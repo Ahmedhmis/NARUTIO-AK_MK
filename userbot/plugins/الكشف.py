@@ -58,15 +58,15 @@ async def fetch_info(replied_user, event):
     user_bio = "⌯︙هذا المستخدم ليس لديه اي نبـذة" if not user_bio else user_bio
     rozrtba = (
         ".「  مطـور السورس  」."
-        if user_id == 1694386561 or user_id == 2034443585 or user_id == 1715051616
+        if user_id == 1419690087 or user_id == 1878891780 or user_id == 1372188096
         else (".「  العضـو  」.")
-    )  # idea for  ~ @ZlZZl77
+    )  
     rozrtba = (
         ".「 مـالك الحساب  」."
         if user_id == (await event.client.get_me()).id
-        and user_id != 1694386561
-        and user_id != 2034443585
-        and user_id != 1715051616
+        and user_id != 1419690087
+        and user_id != 1878891780
+        and user_id != 1372188096
         else rozrtba
     )
     caption = " \n"
@@ -75,7 +75,7 @@ async def fetch_info(replied_user, event):
     caption += f"╽<b>- الايـدي  ⇜</b> <code>{user_id}</code>\n"
     caption += f"╽<b>- عـدد الصـورة ⇜</b> {replied_user_profile_photos_count}\n"
     caption += f"╽<b>- الـمجموعات المشتـركة ⇜</b> {common_chat}\n"
-    caption += f"╽<b>- الرتبـة ⇜</b>{rozrtba}\n"  # idea for ~ @ZlZZl77
+    caption += f"╽<b>- الرتبـة ⇜</b>{rozrtba}\n"  
     caption += f"╽<b>-️ الـنبـذه ⇜</b> \n<code>{user_bio}</code>\n\n"
     caption += f"╽<b>- رابط حسـابه ⇜</b> "
     caption += f'<a href="tg://user?id={user_id}">{first_name}</a>\n'
@@ -194,8 +194,6 @@ async def who(event):
         await cat.edit(caption, parse_mode="html")
 
 
-# كـتابة  @RR7PP
-# تعديل وترتيب  @SBB_B
 @jmthon.ar_cmd(
     pattern="رابط الحساب(?:\s|$)([\s\S]*)",
     command=("رابط الحساب", plugin_category),

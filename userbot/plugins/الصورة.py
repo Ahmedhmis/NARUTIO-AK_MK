@@ -1,4 +1,4 @@
-# t.me/JMTHON
+
 import logging
 
 from userbot.utils import admin_cmd
