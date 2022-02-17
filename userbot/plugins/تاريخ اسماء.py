@@ -1,5 +1,4 @@
-# Copyright (C) 2021 JMTHON TEAM
-# FILES WRITTEN BY  @RR7PP
+
 import asyncio
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
@@ -28,12 +27,12 @@ plugin_category = "utils"
         "examples": "{tr}sg @missrose_bot",
     },
 )
-async def _(event):  #   : @RR7PP
+async def _(event):  
     "To get name/username history."
     input_str = "".join(event.text.split(maxsplit=1)[1:])
     reply_message = await event.get_reply_message()
     if not input_str and not reply_message:
-        await edit_delete(  # ترجمه فريق جمثون على التيلكرام
+        await edit_delete(  # ترجمه فريق نـاروتو على التيلكرام
             event,
             "⌯︙ يـجب الـرد على الشخـص او كتـابة معـرفه مع الأمـر لأظـهار تواريـخ اسمـه",
         )
@@ -67,6 +66,6 @@ async def _(event):  #   : @RR7PP
     for i in check:
         if jasem:
             await event.reply(i, parse_mode=_format.parse_pre)
-        else:  # ترجمه فريق جمثون على التيلكرام
+        else:  # ترجمه فريق نـاروتو على التيلكرام
             jasem = True
             await catevent.edit(i, parse_mode=_format.parse_pre)

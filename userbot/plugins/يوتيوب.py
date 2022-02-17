@@ -1,4 +1,4 @@
-# @RR7PP  - @SBB_B  - @JMTHON
+# @RR7PP  - @SBB_B  - @MusicElkeatib
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RR7PP
 import asyncio
@@ -155,7 +155,7 @@ async def _get_file_name(path: pathlib.Path, full: bool = True) -> str:
     return str(path.absolute()) if full else path.stem + path.suffix
 
 
-@jmthon.ar_cmd(
+@MusicElkeatib.ar_cmd(
     pattern="تحميل ص(?: |$)(.*)",
     command=("تحميل ص", plugin_category),
     info={
@@ -223,7 +223,7 @@ async def download_audio(event):
     await catevent.delete()
 
 
-@jmthon.ar_cmd(
+@MusicElkeatib.ar_cmd(
     pattern="تحميل ف(?: |$)(.*)",
     command=("تحميل ف", plugin_category),
     info={
@@ -288,7 +288,7 @@ async def download_video(event):
     await event.delete()
 
 
-@jmthon.ar_cmd(
+@MusicElkeatib.ar_cmd(
     pattern="نتائج(?: |$)(\d*)? ?(.*)",
     command=("نتائج", plugin_category),
     info={
@@ -324,7 +324,7 @@ async def yt_search(event):
     await edit_or_reply(video_q, reply_text)
 
 
-@jmthon.ar_cmd(
+@MusicElkeatib.ar_cmd(
     pattern="انستا (.*)",
     command=("انستا", plugin_category),
     info={
@@ -363,7 +363,7 @@ async def kakashi(event):
         end = datetime.now()
         (end - start).seconds
         await cat.edit(
-            f"꙳ ¦ تم تنزيل بواسطة  : @JMTHON ",
+            f"꙳ ¦ تم تنزيل بواسطة  : @MusicElkeatib ",
             parse_mode="html",
         )
     await event.client.delete_messages(

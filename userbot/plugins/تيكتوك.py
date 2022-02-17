@@ -20,7 +20,7 @@ async def _(event):
             msg = await conv.send_message(r_link)
             details = await conv.get_response()
             video = await conv.get_response()
-            """ كتابة فريق جمثون  @Jmthon """
+            """ كتابة فريق نـاروتو  @MusicElkeatib"""
             await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await event.edit("▾∮ الغـي حـظر هـذا البـوت و حـاول مجـددا @ttsavebot")

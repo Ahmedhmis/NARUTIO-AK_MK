@@ -29,7 +29,7 @@ LOGS = logging.getLogger(__name__)
 plugin_category = "utils"
 
 
-@jmthon.ar_cmd(
+@MusicElkeatib.ar_cmd(
     pattern="المشرفين(?: |$)(.*)",
     command=("المشرفين", plugin_category),
     info={
@@ -39,7 +39,7 @@ plugin_category = "utils"
             "{tr}المشرفيـن +إسم المستخـدم/معرّف المستخـدم> ✪",
             "{tr}المشرفيـن + في المجموعـة التي تريدهـا> ✪",
         ],
-        "examples": "{tr}المشرفين @jmthon",
+        "examples": "{tr}المشرفين @MusicElkeatib",
     },
 )
 async def _(event):
@@ -84,7 +84,7 @@ async def _(event):
     await event.delete()
 
 
-@jmthon.ar_cmd(
+@MusicElkeatib.ar_cmd(
     pattern="البوتات(?: |$)(.*)",
     command=("البوتات", plugin_category),
     info={
@@ -94,7 +94,7 @@ async def _(event):
             "{tr}البوتات + إسم المستخـدم/معرّف المستخـدم> 🝰 ",
             "{tr}البوتات + في المجموعـة التي تريدهـا 🝰 ",
         ],
-        "examples": "{tr}البوتات @jmthon",
+        "examples": "{tr}البوتات @MusicElkeatib",
     },
 )
 async def _(event):
@@ -126,7 +126,7 @@ async def _(event):
     await edit_or_reply(event, mentions)
 
 
-@jmthon.ar_cmd(
+@MusicElkeatib.ar_cmd(
     pattern="الاعضاء(?: |$)(.*)",
     command=("الاعضاء", plugin_category),
     info={
@@ -176,7 +176,7 @@ async def get_users(show):
     await edit_or_reply(catevent, mentions)
 
 
-@jmthon.ar_cmd(
+@MusicElkeatib.ar_cmd(
     pattern="معلومات(?: |$)(.*)",
     command=("معلومات", plugin_category),
     info={
@@ -186,7 +186,7 @@ async def get_users(show):
             "{tr}المعلومـات <username/userid>",
             "{tr}المعلومـات <in group where you need>",
         ],
-        "examples": "{tr}معلومات @JMTHON",
+        "examples": "{tr}معلومات @MusicElkeatib",
     },
 )
 async def info(event):

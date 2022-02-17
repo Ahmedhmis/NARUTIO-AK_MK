@@ -13,6 +13,18 @@ from ..core.managers import edit_or_reply
 from ..core.managers import edit_or_reply as eod
 from ..helpers import get_user_from_event
 from . import *
+import os
+B =  """
+┏━━┓┏━━┓┏━━┓┏━━┓
+┗━┓┃┃┏┓┃┗━┓┃┗━┓┃
+┏━┛┃┃┃┃┃┏━┛┃┏━┛┃
+HAPPY NEW YEAR 2022
+┃┗━┓┃┗┛┃┃┗━┓┃┗━┓
+┗━━┛┗━━┛┗━━┛┗━━┛"""
+
+@jmthon.on(admin_cmd(pattern="2022"))
+async def _(muhammad):
+       await muhammad.edit(B)
 
 
 @jmthon.on(admin_cmd(pattern="كتابة(?: |$)(.*)"))
@@ -281,9 +293,3 @@ async def homer(homer):
 @jmthon.on(admin_cmd(pattern=r"بك"))
 async def pig(pig):
     await pig.edit(Z)
-
-CMD_HELP.update(
-    {
-      "وهمي":" قريبا"
-    }
-)

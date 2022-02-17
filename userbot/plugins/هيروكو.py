@@ -24,13 +24,7 @@ HEROKU_APP_NAME = Config.HEROKU_APP_NAME
 HEROKU_API_KEY = Config.HEROKU_API_KEY
 
 
-@jmthon.ar_cmd(
-    pattern="(اضف|معلومات|حذف) فار ([\s\S]*)",
-    command=("فار", plugin_category),
-    info={
-        "header": "To manage heroku vars.",
-    },
-)
+@jmthon.on(admin_cmd(pattern="(اضف|جلب|حذف) فار ([\s\S]*)"))
 async def variable(var):
     """
     Manage most of ConfigVars setting, set new var, get current var, or delete var...
@@ -43,7 +37,7 @@ async def variable(var):
     app = Heroku.app(Config.HEROKU_APP_NAME)
     exe = var.pattern_match.group(1)
     heroku_var = app.config()
-    if exe == "معلومات":
+    if exe == "جلب":
         cat = await edit_or_reply(var, "⌯︙يـتم سـحب المعـلومـات")
         await asyncio.sleep(1.0)
         try:
@@ -73,18 +67,18 @@ async def variable(var):
             os.remove("configs.json")
     elif exe == "اضف":
         variable = "".join(var.text.split(maxsplit=2)[2:])
-        cat = await edit_or_reply(var, "⌯︙يتم سحب المعلومات")
+        cat = await edit_or_reply(var, "- يتم سحب المعلومات")
         if not variable:
-            return await cat.edit("⌯︙`.ضع فار <كود الفار> <القيمة>`")
+            return await cat.edit("`.ضع فار <كود الفار> <القيمة>`")
         value = "".join(variable.split(maxsplit=1)[1:])
         variable = "".join(variable.split(maxsplit=1)[0])
         if not value:
             return await cat.edit("⌯︙`.ضع فار <كود الفار> <القيمة>`")
         await asyncio.sleep(1.5)
         if variable in heroku_var:
-            await cat.edit(f"⌯︙`{variable}`  تم بنجاح التغيير الى  \n  ⌯︙`{value}`")
+            await cat.edit(f"⌯︙`{variable}`  تم بنجاح التغيير الى  \n`{value}`")
         else:
-            await cat.edit(f"⌯︙`{variable}`  تم بنجاح اضافه القيمة مع \n   ⌯︙`{value}`")
+            await cat.edit(f"`{variable}`  تم بنجاح اضافه القيمة مع \n`{value}`")
         heroku_var[variable] = value
     elif exe == "حذف":
         cat = await edit_or_reply(var, "⌯︙يتم سحب المعلومات انتظر")

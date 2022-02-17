@@ -4,7 +4,7 @@ from asyncio.exceptions import TimeoutError
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import jmthon, CMD_HELP
+from userbot import jmthon
 
 #
 @jmthon.on(admin_cmd(pattern="حالتي ?(.*)"))
@@ -45,11 +45,3 @@ async def _(event):
             f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({jmthon})"
         )
 
-CMD_HELP.update(
-    {
-        "بوتات: ".حالتي \n ارسل الامر لعرض حالة حسابك اذا كنت محظور او لا\
-            \n\n`.ايميل وهمي`\nلعمل لك ايميل وهمي تستخدمه في العديد من المواقع\n"
-    }
-)
-
-#

@@ -1,5 +1,4 @@
 from userbot import jmthon 
-from userbot import CMD_HELP
 
 
 @jmthon.on(admin_cmd(pattern=r"كول (.*)"))
@@ -15,11 +14,6 @@ async def _(event):
         await event.delete()
 
 
-CMD_HELP.update(
-    {
-        "كول": ".كول <الرسالة>\nامر كول اولا ضيف البوت في المجموعه و اكتب الامر وكلمه وسيرسلها البوت "
-    }
-)
 
 #    TeleBot - UserBot
 #    Copyright (C) 2020 TeleBot

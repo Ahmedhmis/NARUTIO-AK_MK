@@ -1,4 +1,4 @@
-# WRITED BY - @VUUZZ - @RR7PP
+
 
 import io
 import os
@@ -65,7 +65,7 @@ async def waifu(animu):
         ],
         "examples": "{tr}stcr hello",
     },
-)  # WRITED BY - @VUUZZ - @RR7PP
+)  # @Music54Elkeatib
 async def sticklet(event):
     "⌔︙النص الخاص بك كملصق"
     R = random.randint(0, 256)
@@ -115,7 +115,7 @@ async def sticklet(event):
         pass
 
 
-# WRITED BY - @VUUZZ - @RR7PP
+# @Music54Elkeatib
 @jmthon.ar_cmd(
     pattern="هونك(?:\s|$)([\s\S]*)",
     command=("هونك", plugin_category),
@@ -172,7 +172,7 @@ async def twt(event):
         "usage": "{tr}doge <text/reply to msg>",
         "examples": "{tr}doge Gib money",
     },
-)  # WRITED BY - @VUUZZ - @RR7PP
+)  # @Music54Elkeatib
 async def doge(event):
     "⌔︙اصنع ستيكر كلب رائع."
     text = event.pattern_match.group(1)
@@ -188,7 +188,7 @@ async def doge(event):
     await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
 
 
-# WRITED BY - @VUUZZ - @RR7PP
+# @Music54Elkeatib
 
 
 @jmthon.ar_cmd(
@@ -208,7 +208,7 @@ async def doge(event):
             "{tr}glaxr Die you",
         ],
     },
-)  # WRITED BY - @VUUZZ - @RR7PP
+)  # @Music54Elkeatib
 async def glax(event):
     "⌔︙اجعل غلاكس التنين ينفخ نصك."
     cmd = event.pattern_match.group(1).lower()
@@ -222,10 +222,10 @@ async def glax(event):
         else:
             return await edit_delete(
                 event, " ⌯︙ماذا يفترض بـ گلاكـس ان يقول اعطه نصا**"
-            )  # WRITED BY - @VUUZZ - @RR7PP
+            )  # @Music54Elkeatib
     text = deEmojify(text)
     await event.delete()
     await hide_inlinebot(
         event.client, bot_name, text, event.chat_id, reply_to_id, c_lick=c_lick
     )
-    # WRITED BY - @VUUZZ - @RR7PP
+    # @Music54Elkeatib

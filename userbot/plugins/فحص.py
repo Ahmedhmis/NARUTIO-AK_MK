@@ -2,7 +2,6 @@ import random
 import time
 from datetime import datetime
 from platform import python_version
-
 from telethon import version
 from telethon.errors.rpcerrorlist import (
     MediaEmptyError,
@@ -11,17 +10,19 @@ from telethon.errors.rpcerrorlist import (
 )
 
 from userbot import JMVERSION, StartTime, jmthon
-
 from ..core.managers import edit_or_reply
 from ..helpers.functions import check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
+from ..Config import Config
 from . import *
+
+ALIVE_CMD = Config.ALIVE_CMD or "فحص"
 
 # كتـابة وتعـديل:  @RR9R7
 
 
-@jmthon.on(admin_cmd(pattern="فحص(?: |$)(.*)"))
+@jmthon.on(admin_cmd(pattern=f"{ALIVE_CMD}(?: |$)(.*)"))
 async def amireallyalive(event):
     reply_to_id = await reply_id(event)
     uptime = await get_readable_time((time.time() - StartTime))
@@ -70,8 +71,8 @@ temp = """- {ALIVE_TEXT}
 **{EMOJI} قاعدۿ البيانات :** تعمل بنـجاح
 **{EMOJI} أصـدار التـيليثون :** `{telever}`
 **{EMOJI} أصـدار جـمثون :** `{jmver}`
+**{EMOJI} الوقت:** `{uptime}` 
 **{EMOJI} أصدار البـايثون :** `{pyver}`
-**{EMOJI} الوقـت :** `{uptime}`
 **{EMOJI} المسـتخدم:** {mention}"""
 
 

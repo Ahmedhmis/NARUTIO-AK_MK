@@ -8,7 +8,9 @@ import time
 from datetime import datetime
 
 from userbot import jmthon
-
+from telethon import events
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from userbot.utils import sudo_cmd
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers import media_type, progress
@@ -204,40 +206,39 @@ async def _(event):
 # WRITE BY  @RR7PP
 
 
-@jmthon.ar_cmd(
-    pattern="تحويل متحركة ?([0-9.]+)?$",
-    command=("تحويل متحركة", plugin_category),
-    info={
-        "header": "Reply this command to a video to convert it to gif.",
-        "description": "By default speed will be 1x",
-        "usage": "{tr}vtog <speed>",
-    },
-)
+@jmthon.on(admin_cmd(pattern="تحويل متحركة (?: |$)(.*)"))
 async def _(event):
-    "Reply this command to a video to convert it to gif."
-    reply = await event.get_reply_message()
-    mediatype = media_type(event)
-    if mediatype and mediatype != "video":
-        return await edit_delete(event, "⌯︙يجـب عليك الـرد على فيديو اولا لتحـويله ⚠️")
-    args = event.pattern_match.group(1)
-    if not args:
-        args = 2.0
+    if event.fwd_from:
+        return
+    input_str = event.pattern_match.group(1)
+    reply_to_id = await reply_id(event)
+    if event.reply_to_msg_id and not event.pattern_match.group(1):
+        reply_to_id = await event.get_reply_message()
+        reply_to_id = str(reply_to_id.message)
     else:
-        try:
-            args = float(args)
-        except ValueError:
-            args = 2.0
-    catevent = await edit_or_reply(event, "**⌯︙يتـم التحويل الى متـحركه انتـظر ⏱**")
-    inputfile = await reply.download_media()
-    outputfile = os.path.join(Config.TEMP_DIR, "vidtogif.gif")
-    result = await vid_to_gif(inputfile, outputfile, speed=args)
-    if result is None:
-        return await edit_delete(
-            event, "**⌯︙عـذرا لا يمكـنني تحويل هذا الى متـحركة ⚠️**"
+        reply_to_id = str(event.pattern_match.group(1))
+    if not reply_message.media:
+        return await edit_or_reply(
+            event, "يستخدم الامر بالرد على فيديو بـ  `.تحويل متحركة`"
         )
-    jasme = await event.client.send_file(event.chat_id, result, reply_to=reply)
-    await _catutils.unsavegif(event, jasme)
-    await catevent.delete()
-    for i in [inputfile, outputfile]:
-        if os.path.exists(i):
-            os.remove(i)
+    chat = "@VideoToGifConverterBot"
+    rzevent = await edit_or_reply(event, "**- جـارِ التحـويا انتـظر ...**")
+    async with event.client.conversation(chat) as conv:
+        try:
+            response = conv.wait_event(
+                events.NewMessage(incoming=True, from_users=1125181695)
+            )
+            await event.client.send_message(chat, "{}".format(input_str))
+            response = await response
+            await event.client.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await rzevent.edit(
+                "**- تحـقق من انـك لم تقـم بحظر البوت @VideoToGifConverterBot .. ثم اعـد استخدام الامـر ..**"
+            )
+            return
+        if response.text.startswith("I can't find that"):
+            await rzevent.edit("**-**")
+        else:
+            await rzevent.delete()
+            await event.client.send_message(event.chat_id, response.message)
+        
