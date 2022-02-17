@@ -4,7 +4,7 @@
 #
 # This file is a part of < https://github.com/JMTHON-AR/JMTHON >
 # Please read the GNU Affero General Public License in;
-# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
+# < https://github.com/Ahmedhmis/NARUTIO-AK_MK.git/blob/master/LICENSE
 # ===============================================================
 import time
 
@@ -16,13 +16,13 @@ from .core.session import jmthon
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
 __version__ = "1.0.0"
-__license__ = "كـتابة وتـعديل فريـق جـمثون"
-__author__ = "جـمثون <https://T.ME/JMTHON>"
-__copyright__ = "JMTHON TEAM (C) 2020 - 2021  " + __author__
+__license__ = "كـتابة وتـعديل فريـق نـاروتو"
+__author__ = "ناروتـو <https://t.me/MusicElkeatib>"
+__copyright__ = "NARUTO TEAM (C) 2020 - 2021  " + __author__
 
 jmthon.version = __version__
 jmthon.tgbot.version = __version__
-LOGS = logging.getLogger("جـمثون")
+LOGS = logging.getLogger("ناروتو")
 bot = jmthon
 
 StartTime = time.time()
@@ -30,7 +30,9 @@ JMVERSION = "5.2.0"
 
 
 if Config.UPSTREAM_REPO == "Jmthon-iq":
-    UPSTREAM_REPO_URL = "https://github.com/Ahmedhmis/NARUTIO-AK_MK"
+    UPSTREAM_REPO_URL = "https://github.com/Ahmedhmis/NARUTIO-AK_MK.git"
+elif Config.UPSTREAM_REPO == "jmthon-ar":
+    UPSTREAM_REPO_URL = "https://github.com/Ahmedhmis/NARUTIO-AK_MK.git"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
