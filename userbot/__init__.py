@@ -1,11 +1,5 @@
-# @Jmthon - < https://t.me/Jmthon >
-# Copyright (C) 2021 - JMTHON-AR
-# All rights reserved.
-#
-# This file is a part of < https://github.com/JMTHON-AR/JMTHON >
-# Please read the GNU Affero General Public License in;
-# < https://github.com/Ahmedhmis/NARUTIO-AK_MK.git/blob/master/LICENSE
-# ===============================================================
+
+
 import time
 
 import heroku3
@@ -29,9 +23,9 @@ StartTime = time.time()
 JMVERSION = "5.2.0"
 
 
-if Config.UPSTREAM_REPO == "Jmthon-iq":
+if Config.UPSTREAM_REPO == "NARUTIO":
     UPSTREAM_REPO_URL = "https://github.com/Ahmedhmis/NARUTIO-AK_MK.git"
-elif Config.UPSTREAM_REPO == "jmthon-ar":
+elif Config.UPSTREAM_REPO == "NARUTIO":
     UPSTREAM_REPO_URL = "https://github.com/Ahmedhmis/NARUTIO-AK_MK.git"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
