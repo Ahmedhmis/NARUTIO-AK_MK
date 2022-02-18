@@ -28,10 +28,10 @@ class Config(object):
     )
     TG_BOT_USERNAME = None
     # get this value from http://www.timezoneconverter.com/cgi-bin/findzone.tzc
-    TZ = os.environ.get("TZ", "Africa/Cairo")
+    TZ = os.environ.get("TZ", "Asia/Kolkata")
     # set this with required cat repo link
     UPSTREAM_REPO = os.environ.get(
-        "UPSTREAM_REPO", "https://github.com/Ahmedhmis/NARUTIO-AK_MK.git"
+        "UPSTREAM_REPO", "https://github.com/JMTHON-AR/JM-THON.git"
     )
 
     # BASIC and MAIN CONFIG VARS
@@ -39,7 +39,26 @@ class Config(object):
     AUTONAME = os.environ.get("AUTONAME", None)
 
     # تعديلي
+    
+    BOTE_CMD = os.environ.get("BOTE_CMD", None)
+    LPRIV_CMD = os.environ.get("LPRIV_CMD", None)
+    LGROUP_CMD = os.environ.get("LGROUP_CMD", None)
+    SCPIC_CMD = os.environ.get("SCPIC_CMD", None)
+    
+    SLEEPM_CMD = os.environ.get("SLEEPM_CMD", None)
+    ADD_CMD = os.environ.get("ADD_CMD", None)
+    SLEEP_CMD = os.environ.get("SLEEP_CMD", None)
+    PRV_CMD = os.environ.get("PRV_CMD", None)
+    GROUP_CMD = os.environ.get("GROUP_CMD", None)
+    ALIVE_CMD = os.environ.get("ALIVE_CMD", None)
+    CLONE_CMD = os.environ.get("CLONE_CMD", None)
+    RETRUN_CMD = os.environ.get("RETRUN_CMD", None)
+    DELWELCOME_CMD = os.environ.get("DELWELCOME_CMD", None)
+    WELCOMES_CMD = os.environ.get("WELCOMES_CMD", None)
+    WELCOME_CMD = os.environ.get("WELCOME_CMD", None)
+    
     PING_PIC = os.environ.get("PING_PIC")
+    TI_FN = os.environ.get("TI_FN", None)
     TIME_JM = os.environ.get("TIME_JM", None)
     LOAD_MYBOT = os.environ.get("LOAD_MYBOT", "True")
     JMTHON_START = os.environ.get("JMTHON_START", None)
