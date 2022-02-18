@@ -7,5 +7,5 @@ StJms = [
     "▾∮ يـتم اكمـال اعـداد البـوت االمسـاعد",
     "▾∮ تـم بنجاح اعـداد البـوت المسـاعد",
 ]
-Stdec = "- 𝖩𝖬𝖳𝖧𝖮𝖭 𝖴𝖲𝖤𝖱𝖡𝖮𝖳 𝖠𝖲𝖲𝖨𝖳𝖠𝖭𝖳 \n- 𝖩𝖬𝖳𝖧𝖮𝖭 𝖥𝖮𝖱  {}\n- @JMTHON "
-SetAbt = "- 𝖩𝖬𝖳𝖧𝖮𝖭 𝖴𝖲𝖤𝖱𝖡𝖮𝖳\n- 𝖩𝖬𝖳𝖧𝖮𝖭 𝖥𝖮𝖱  {}"
+Stdec = "- NARUTO USERBOT 𝖠𝖲𝖲𝖨𝖳𝖠𝖭𝖳 \n- NARUTO 𝖥𝖮𝖱  {}\n- @MusicElkeatib "
+SetAbt = "- NARUTO USERBOT\n- NARUTO 𝖥𝖮𝖱  {}"
