@@ -1,3 +1,3 @@
 from ._gif import *
 
-# by ~ @RR7PP
+# by ~ @E_l_k_e_a_t_i_b
